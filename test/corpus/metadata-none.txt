@@ -1,0 +1,79 @@
+================================================================================
+a none value parses as metadata_none, distinct from omission
+:language(lingrep)
+================================================================================
+source: none
+pattern p := [text=あ].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (metadata_entry
+    (identifier)
+    (metadata_none))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value)))))
+
+================================================================================
+none stays an identifier outside a value position
+:language(lingrep)
+================================================================================
+none: "x"
+none := [text=none].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value)))))
+
+================================================================================
+none is admitted anywhere a metadata value is; the compiler scopes it
+:language(lingrep)
+================================================================================
+overrides: [none, "x"]
+anchor: {exclude: none}
+pattern p := [text=あ].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (metadata_entry
+    (identifier)
+    (metadata_list
+      (metadata_none)
+      (metadata_string)))
+  (metadata_entry
+    (identifier)
+    (metadata_map
+      (metadata_map_entry
+        (identifier)
+        (metadata_none))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value)))))

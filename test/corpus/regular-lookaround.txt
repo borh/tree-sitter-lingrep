@@ -1,0 +1,188 @@
+================================================================================
+captureless regular lookaround
+:language(lingrep)
+================================================================================
+fragment tail := [unidic.pos1=VERB] $.
+pattern before := preceded_by(([text=a] [text=b]*) | ^) [text=x].
+pattern not_before := not_preceded_by([unidic.cform=連用形-一般]) [text=そう].
+pattern after := followed_by(@tail) [text=x].
+pattern not_after := not_followed_by(([text=a] | [text=b])+) [text=x].
+pattern nested := followed_by(([unidic.pos1=NOUN] | @tail)+ not_followed_by($)) [text=x].
+pattern literals := [text=followed_by] [lemma=not_preceded_by].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value)))
+      (sentence_end)))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (preceded_by
+        (alternation
+          (parenthesized_pattern
+            (pattern_sequence
+              (node_pattern
+                (attribute
+                  (key
+                    (attribute_key
+                      (portable_attribute_key)))
+                  (attribute_operator)
+                  (value)))
+              (quantified_pattern
+                (node_pattern
+                  (attribute
+                    (key
+                      (attribute_key
+                        (portable_attribute_key)))
+                    (attribute_operator)
+                    (value)))
+                (quantifier))))
+          (sentence_start)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (not_preceded_by
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (provider_attribute_key
+                  (provider_segment)
+                  (provider_segment))))
+            (attribute_operator)
+            (value))))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (followed_by
+        (pattern_reference
+          (identifier)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (not_followed_by
+        (quantified_pattern
+          (parenthesized_pattern
+            (alternation
+              (node_pattern
+                (attribute
+                  (key
+                    (attribute_key
+                      (portable_attribute_key)))
+                  (attribute_operator)
+                  (value)))
+              (node_pattern
+                (attribute
+                  (key
+                    (attribute_key
+                      (portable_attribute_key)))
+                  (attribute_operator)
+                  (value)))))
+          (quantifier)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (followed_by
+        (pattern_sequence
+          (quantified_pattern
+            (parenthesized_pattern
+              (alternation
+                (node_pattern
+                  (attribute
+                    (key
+                      (attribute_key
+                        (provider_attribute_key
+                          (provider_segment)
+                          (provider_segment))))
+                    (attribute_operator)
+                    (value)))
+                (pattern_reference
+                  (identifier))))
+            (quantifier))
+          (not_followed_by
+            (sentence_end))))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))))
+
+================================================================================
+reserved bare construct words
+:error
+:language(lingrep)
+================================================================================
+pattern bad_preceded := preceded_by.
+pattern bad_not_preceded := not_preceded_by.
+pattern bad_followed := followed_by.
+pattern bad_not_followed := not_followed_by.
+
+--------------------------------------------------------------------------------
+
+(source_file)

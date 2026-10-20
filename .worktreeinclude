@@ -1,0 +1,9 @@
+# Copied into each new worktree. Both gitignored AND listed here.
+# A Python .venv is deliberately absent: it embeds absolute paths and
+# cannot be relocated. Recreate it in the worktree instead.
+#
+# node_modules is deliberately absent too: a copied tree can carry a stale
+# tree-sitter CLI that fails against the committed parser ABI. Recreate it
+# per worktree with `npm ci` (package-lock.json is tracked), and use the
+# devShell's tree-sitter for grammar work.
+target/

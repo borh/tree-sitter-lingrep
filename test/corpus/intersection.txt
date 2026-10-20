@@ -1,0 +1,155 @@
+================================================================================
+intersection binds looser than sequence
+:language(lingrep)
+================================================================================
+pattern p := a b & c d.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (intersection
+      (pattern_sequence
+        (bare_element
+          (identifier))
+        (bare_element
+          (identifier)))
+      (pattern_sequence
+        (bare_element
+          (identifier))
+        (bare_element
+          (identifier))))))
+
+================================================================================
+intersection binds tighter than alternation
+:language(lingrep)
+================================================================================
+pattern p := a & b | c & d.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (alternation
+      (intersection
+        (bare_element
+          (identifier))
+        (bare_element
+          (identifier)))
+      (intersection
+        (bare_element
+          (identifier))
+        (bare_element
+          (identifier))))))
+
+================================================================================
+a chain of intersections is one n-ary node
+:language(lingrep)
+================================================================================
+pattern p := a & b & c.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (intersection
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier)))))
+
+================================================================================
+parentheses put an intersection inside a sequence
+:language(lingrep)
+================================================================================
+pattern p := (a & b) c.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (parenthesized_pattern
+        (intersection
+          (bare_element
+            (identifier))
+          (bare_element
+            (identifier))))
+      (bare_element
+        (identifier)))))
+
+================================================================================
+attribute conjunction is not intersection
+:language(lingrep)
+================================================================================
+pattern p := [upos=VERB & unidic.cform=A] & [upos=AUX].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (intersection
+      (node_pattern
+        (attribute_conjunction
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value))
+          (attribute
+            (key
+              (attribute_key
+                (provider_attribute_key
+                  (provider_segment)
+                  (provider_segment))))
+            (attribute_operator)
+            (value))))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))))
+
+================================================================================
+the double-wo shape S4 exists to replace
+:language(lingrep)
+================================================================================
+pattern p := ( @gap* @edge @gap* ) & []{1,8}.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (intersection
+      (parenthesized_pattern
+        (pattern_sequence
+          (quantified_pattern
+            (pattern_reference
+              (identifier))
+            (quantifier))
+          (pattern_reference
+            (identifier))
+          (quantified_pattern
+            (pattern_reference
+              (identifier))
+            (quantifier))))
+      (quantified_pattern
+        (node_pattern)
+        (quantifier)))))

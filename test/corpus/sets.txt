@@ -1,0 +1,107 @@
+================================================================================
+set declaration and reference
+:language(lingrep)
+================================================================================
+set CONTENT := {動詞, 助動詞, 補助記号}.
+fragment gap := [unidic.orthbase!=を & unidic.pos1 not in @CONTENT].
+pattern p := [text in @CONTENT].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (set_definition
+    (identifier)
+    (value_set
+      (value)
+      (value)
+      (value)))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute_conjunction
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value))
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (set_reference
+            (identifier))))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (set_reference
+          (identifier))))))
+
+================================================================================
+an inline set still parses as a value_set
+:language(lingrep)
+================================================================================
+pattern p := [text in {て, で}].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value_set
+          (value)
+          (value))))))
+
+================================================================================
+set is a reserved name
+:language(lingrep)
+================================================================================
+set := [text=x].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ERROR
+    (UNEXPECTED ']')))
+
+================================================================================
+set is reserved as a metadata key too
+:language(lingrep)
+================================================================================
+set: "x"
+pattern p := [text=あ].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ERROR
+    (analyzer_identifier))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value)))))

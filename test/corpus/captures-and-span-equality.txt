@@ -1,0 +1,109 @@
+================================================================================
+captures-and-span-equality.lx
+:language(lingrep)
+================================================================================
+pattern one := (?<unit> a) same_as($unit).
+pattern explicit := (?<unit> a b) same_as($unit, by=lemma).
+pattern projected := (?<unit> a) same_as($unit, by=unidic.kana) same_as($unit, by=unidic.pron).
+pattern grouped := ((?<unit> a | b)) same_as($unit){2}.
+pattern literal := [text=same_as].
+pattern semantic_error := (?<unit> a) same_as($unit, by=unidic.surface).
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (same_as
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (pattern_sequence
+          (bare_element
+            (identifier))
+          (bare_element
+            (identifier))))
+      (same_as
+        (capture_reference
+          (identifier))
+        (capture_projection
+          (attribute_key
+            (portable_attribute_key))))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (same_as
+        (capture_reference
+          (identifier))
+        (capture_projection
+          (attribute_key
+            (provider_attribute_key
+              (provider_segment)
+              (provider_segment)))))
+      (same_as
+        (capture_reference
+          (identifier))
+        (capture_projection
+          (attribute_key
+            (provider_attribute_key
+              (provider_segment)
+              (provider_segment)))))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (parenthesized_pattern
+        (named_group
+          (identifier)
+          (alternation
+            (bare_element
+              (identifier))
+            (bare_element
+              (identifier)))))
+      (quantified_pattern
+        (same_as
+          (capture_reference
+            (identifier)))
+        (quantifier))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (same_as
+        (capture_reference
+          (identifier))
+        (capture_projection
+          (attribute_key
+            (provider_attribute_key
+              (provider_segment)
+              (provider_segment))))))))

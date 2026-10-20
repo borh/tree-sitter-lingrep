@@ -1,0 +1,332 @@
+================================================================================
+canonical set-valued attribute operators
+:language(lingrep)
+================================================================================
+set numbers := {Sing, Plur}.
+pattern one := [feat.Number has Sing].
+pattern any_inline := [feat.Number has any {Sing, Plur}].
+pattern not_one := [feat.Number not has Sing].
+pattern not_any_reference := [feat.Number not has any @numbers].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (set_definition
+    (identifier)
+    (value_set
+      (value)
+      (value)))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (feature_attribute_key
+              (ud_feature_name
+                (ud_feature_base)))))
+        (set_has_operator)
+        (value))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (feature_attribute_key
+              (ud_feature_name
+                (ud_feature_base)))))
+        (set_has_any_operator)
+        (value_set
+          (value)
+          (value)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (feature_attribute_key
+              (ud_feature_name
+                (ud_feature_base)))))
+        (set_not_has_operator)
+        (value))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (feature_attribute_key
+              (ud_feature_name
+                (ud_feature_base)))))
+        (set_not_has_any_operator)
+        (set_reference
+          (identifier))))))
+
+================================================================================
+structured analyzer alternatives and canonical projections
+:language(lingrep)
+================================================================================
+analyzer: {family: "sudachi", resource: "core", split: "C", segmentation: ["input", "analyzer"]}
+analyzer: {family: "vibrato", segmentation: ["input"]}
+analyzer: {segmentation: ["analyzer"], family: "stanza"}
+key: [text, feat.Number, feat.Gender[psor], unidic.pos1, $capture.feat.Gender[psor], $capture.first.feat.Number]
+pattern layered := (?<capture> [feat.Gender[psor] has Fem & feat.Number has Sing]) [unidic.pos1=名詞].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (analyzer_entry
+    (analyzer_map
+      (analyzer_field
+        (analyzer_family_field
+          (identifier)
+          (analyzer_identifier)))
+      (analyzer_field
+        (analyzer_resource_field
+          (identifier)
+          (analyzer_identifier)))
+      (analyzer_field
+        (analyzer_split_field
+          (identifier)
+          (sudachi_split)))
+      (analyzer_field
+        (analyzer_segmentation_field
+          (identifier)
+          (segmentation_mode)
+          (segmentation_mode)))))
+  (analyzer_entry
+    (analyzer_map
+      (analyzer_field
+        (analyzer_family_field
+          (identifier)
+          (analyzer_identifier)))
+      (analyzer_field
+        (analyzer_segmentation_field
+          (identifier)
+          (segmentation_mode)))))
+  (analyzer_entry
+    (analyzer_map
+      (analyzer_field
+        (analyzer_segmentation_field
+          (identifier)
+          (segmentation_mode)))
+      (analyzer_field
+        (analyzer_family_field
+          (identifier)
+          (analyzer_identifier)))))
+  (key_entry
+    (identifier)
+    (key_projection_list
+      (match_key_projection
+        (attribute_key
+          (portable_attribute_key)))
+      (match_key_projection
+        (attribute_key
+          (feature_attribute_key
+            (ud_feature_name
+              (ud_feature_base)))))
+      (match_key_projection
+        (attribute_key
+          (feature_attribute_key
+            (ud_feature_name
+              (ud_feature_base)
+              (ud_feature_layer)))))
+      (match_key_projection
+        (attribute_key
+          (provider_attribute_key
+            (provider_segment)
+            (provider_segment))))
+      (capture_key_projection
+        (capture_reference
+          (identifier))
+        (attribute_key
+          (feature_attribute_key
+            (ud_feature_name
+              (ud_feature_base)
+              (ud_feature_layer)))))
+      (capture_key_projection
+        (capture_reference
+          (identifier))
+        (capture_component)
+        (attribute_key
+          (feature_attribute_key
+            (ud_feature_name
+              (ud_feature_base)))))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (node_pattern
+          (attribute_conjunction
+            (attribute
+              (key
+                (attribute_key
+                  (feature_attribute_key
+                    (ud_feature_name
+                      (ud_feature_base)
+                      (ud_feature_layer)))))
+              (set_has_operator)
+              (value))
+            (attribute
+              (key
+                (attribute_key
+                  (feature_attribute_key
+                    (ud_feature_name
+                      (ud_feature_base)))))
+              (set_has_operator)
+              (value)))))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value))))))
+
+================================================================================
+has any requires the has keyword
+:language(lingrep)
+================================================================================
+pattern missing_has := [feat.Number any {Sing, Plur}].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ERROR
+    (definition_kind)
+    (identifier)
+    (key
+      (attribute_key
+        (feature_attribute_key
+          (ud_feature_name
+            (ud_feature_base)))))
+    (ud_feature_base)
+    (ud_feature_base)))
+
+================================================================================
+not precedes has
+:language(lingrep)
+================================================================================
+pattern reversed := [feat.Number has not Sing].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (feature_attribute_key
+              (ud_feature_name
+                (ud_feature_base)))))
+        (set_has_operator)
+        (value))
+      (ERROR
+        (identifier)))))
+
+================================================================================
+unknown analyzer fields stay rejected
+:language(lingrep)
+================================================================================
+analyzer: {family: "sudachi", unknown: "value"}
+pattern bad := [].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (analyzer_entry
+    (analyzer_map
+      (analyzer_field
+        (analyzer_family_field
+          (identifier)
+          (analyzer_identifier)))
+      (ERROR
+        (UNEXPECTED 'n')
+        (analyzer_identifier))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern)))
+
+================================================================================
+invalid analyzer split values stay rejected
+:language(lingrep)
+================================================================================
+analyzer: {family: "sudachi", split: "c"}
+pattern bad := [].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (analyzer_entry
+    (analyzer_map
+      (analyzer_field
+        (analyzer_family_field
+          (identifier)
+          (analyzer_identifier)))
+      (ERROR
+        (identifier)
+        (analyzer_identifier))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern)))
+
+================================================================================
+has any rejects an empty inline set
+:language(lingrep)
+================================================================================
+pattern empty_any := [feat.Number has any {}].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (feature_attribute_key
+              (ud_feature_name
+                (ud_feature_base)))))
+        (set_has_any_operator)
+        (value_set
+          (value
+            (MISSING "value_token1")))))))
+
+================================================================================
+has any requires a set operand
+:language(lingrep)
+================================================================================
+pattern scalar_any := [feat.Number has any Sing].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (ERROR
+        (key
+          (attribute_key
+            (feature_attribute_key
+              (ud_feature_name
+                (ud_feature_base)))))
+        (set_has_any_operator)
+        (ud_feature_base)))))

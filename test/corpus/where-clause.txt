@@ -1,0 +1,788 @@
+================================================================================
+where-clause.lx
+:language(lingrep)
+================================================================================
+pattern one := (?<s> [dep.rel=nsubj]) []* (?<v> [upos=VERB]) where $v -[nsubj]-> $s.
+pattern two := (?<s> a) (?<o> b) (?<v> c) where $v -[nsubj]-> $s, $v -[obj]-> $o.
+pattern subtype := (?<n> a) (?<v> b) where $v -[obl:tmod]-> $n.
+chain := (?<a> x) (?<b> y) (?<c> z) where $a -[acl]-> $b, $b -[nmod]-> $c.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (provider_attribute_key
+                  (provider_segment)
+                  (provider_segment))))
+            (attribute_operator)
+            (value))))
+      (quantified_pattern
+        (node_pattern)
+        (quantifier))
+      (named_group
+        (identifier)
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value)))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier))))))
+
+================================================================================
+anonymous positive and negative edge existence
+:language(lingrep)
+================================================================================
+pattern present := (?<v> [upos=VERB]) where $v -[obj|obj:*]-> _.
+pattern absent := (?<v> [upos=VERB]) where not $v -[@OBJECT]-> _.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label)
+          (relation_label))
+        (anonymous_dependency_node))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (relation_negation)
+        (capture_reference
+          (identifier))
+        (label_set
+          (set_reference
+            (identifier)))
+        (anonymous_dependency_node)))))
+
+================================================================================
+anonymous dependent predicates
+:language(lingrep)
+================================================================================
+pattern pron := (?<v> [upos=VERB]) where $v -[obj|obj:*]-> [upos=PRON].
+pattern noun := (?<v> [upos=VERB]) where $v -[@OBJECT]-> [upos=NOUN | upos=PROPN].
+pattern no_pron := (?<v> [upos=VERB]) where not $v -[obj|obj:*]-> [upos=PRON].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label)
+          (relation_label))
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value))))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (set_reference
+            (identifier)))
+        (node_pattern
+          (test_disjunction
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value))
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value)))))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (relation_negation)
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label)
+          (relation_label))
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value)))))))
+
+================================================================================
+anonymous edge words stay contextual outside the target position
+:language(lingrep)
+================================================================================
+not := [].
+_ := [].
+pattern literal := [text=not] [text=_].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (node_pattern))
+  (pattern_definition
+    (identifier)
+    (node_pattern))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))))
+
+================================================================================
+where stays a legal name and bracketed value
+:language(lingrep)
+================================================================================
+where := [].
+pattern literal := [text=where].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (node_pattern))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value)))))
+
+================================================================================
+label sets: inline alternation, named set, and mixed terms
+:language(lingrep)
+================================================================================
+set SUBJ := {nsubj, csubj}.
+pattern inline := (?<v> a) (?<s> b) where $v -[nsubj|csubj]-> $s.
+pattern named := (?<v> a) (?<s> b) where $v -[@SUBJ]-> $s.
+pattern mixed := (?<v> a) (?<s> b) where $v -[@SUBJ|expl|obl:*]-> $s.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (set_definition
+    (identifier)
+    (value_set
+      (value)
+      (value)))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label)
+          (relation_label))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (set_reference
+            (identifier)))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (set_reference
+            (identifier))
+          (relation_label)
+          (relation_label))
+        (capture_reference
+          (identifier))))))
+
+================================================================================
+any present dependency relation
+:language(lingrep)
+================================================================================
+pattern any := (?<h> a) (?<d> b) where $h -[*]-> $d.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (any_relation))
+        (capture_reference
+          (identifier))))))
+
+================================================================================
+subtype wildcard is one label, distinct from the exact subtype
+:language(lingrep)
+================================================================================
+pattern family := (?<v> a) (?<n> b) where $v -[obl:*]-> $n.
+pattern exact := (?<v> a) (?<n> b) where $v -[obl:tmod]-> $n.
+pattern both := (?<v> a) (?<n> b) where $v -[obl|obl:*]-> $n.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier)))
+      (named_group
+        (identifier)
+        (bare_element
+          (identifier))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label)
+          (relation_label))
+        (capture_reference
+          (identifier))))))
+
+================================================================================
+enhanced graph nodes and optional edge identity
+================================================================================
+
+pattern propagated := (?<argument> [upos=NOUN])
+  where (?<predicate> [upos=VERB]) -[enhanced nsubj|obj as $role]-> $argument.
+
+pattern chain := (?<surface> [upos=NOUN])
+  where (?<first> [lemma=tulla]) -[enhanced obl]-> $surface,
+        $first -[enhanced conj as $link]-> (?<second> [lemma=tulla]),
+        $second -[enhanced obl]-> $surface.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (graph_node_binding
+          (identifier)
+          (node_pattern
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value))))
+        (relation_kind)
+        (label_set
+          (relation_label)
+          (relation_label))
+        (capture_reference
+          (identifier))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (graph_node_binding
+          (identifier)
+          (node_pattern
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value))))
+        (relation_kind)
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (relation_kind)
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier))
+        (graph_node_binding
+          (identifier)
+          (node_pattern
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value)))))
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (relation_kind)
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier))))))
+
+================================================================================
+exact negative enhanced edge between captured nodes
+================================================================================
+
+set ARGUMENT := {nsubj, obj}.
+
+pattern private_argument := (?<first> [upos=VERB]) (?<second> [upos=VERB])
+  where not $second -[enhanced @ARGUMENT|obl:*]-> $first.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (set_definition
+    (identifier)
+    (value_set
+      (value)
+      (value)))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value))))
+      (named_group
+        (identifier)
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value)))))
+    (where_clause
+      (relation_constraint
+        (relation_negation)
+        (capture_reference
+          (identifier))
+        (relation_kind)
+        (label_set
+          (set_reference
+            (identifier))
+          (relation_label))
+        (capture_reference
+          (identifier))))))
+
+================================================================================
+derived basic heads as enhanced endpoints
+================================================================================
+
+pattern positive_head := (?<dependent> [dep.head!=0])
+  where basic_head($dependent) -[enhanced * as $edge]-> $dependent.
+
+pattern positive_dependent := (?<head> [upos=VERB])
+  where $head -[enhanced conj]-> basic_head($head).
+
+pattern negative_endpoints := (?<left> []) (?<right> [])
+  where not basic_head($left) -[enhanced obj|obl:*]-> basic_head($right).
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (basic_head_endpoint
+          (capture_reference
+            (identifier)))
+        (relation_kind)
+        (label_set
+          (any_relation))
+        (capture_reference
+          (identifier))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (relation_kind)
+        (label_set
+          (relation_label))
+        (basic_head_endpoint
+          (capture_reference
+            (identifier))))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (node_pattern))
+      (named_group
+        (identifier)
+        (node_pattern)))
+    (where_clause
+      (relation_constraint
+        (relation_negation)
+        (basic_head_endpoint
+          (capture_reference
+            (identifier)))
+        (relation_kind)
+        (label_set
+          (relation_label)
+          (relation_label))
+        (basic_head_endpoint
+          (capture_reference
+            (identifier)))))))
+
+================================================================================
+basic head is contextual outside an enhanced endpoint
+================================================================================
+
+basic_head := [].
+pattern literal := [text=basic_head].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (node_pattern))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value)))))

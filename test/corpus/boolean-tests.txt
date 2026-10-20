@@ -1,0 +1,159 @@
+================================================================================
+test declaration and reference
+:language(lingrep)
+================================================================================
+test t := text=x.
+pattern p := [@t].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (test_definition
+    (identifier)
+    (attribute
+      (key
+        (attribute_key
+          (portable_attribute_key)))
+      (attribute_operator)
+      (value)))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (test_reference
+        (identifier)))))
+
+================================================================================
+negated test reference
+:language(lingrep)
+================================================================================
+pattern p := [!@t].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (test_negation
+        (test_reference
+          (identifier))))))
+
+================================================================================
+negated parenthesized attribute
+:language(lingrep)
+================================================================================
+pattern p := [!(text=a)].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (test_negation
+        (parenthesized_test
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value)))))))
+
+================================================================================
+test disjunction
+:language(lingrep)
+================================================================================
+pattern p := [custom.a=1 | custom.b=2].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (test_disjunction
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value))
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value))))))
+
+================================================================================
+conjunction with a parenthesized disjunction
+:language(lingrep)
+================================================================================
+pattern p := [custom.a=1 & (custom.b=2 | custom.c=3)].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute_conjunction
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value))
+        (parenthesized_test
+          (test_disjunction
+            (attribute
+              (key
+                (attribute_key
+                  (provider_attribute_key
+                    (provider_segment)
+                    (provider_segment))))
+              (attribute_operator)
+              (value))
+            (attribute
+              (key
+                (attribute_key
+                  (provider_attribute_key
+                    (provider_segment)
+                    (provider_segment))))
+              (attribute_operator)
+              (value))))))))
+
+================================================================================
+attribute inequality and test negation share a conjunction
+:language(lingrep)
+================================================================================
+pattern p := [text!=x & !@t].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute_conjunction
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))
+        (test_negation
+          (test_reference
+            (identifier)))))))

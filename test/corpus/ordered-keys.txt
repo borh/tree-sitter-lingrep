@@ -1,0 +1,156 @@
+================================================================================
+ordered key projections preserve source order
+:language(lingrep)
+================================================================================
+key: [unidic.pos1, $head.norm, $tail.first.lemma, $tail.last.text, $phrase.span.norm]
+pattern p := (?<head> []) (?<phrase> []+) (?<tail> []).
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (key_entry
+    key: (identifier)
+    value: (key_projection_list
+      (match_key_projection
+        attribute: (attribute_key
+          (provider_attribute_key
+            segment: (provider_segment)
+            segment: (provider_segment))))
+      (capture_key_projection
+        capture: (capture_reference
+          name: (identifier))
+        attribute: (attribute_key
+          (portable_attribute_key)))
+      (capture_key_projection
+        capture: (capture_reference
+          name: (identifier))
+        component: (capture_component)
+        attribute: (attribute_key
+          (portable_attribute_key)))
+      (capture_key_projection
+        capture: (capture_reference
+          name: (identifier))
+        component: (capture_component)
+        attribute: (attribute_key
+          (portable_attribute_key)))
+      (capture_key_projection
+        capture: (capture_reference
+          name: (identifier))
+        component: (capture_component)
+        attribute: (attribute_key
+          (portable_attribute_key)))))
+  (pattern_definition
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
+      (named_group
+        name: (identifier)
+        pattern: (node_pattern))
+      (named_group
+        name: (identifier)
+        pattern: (quantified_pattern
+          (node_pattern)
+          (quantifier)))
+      (named_group
+        name: (identifier)
+        pattern: (node_pattern)))))
+
+================================================================================
+named enhanced edge relation projection
+:language(lingrep)
+================================================================================
+key: [$edge.rel]
+pattern p := (?<surface> []) where $surface -[enhanced obj as $edge]-> (?<node> []).
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (key_entry
+    key: (identifier)
+    value: (key_projection_list
+      (capture_key_projection
+        capture: (capture_reference
+          name: (identifier))
+        attribute: (identifier))))
+  (pattern_definition
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        kind: (relation_kind)
+        label: (label_set
+          term: (relation_label))
+        edge: (capture_reference
+          name: (identifier))
+        dependent: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern))))))
+
+================================================================================
+key none is distinct from an ordered list
+:language(lingrep)
+================================================================================
+defaults
+  key: [unidic.pos1]
+end
+key: none
+pattern p := [].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (defaults_block
+    (key_entry
+      key: (identifier)
+      value: (key_projection_list
+        (match_key_projection
+          attribute: (attribute_key
+            (provider_attribute_key
+              segment: (provider_segment)
+              segment: (provider_segment)))))))
+  (key_entry
+    key: (identifier)
+    value: (metadata_none))
+  (pattern_definition
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern)))
+
+================================================================================
+projection words remain bare surface elements
+:language(lingrep)
+================================================================================
+term := term.
+segments := segments.
+first := first.
+last := last.
+span := span.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    name: (identifier)
+    pattern: (bare_element
+      (identifier)))
+  (pattern_definition
+    name: (identifier)
+    pattern: (bare_element
+      (identifier)))
+  (pattern_definition
+    name: (identifier)
+    pattern: (bare_element
+      (identifier)))
+  (pattern_definition
+    name: (identifier)
+    pattern: (bare_element
+      (identifier)))
+  (pattern_definition
+    name: (identifier)
+    pattern: (bare_element
+      (identifier))))

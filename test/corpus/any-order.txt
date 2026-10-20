@@ -1,0 +1,65 @@
+================================================================================
+any-order.lx
+:language(lingrep)
+================================================================================
+pattern graph := any_order(
+  (?<head> [upos=VERB]),
+  (?<object> [upos=NOUN])
+) where $head -[obj]-> $object.
+pattern semantic_singleton := any_order((?<node> [])).
+pattern literal := [text=any_order].
+any_order := [].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (any_order
+      (named_group
+        (identifier)
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value))))
+      (named_group
+        (identifier)
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value)))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (any_order
+      (named_group
+        (identifier)
+        (node_pattern))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value))))
+  (pattern_definition
+    (identifier)
+    (node_pattern)))

@@ -1,0 +1,192 @@
+================================================================================
+flat annotation binds the following definition
+:language(lingrep)
+================================================================================
+layer: "S2"
+examples: ["確かなようである"]
+ようである := a.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_list
+      (metadata_string)))
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier))))
+
+================================================================================
+defaults and schema blocks
+:language(lingrep)
+================================================================================
+defaults
+  status: "experimental"
+end
+
+schema
+  pattern layer: string required in {"S0", "S1"}
+  status: string required in {"experimental"}
+  s0_always_keep: boolean
+end
+
+p := a.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (defaults_block
+    (metadata_entry
+      (identifier)
+      (metadata_string)))
+  (schema_block
+    (schema_entry
+      (definition_kind)
+      (identifier)
+      (metadata_type)
+      (metadata_value_set
+        (metadata_string)
+        (metadata_string)))
+    (schema_entry
+      (identifier)
+      (metadata_type)
+      (metadata_value_set
+        (metadata_string)))
+    (schema_entry
+      (identifier)
+      (metadata_type)))
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier))))
+
+================================================================================
+nested map and boolean values
+:language(lingrep)
+================================================================================
+anchor: {name: "propositional_end", exclude: "TRAILING_APPARATUS"}
+max_nesting: {depth: 0, witness: ["これは重要である|。"]}
+s0_always_keep: true
+fragment TRAILING_APPARATUS := a.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (metadata_entry
+    (identifier)
+    (metadata_map
+      (metadata_map_entry
+        (identifier)
+        (metadata_string))
+      (metadata_map_entry
+        (identifier)
+        (metadata_string))))
+  (metadata_entry
+    (identifier)
+    (metadata_map
+      (metadata_map_entry
+        (identifier)
+        (metadata_number))
+      (metadata_map_entry
+        (identifier)
+        (metadata_list
+          (metadata_string)))))
+  (metadata_entry
+    (identifier)
+    (metadata_boolean))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (bare_element
+      (identifier))))
+
+================================================================================
+an empty schema block closes the catalog
+:language(lingrep)
+================================================================================
+schema
+end
+
+p := a.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (schema_block)
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier))))
+
+================================================================================
+a schema keyword is only a keyword inside its block
+:language(lingrep)
+================================================================================
+required := a.
+string := b.
+number := c.
+boolean := d.
+list := e.
+end := f.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier)))
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier)))
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier)))
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier)))
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier)))
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier))))
+
+================================================================================
+a generic map key may be a capture reference
+:language(lingrep)
+================================================================================
+mapping: {$head: {span: "norm"}, $collocate: "norm"}
+p := a.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (metadata_entry
+    (identifier)
+    (metadata_map
+      (metadata_map_entry
+        (capture_reference
+          (identifier))
+        (metadata_map
+          (metadata_map_entry
+            (identifier)
+            (metadata_string))))
+      (metadata_map_entry
+        (capture_reference
+          (identifier))
+        (metadata_string))))
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier))))

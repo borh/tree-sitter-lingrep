@@ -1,0 +1,96 @@
+================================================================================
+inline lexicon declaration and lexical key projections
+:language(lingrep)
+================================================================================
+category: "research"
+key: [term, segments(text)]
+lexicon target_words by [text, norm] := {"大学院", "行う", "Web.config", "in vitro"}.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (key_entry
+    key: (identifier)
+    value: (key_projection_list
+      (lexical_term_projection)
+      (lexical_segments_projection
+        attribute: (attribute_key
+          (portable_attribute_key)))))
+  (lexicon_definition
+    name: (identifier)
+    projection: (attribute_key
+      (portable_attribute_key))
+    projection: (attribute_key
+      (portable_attribute_key))
+    member: (metadata_string)
+    member: (metadata_string)
+    member: (metadata_string)
+    member: (metadata_string)))
+
+================================================================================
+lexical structural words remain bare expression elements with an explicit kind
+:language(lingrep)
+================================================================================
+pattern lexicon := lexicon by term segments patterns.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier)))))
+
+================================================================================
+patterns is structural only as a policy subject
+:language(lingrep)
+================================================================================
+policy
+  resolve patterns rank: [longest, start, end, pattern].
+  require @target_words with: @patterns, relation: at_end.
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (policy_block
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject)
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_list
+          (policy_enum
+            (identifier))
+          (policy_enum
+            (identifier))
+          (policy_enum
+            (identifier))
+          (policy_enum
+            (identifier)))))
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject
+        (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_enum
+          (identifier))))))

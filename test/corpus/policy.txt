@@ -1,0 +1,217 @@
+================================================================================
+policy block with all five verbs
+:language(lingrep)
+================================================================================
+policy
+  resolve all rank: [longest, start, end, pattern].
+  exclude @a with: @N, relation: after, evidence: raw.
+  require %ev with: %other, relation: before, evidence: current.
+  detach @a with: @TAIL, relation: at_end, evidence: raw.
+  admit @という terminal: {exact: true, anchor: propositional_end}.
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (policy_block
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject)
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_list
+          (policy_enum
+            (identifier))
+          (policy_enum
+            (identifier))
+          (policy_enum
+            (identifier))
+          (policy_enum
+            (identifier)))))
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject
+        (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_enum
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_enum
+          (identifier))))
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject
+        (group_ref
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (group_ref
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_enum
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_enum
+          (identifier))))
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject
+        (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_enum
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_enum
+          (identifier))))
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject
+        (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_map
+          (policy_map_entry
+            key: (identifier)
+            value: (metadata_boolean))
+          (policy_map_entry
+            key: (identifier)
+            value: (policy_enum
+              (identifier))))))))
+
+================================================================================
+a quoted enum and a numeric window parse; validation is deferred
+:language(lingrep)
+================================================================================
+policy
+  exclude @a with: @N, relation: "after", evidence: raw.
+  admit all terminal: {within: 5, anchor: propositional_end}.
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (policy_block
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject
+        (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (metadata_string))
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_enum
+          (identifier))))
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject)
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_map
+          (policy_map_entry
+            key: (identifier)
+            value: (metadata_number))
+          (policy_map_entry
+            key: (identifier)
+            value: (policy_enum
+              (identifier))))))))
+
+================================================================================
+an empty policy block parses
+:language(lingrep)
+================================================================================
+policy
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (policy_block))
+
+================================================================================
+a verb is a contextual keyword, so a definition may take its name
+:language(lingrep)
+================================================================================
+resolve := [text=a].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern
+      (attribute
+        key: (key
+          (attribute_key
+            (portable_attribute_key)))
+        operator: (attribute_operator)
+        value: (value)))))
+
+================================================================================
+patterns is a closed subject while expression and reference names remain open
+:language(lingrep)
+================================================================================
+pattern patterns := patterns.
+policy
+  resolve patterns rank: [longest, start, end, pattern].
+  exclude @patterns with: @patterns, relation: after.
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (bare_element
+      (identifier)))
+  (policy_block
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject)
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_list
+          (policy_enum
+            (identifier))
+          (policy_enum
+            (identifier))
+          (policy_enum
+            (identifier))
+          (policy_enum
+            (identifier)))))
+    (policy_statement
+      verb: (policy_verb)
+      subject: (policy_subject
+        (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (pattern_reference
+          (identifier)))
+      argument: (policy_argument
+        key: (identifier)
+        value: (policy_enum
+          (identifier))))))

@@ -1,0 +1,66 @@
+# Rust artifacts
+target/
+
+# Node artifacts
+build/
+prebuilds/
+node_modules/
+
+# Swift artifacts
+.build/
+
+# Go artifacts
+_obj/
+
+# Python artifacts
+.venv/
+dist/
+*.egg-info
+*.whl
+
+# C artifacts
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.pc
+*.exp
+*.lib
+
+# Zig artifacts
+.zig-cache/
+zig-cache/
+zig-out/
+
+# Example dirs
+/examples/*/
+
+# Grammar volatiles. The published wasm is an explicit exception.
+*.wasm
+!tree-sitter-lingrep.wasm
+*.obj
+*.o
+
+# Nix build outputs
+/result
+/result-*
+
+# direnv / devenv state
+.direnv/
+.devenv/
+
+# Agent session caches
+.aider*
+
+# Beads runtime lock left at the repository root
+/.beads.gate.lock
+
+# Archives
+*.tar.gz
+*.tgz
+*.zip
+*.jar
+
+/Cargo.lock
+/.pre-commit-config.yaml

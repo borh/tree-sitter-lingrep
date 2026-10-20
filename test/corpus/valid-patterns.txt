@@ -1,0 +1,891 @@
+================================================================================
+normalized-expression-precedence.lx
+:language(lingrep)
+================================================================================
+one := a.
+quantified := a? b+ (c d){2,4}.
+left_sequence := a b | c.
+right_sequence := a | b c.
+grouped := (a | b) c.
+nested_repeat := (a b)+.
+attributes := [upos=VERB & unidic.cform=終止形 & lemma=為る].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier)))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (quantified_pattern
+        (bare_element
+          (identifier))
+        (quantifier))
+      (quantified_pattern
+        (bare_element
+          (identifier))
+        (quantifier))
+      (quantified_pattern
+        (parenthesized_pattern
+          (pattern_sequence
+            (bare_element
+              (identifier))
+            (bare_element
+              (identifier))))
+        (quantifier))))
+  (pattern_definition
+    (identifier)
+    (alternation
+      (pattern_sequence
+        (bare_element
+          (identifier))
+        (bare_element
+          (identifier)))
+      (bare_element
+        (identifier))))
+  (pattern_definition
+    (identifier)
+    (alternation
+      (bare_element
+        (identifier))
+      (pattern_sequence
+        (bare_element
+          (identifier))
+        (bare_element
+          (identifier)))))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (parenthesized_pattern
+        (alternation
+          (bare_element
+            (identifier))
+          (bare_element
+            (identifier))))
+      (bare_element
+        (identifier))))
+  (pattern_definition
+    (identifier)
+    (quantified_pattern
+      (parenthesized_pattern
+        (pattern_sequence
+          (bare_element
+            (identifier))
+          (bare_element
+            (identifier))))
+      (quantifier)))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute_conjunction
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value))
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))))
+
+================================================================================
+basic-metadata-group.lx
+:language(lingrep)
+================================================================================
+category: "test"
+pattern1 := [custom.key=value].
+category: "test"
+pattern2 := @pattern1 [custom.other=val].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (provider_attribute_key
+              (provider_segment)
+              (provider_segment))))
+        (attribute_operator)
+        (value))))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (pattern_reference
+        (identifier))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value))))))
+
+================================================================================
+boolean-attributes.lx
+:language(lingrep)
+================================================================================
+sample := [custom.key1=val1 & custom.key2=/regex/].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute_conjunction
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value))
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value
+            (regex)))))))
+
+================================================================================
+named-group-quantifier.lx
+:language(lingrep)
+================================================================================
+sample := (?<group> [custom.attr=val])+.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (quantified_pattern
+      (named_group
+        (identifier)
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (provider_attribute_key
+                  (provider_segment)
+                  (provider_segment))))
+            (attribute_operator)
+            (value))))
+      (quantifier))))
+
+================================================================================
+regex-values.lx
+:language(lingrep)
+================================================================================
+sample := [lemma=/^abc/ & text=/xyz$/].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute_conjunction
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value
+            (regex)))
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value
+            (regex)))))))
+
+================================================================================
+more-patterns.lx
+:language(lingrep)
+================================================================================
+example := (?<name> [upos=/VERB|NOUN/]) foo (?<focus>[lemma=test]).
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value
+              (regex)))))
+      (bare_element
+        (identifier))
+      (named_group
+        (identifier)
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value)))))))
+
+================================================================================
+metadata-2.lx
+:language(lingrep)
+================================================================================
+comment: "This is a test"
+test_pattern :=
+  [custom.key=val].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (provider_attribute_key
+              (provider_segment)
+              (provider_segment))))
+        (attribute_operator)
+        (value)))))
+
+================================================================================
+complex-quantifiers.lx
+:language(lingrep)
+================================================================================
+sample := [custom.attr=val]{2,5} [custom.other=foo]*.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (quantified_pattern
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (provider_attribute_key
+                  (provider_segment)
+                  (provider_segment))))
+            (attribute_operator)
+            (value)))
+        (quantifier))
+      (quantified_pattern
+        (node_pattern
+          (attribute
+            (key
+              (attribute_key
+                (provider_attribute_key
+                  (provider_segment)
+                  (provider_segment))))
+            (attribute_operator)
+            (value)))
+        (quantifier)))))
+
+================================================================================
+end-to-end.lx
+:language(lingrep)
+================================================================================
+# This is a comment (it can also be used after a pattern definition on the same line).
+# This is the basic syntax for matching two consequitive tokens, one matched against its text and one matched against its token_feature:
+# pattern-name := bare_token [custom.tokenfeature=feature_value].
+# The grammar supports bare patterns like above, and also patterns carrying metadata annotations.
+
+# We support OR between tokens or token groups using `|`.
+# AND can be achieved via `&` within [custom.k1=v1 & custom.k2=v2] for token features, but otherwise is not used between tokens.
+# These patterns are bare patterns not belonging to any group.
+動詞終止形 := [upos=/VERB|AUX/]+ [upos=/VERB|AUX/ & unidic.cform=終止形] | [upos=VERB & unidic.cform=終止形].
+形容詞終止形 := [upos=形容詞 & unidic.cform=終止形].
+助動詞終止形 := [upos=助動詞 & unidic.cform=終止形].
+用言終止形 := @動詞終止形 | @形容詞終止形 | @助動詞終止形.
+
+動詞連用形 := [upos=/VERB|AUX/]+ [upos=/VERB|AUX/ & unidic.cform=連用形] | [upos=VERB & unidic.cform=連用形].
+用言連用形 := @動詞連用形 | @形容詞語幹.
+形容動詞 := [unidic.pos1=形状詞] | [unidic.pos3=形状詞可能].
+# Optional tokens are denoted by `?` (others include `*`, `+`, and `{n,m}`--same as regex).
+# Regex patterns can be used by enclosing them in `/`. When written bare they will match the token text, but they can also be used within the [] to match arbitrary feature values.
+ARU := [lemma=/^(ある|有る)$/ & text=/^(?!あろう|有ろう|あれ|有れ)$/] まし? た?.
+
+# Metadata is attached by writing `key: value` annotations directly before a definition.
+# We can use ?<name> syntax (named capturing group from regex) to name the matching group.
+# We can reference another pattern by using the `@pattern` syntax.
+category: "がある"
+type: "文末尾から"
+meidai: "用言終止形、ただし形容動詞ナ形、助動詞「だ」デアル形、助動詞「だ」デアル形"
+必要がある := (?<命題> @用言終止形) [lemma=必要] が @ARU.
+category: "がある"
+type: "文末尾から"
+meidai: "用言終止形、ただし形容動詞ナ形、助動詞「だ」デアル形、助動詞「だ」デアル形"
+恐れがある := (?<命題> @用言終止形) [lemma=恐れ] が @ARU.
+
+
+category: "う"
+subcategory: "う"
+type: "文末尾から"
+meidai: "用言終止形、ただし形容動詞語幹、"
+だろう := (?<命題> @用言終止形) だろう.
+category: "う"
+subcategory: "う"
+type: "文末尾から"
+meidai: "用言終止形、ただし形容動詞語幹、"
+であろう := (?<命題> @用言終止形) で あろう.
+category: "う"
+subcategory: "う"
+type: "文末尾から"
+meidai: "用言終止形、ただし形容動詞語幹、"
+う := (?<命題> @用言終止形) [unidic.cform=意志推量形].
+
+category: "う"
+subcategory: "よう"
+type: "文末尾から"
+meidai: "動詞連用形 あるいは 用言1段終止形"
+よう := (?<命題> @動詞連用形) [unidic.cform=意志推量形].
+
+category: "かもしれない"
+type: "文末尾から"
+meidai: "動詞終止形, 名詞, 用言終止形"
+かもしれない := (?<命題> @用言終止形 | [upos=NOUN] | @形容動詞) か も [lemma=知る] @NAI.
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (pattern_definition
+    (identifier)
+    (alternation
+      (pattern_sequence
+        (quantified_pattern
+          (node_pattern
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value
+                (regex))))
+          (quantifier))
+        (node_pattern
+          (attribute_conjunction
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value
+                (regex)))
+            (attribute
+              (key
+                (attribute_key
+                  (provider_attribute_key
+                    (provider_segment)
+                    (provider_segment))))
+              (attribute_operator)
+              (value)))))
+      (node_pattern
+        (attribute_conjunction
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value))
+          (attribute
+            (key
+              (attribute_key
+                (provider_attribute_key
+                  (provider_segment)
+                  (provider_segment))))
+            (attribute_operator)
+            (value))))))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute_conjunction
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value)))))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute_conjunction
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value)))))
+  (pattern_definition
+    (identifier)
+    (alternation
+      (pattern_reference
+        (identifier))
+      (pattern_reference
+        (identifier))
+      (pattern_reference
+        (identifier))))
+  (pattern_definition
+    (identifier)
+    (alternation
+      (pattern_sequence
+        (quantified_pattern
+          (node_pattern
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value
+                (regex))))
+          (quantifier))
+        (node_pattern
+          (attribute_conjunction
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value
+                (regex)))
+            (attribute
+              (key
+                (attribute_key
+                  (provider_attribute_key
+                    (provider_segment)
+                    (provider_segment))))
+              (attribute_operator)
+              (value)))))
+      (node_pattern
+        (attribute_conjunction
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value))
+          (attribute
+            (key
+              (attribute_key
+                (provider_attribute_key
+                  (provider_segment)
+                  (provider_segment))))
+            (attribute_operator)
+            (value))))))
+  (pattern_definition
+    (identifier)
+    (alternation
+      (pattern_reference
+        (identifier))
+      (pattern_reference
+        (identifier))))
+  (pattern_definition
+    (identifier)
+    (alternation
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value)))))
+  (comment)
+  (comment)
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (node_pattern
+        (attribute_conjunction
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value
+              (regex)))
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value
+              (regex)))))
+      (quantified_pattern
+        (bare_element
+          (identifier))
+        (quantifier))
+      (quantified_pattern
+        (bare_element
+          (identifier))
+        (quantifier))))
+  (comment)
+  (comment)
+  (comment)
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (pattern_reference
+          (identifier)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))
+      (bare_element
+        (identifier))
+      (pattern_reference
+        (identifier))))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (pattern_reference
+          (identifier)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))
+      (bare_element
+        (identifier))
+      (pattern_reference
+        (identifier))))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (pattern_reference
+          (identifier)))
+      (bare_element
+        (identifier))))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (pattern_reference
+          (identifier)))
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier))))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (pattern_reference
+          (identifier)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value)))))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (pattern_reference
+          (identifier)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value)))))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (metadata_entry
+    (identifier)
+    (metadata_string))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (alternation
+          (pattern_reference
+            (identifier))
+          (node_pattern
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value)))
+          (pattern_reference
+            (identifier))))
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))
+      (pattern_reference
+        (identifier)))))
+
+================================================================================
+regular-foundations.lx
+:language(lingrep)
+================================================================================
+fragment ARU := [text in {ある, 有る}].
+pattern hearsay := preceded_by([unidic.cform != 連用形-一般]) [text=そう] @ARU $.
+legacy := ^ [text not in {必ず, 決して}].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
+      (attribute
+        key: (key
+          (attribute_key
+            (portable_attribute_key)))
+        operator: (attribute_operator)
+        values: (value_set
+          (value)
+          (value)))))
+  (pattern_definition
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
+      (preceded_by
+        body: (node_pattern
+          (attribute
+            key: (key
+              (attribute_key
+                (provider_attribute_key
+                  segment: (provider_segment)
+                  segment: (provider_segment))))
+            operator: (attribute_operator)
+            value: (value))))
+      (node_pattern
+        (attribute
+          key: (key
+            (attribute_key
+              (portable_attribute_key)))
+          operator: (attribute_operator)
+          value: (value)))
+      (pattern_reference
+        (identifier))
+      (sentence_end)))
+  (pattern_definition
+    name: (identifier)
+    pattern: (pattern_sequence
+      (sentence_start)
+      (node_pattern
+        (attribute
+          key: (key
+            (attribute_key
+              (portable_attribute_key)))
+          operator: (attribute_operator)
+          values: (value_set
+            (value)
+            (value)))))))
+
+================================================================================
+any-token predicate
+:language(lingrep)
+================================================================================
+any := [].
+any_quantified := []{2,5}.
+any_between := [upos=NOUN] [] [upos=VERB].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (quantified_pattern
+      (node_pattern)
+      (quantifier)))
+  (pattern_definition
+    name: (identifier)
+    pattern: (pattern_sequence
+      (node_pattern
+        (attribute
+          key: (key
+            (attribute_key
+              (portable_attribute_key)))
+          operator: (attribute_operator)
+          value: (value)))
+      (node_pattern)
+      (node_pattern
+        (attribute
+          key: (key
+            (attribute_key
+              (portable_attribute_key)))
+          operator: (attribute_operator)
+          value: (value))))))

@@ -1,0 +1,126 @@
+================================================================================
+match-mode operators
+:language(lingrep)
+================================================================================
+tilde_literal := [text ~ ない].
+tilde_regex := [unidic.cform ~ /終止形/].
+not_tilde_literal := [text !~ ない].
+not_tilde_regex := [unidic.cform !~ /終止形/].
+tilde_tight := [text~ない].
+not_tilde_tight := [text!~ない].
+tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value))))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (provider_attribute_key
+              (provider_segment)
+              (provider_segment))))
+        (attribute_operator)
+        (value
+          (regex)))))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value))))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (provider_attribute_key
+              (provider_segment)
+              (provider_segment))))
+        (attribute_operator)
+        (value
+          (regex)))))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value))))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value))))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute_conjunction
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value))))))
+
+================================================================================
+regex operands are always regex nodes
+:language(lingrep)
+================================================================================
+tight := [unidic.cform ~ /終止形/].
+spaced := [text ~ /a b/].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (provider_attribute_key
+              (provider_segment)
+              (provider_segment))))
+        (attribute_operator)
+        (value
+          (regex)))))
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value
+          (regex))))))
