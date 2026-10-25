@@ -3085,6 +3085,22 @@
           "type": "SEQ",
           "members": [
             {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "polarity",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "relation_negation"
+                  }
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
               "type": "FIELD",
               "name": "head",
               "content": {

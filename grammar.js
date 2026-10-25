@@ -668,6 +668,7 @@ export default grammar({
     // it is not a pattern primary or a basic-relation operand.
     relation_constraint: $ => choice(
       seq(
+        optional(field('polarity', $.relation_negation)),
         field('head', $.capture_reference),
         '-[',
         field('label', $.label_set),

@@ -150,16 +150,6 @@ pattern missing_lexical_key_bracket := [].
 --------------------------------------------------------------------------------
 
 ================================================================================
-Negation is not admitted on a captured dependent
-:error
-:language(lingrep)
-================================================================================
-pattern unsupported := (?<v> [upos=VERB]) (?<o> [upos=PRON])
-  where not $v -[obj]-> $o.
-
---------------------------------------------------------------------------------
-
-================================================================================
 Negative enhanced edge head must be a captured node
 :error
 :language(lingrep)

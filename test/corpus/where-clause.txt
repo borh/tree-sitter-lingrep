@@ -786,3 +786,30 @@ pattern literal := [text=basic_head].
             (portable_attribute_key)))
         (attribute_operator)
         (value)))))
+
+
+================================================================================
+negative basic edge between captured endpoints
+:language(lingrep)
+================================================================================
+pattern absent := (?<h> a) (?<d> b) where not $h -[obj]-> $d.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (bare_element (identifier)))
+      (named_group
+        (identifier)
+        (bare_element (identifier))))
+    (where_clause
+      (relation_constraint
+        (relation_negation)
+        (capture_reference (identifier))
+        (label_set (relation_label))
+        (capture_reference (identifier))))))
