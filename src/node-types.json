@@ -1176,11 +1176,6 @@
     }
   },
   {
-    "type": "metadata_type",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "metadata_value_set",
     "named": true,
     "fields": {},
@@ -2881,10 +2876,6 @@
     "named": false
   },
   {
-    "type": "boolean",
-    "named": false
-  },
-  {
     "type": "by",
     "named": false
   },
@@ -2962,10 +2953,6 @@
     "named": false
   },
   {
-    "type": "list",
-    "named": false
-  },
-  {
     "type": "metadata_none",
     "named": true
   },
@@ -2975,6 +2962,10 @@
   },
   {
     "type": "metadata_string",
+    "named": true
+  },
+  {
+    "type": "metadata_type",
     "named": true
   },
   {
@@ -2991,10 +2982,6 @@
   },
   {
     "type": "not_preceded_by",
-    "named": false
-  },
-  {
-    "type": "number",
     "named": false
   },
   {
@@ -3059,10 +3046,6 @@
   },
   {
     "type": "span",
-    "named": false
-  },
-  {
-    "type": "string",
     "named": false
   },
   {

@@ -96,12 +96,10 @@ export default grammar({
       optional(field('visibility', $.definition_kind)),
       field('key', $.identifier),
       ':',
-      field('type', $.metadata_type),
+      field('type', alias($.identifier, $.metadata_type)),
       optional(field('required', 'required')),
       optional(field('members', $.metadata_value_set))
     ),
-
-    metadata_type: $ => choice('string', 'number', 'boolean', 'list'),
 
     metadata_value_set: $ => seq('in', '{', commaSep1($.metadata_string), '}'),
 

@@ -190,3 +190,29 @@ p := a.
     (identifier)
     (bare_element
       (identifier))))
+
+================================================================================
+a schema type is any identifier, so the compiler can name an unknown one
+:language(lingrep)
+================================================================================
+schema
+  mining: map required
+  layer: strng
+end
+
+p := a.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (schema_block
+    (schema_entry
+      (identifier)
+      (metadata_type))
+    (schema_entry
+      (identifier)
+      (metadata_type)))
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier))))
