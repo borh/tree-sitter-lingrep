@@ -197,7 +197,7 @@ export default grammar({
       field('value', choice($.metadata_none, $.key_projection_list))
     ),
 
-    // `skip: @T` names the test whose tokens a definition steps over. Like
+    // `skip: @T` names the test whose tokens a pattern steps over. Like
     // `key`, it is compiler-owned syntax: its value is a test reference, which
     // an open metadata value cannot spell.
     skip_entry: $ => seq(
@@ -691,8 +691,9 @@ export default grammar({
     // `$head -[labels]-> $dependent` points head \u2192 dependent, as UD draws a
     // basic edge. A dependent capture binds identity; a node pattern tests an
     // edge-compatible dependent without binding it; `_` asks only whether one
-    // exists. A positive basic edge may bind its other endpoint as a graph node. `not` is the complement under a complete observation of the
-    // relevant edge set. Enhanced negation accepts capture references or a
+    // exists. `not` is the complement under a complete observation of the
+    // relevant edge set. A positive basic edge may instead bind one endpoint
+    // as a graph node. Enhanced negation accepts capture references or a
     // derived `basic_head($capture)` at either endpoint and no edge binder;
     // graph-node binders, anonymous and predicate targets, and named edges are
     // positive-only. A derived basic head is valid only as an enhanced endpoint;
@@ -781,9 +782,8 @@ export default grammar({
     anonymous_dependency_node: $ => '_',
 
     // A named graph node. The named-group visual form is reused only in a
-    // relation endpoint; restricting the body to one
-    // `node_pattern` prevents it from pretending that a graph node has a
-    // surface span or sequence width.
+    // relation endpoint; restricting the body to one `node_pattern` keeps a
+    // graph node free of a surface span or sequence width.
     graph_node_binding: $ => seq(
       '(?<',
       field('name', $.identifier),
