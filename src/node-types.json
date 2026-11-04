@@ -570,6 +570,10 @@
         {
           "type": "metadata_entry",
           "named": true
+        },
+        {
+          "type": "skip_entry",
+          "named": true
         }
       ]
     }
@@ -2559,6 +2563,36 @@
     }
   },
   {
+    "type": "skip_entry",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "metadata_none",
+            "named": true
+          },
+          {
+            "type": "test_reference",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -2609,6 +2643,10 @@
         },
         {
           "type": "set_definition",
+          "named": true
+        },
+        {
+          "type": "skip_entry",
           "named": true
         },
         {

@@ -15,6 +15,7 @@ export default grammar({
       $.schema_block,
       $.policy_block,
       $.key_entry,
+      $.skip_entry,
       $.analyzer_entry,
       $.labels_entry,
       $.metadata_entry,
@@ -48,7 +49,7 @@ export default grammar({
     // `defaults` block is merely useless, not wrong.
     defaults_block: $ => seq(
       'defaults',
-      repeat(choice($.key_entry, $.metadata_entry)),
+      repeat(choice($.key_entry, $.skip_entry, $.metadata_entry)),
       'end'
     ),
 
@@ -194,6 +195,15 @@ export default grammar({
       field('key', alias('key', $.identifier)),
       ':',
       field('value', choice($.metadata_none, $.key_projection_list))
+    ),
+
+    // `skip: @T` names the test whose tokens a definition steps over. Like
+    // `key`, it is compiler-owned syntax: its value is a test reference, which
+    // an open metadata value cannot spell.
+    skip_entry: $ => seq(
+      field('key', alias('skip', $.identifier)),
+      ':',
+      field('value', choice($.metadata_none, $.test_reference))
     ),
 
     key_projection_list: $ => seq(

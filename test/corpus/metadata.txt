@@ -216,3 +216,68 @@ p := a.
     (identifier)
     (bare_element
       (identifier))))
+
+================================================================================
+skip entries name a test, in an annotation run or in defaults
+:language(lingrep)
+================================================================================
+defaults
+  skip: @dropped
+end
+
+test dropped := text ~ /\A\W\z/.
+
+skip: none
+pattern skip := [text=skip].
+
+skip: @dropped
+key: none
+pattern p := [text=well].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (defaults_block
+    (skip_entry
+      (identifier)
+      (test_reference
+        (identifier))))
+  (test_definition
+    (identifier)
+    (attribute
+      (key
+        (attribute_key
+          (portable_attribute_key)))
+      (attribute_operator)
+      (value
+        (regex))))
+  (skip_entry
+    (identifier)
+    (metadata_none))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value))))
+  (skip_entry
+    (identifier)
+    (test_reference
+      (identifier)))
+  (key_entry
+    (identifier)
+    (metadata_none))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value)))))

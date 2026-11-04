@@ -25,6 +25,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "skip_entry"
+          },
+          {
+            "type": "SYMBOL",
             "name": "analyzer_entry"
           },
           {
@@ -147,6 +151,10 @@
               {
                 "type": "SYMBOL",
                 "name": "key_entry"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "skip_entry"
               },
               {
                 "type": "SYMBOL",
@@ -1089,6 +1097,45 @@
               {
                 "type": "SYMBOL",
                 "name": "key_projection_list"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "skip_entry": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "key",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "skip"
+            },
+            "named": true,
+            "value": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "metadata_none"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "test_reference"
               }
             ]
           }
