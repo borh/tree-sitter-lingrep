@@ -681,7 +681,7 @@ export default grammar({
     // `$head -[labels]-> $dependent` points head \u2192 dependent, as UD draws a
     // basic edge. A dependent capture binds identity; a node pattern tests an
     // edge-compatible dependent without binding it; `_` asks only whether one
-    // exists. `not` is the complement under a complete observation of the
+    // exists. A positive basic edge may bind its other endpoint as a graph node. `not` is the complement under a complete observation of the
     // relevant edge set. Enhanced negation accepts capture references or a
     // derived `basic_head($capture)` at either endpoint and no edge binder;
     // graph-node binders, anonymous and predicate targets, and named edges are
@@ -711,6 +711,20 @@ export default grammar({
         field('label', $.label_set),
         ']->',
         field('dependent', $.node_pattern)
+      ),
+      seq(
+        field('head', $.graph_node_binding),
+        '-[',
+        field('label', $.label_set),
+        ']->',
+        field('dependent', $.capture_reference)
+      ),
+      seq(
+        field('head', $.capture_reference),
+        '-[',
+        field('label', $.label_set),
+        ']->',
+        field('dependent', $.graph_node_binding)
       ),
       seq(
         field('polarity', $.relation_negation),
@@ -756,8 +770,8 @@ export default grammar({
 
     anonymous_dependency_node: $ => '_',
 
-    // A named enhanced-graph node. The named-group visual form is reused only
-    // in an enhanced relation endpoint; restricting the body to one
+    // A named graph node. The named-group visual form is reused only in a
+    // relation endpoint; restricting the body to one
     // `node_pattern` prevents it from pretending that a graph node has a
     // surface span or sequence width.
     graph_node_binding: $ => seq(

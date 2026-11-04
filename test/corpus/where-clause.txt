@@ -813,3 +813,64 @@ pattern absent := (?<h> a) (?<d> b) where not $h -[obj]-> $d.
         (capture_reference (identifier))
         (label_set (relation_label))
         (capture_reference (identifier))))))
+
+================================================================================
+basic graph nodes at either endpoint
+================================================================================
+
+pattern head_node := (?<d> [upos=NOUN]) where (?<h> [upos=VERB]) -[obj]-> $d.
+
+pattern dependent_node := (?<h> [upos=VERB]) where $h -[obj|iobj]-> (?<d> []).
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (graph_node_binding
+          (identifier)
+          (node_pattern
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value))))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label)
+          (relation_label))
+        (graph_node_binding
+          (identifier)
+          (node_pattern))))))
