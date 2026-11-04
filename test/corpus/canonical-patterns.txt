@@ -330,3 +330,46 @@ pattern scalar_any := [feat.Number has any Sing].
                 (ud_feature_base)))))
         (set_has_any_operator)
         (ud_feature_base)))))
+
+================================================================================
+label sets by name and by explicit value set
+:language(lingrep)
+================================================================================
+labels: { upos: "ud-v2", dep.rel: ["clearnlp", "ud-v2"], feat.VerbForm: {Fin, Ger} }
+pattern verb := [upos=VERB].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (labels_entry
+    (labels_map
+      (labels_field
+        (attribute_key
+          (portable_attribute_key))
+        (metadata_string))
+      (labels_field
+        (attribute_key
+          (provider_attribute_key
+            (provider_segment)
+            (provider_segment)))
+        (labels_name_list
+          (metadata_string)
+          (metadata_string)))
+      (labels_field
+        (attribute_key
+          (feature_attribute_key
+            (ud_feature_name
+              (ud_feature_base))))
+        (value_set
+          (value)
+          (value)))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value)))))

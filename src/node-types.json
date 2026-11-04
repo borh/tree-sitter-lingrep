@@ -957,6 +957,86 @@
     }
   },
   {
+    "type": "labels_entry",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "labels_map",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "labels_field",
+    "named": true,
+    "fields": {
+      "attribute": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "attribute_key",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "labels_name_list",
+            "named": true
+          },
+          {
+            "type": "metadata_string",
+            "named": true
+          },
+          {
+            "type": "value_set",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "labels_map",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "labels_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "labels_name_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "metadata_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "lexical_segments_projection",
     "named": true,
     "fields": {
@@ -2504,6 +2584,10 @@
           "named": true
         },
         {
+          "type": "labels_entry",
+          "named": true
+        },
+        {
           "type": "lexicon_definition",
           "named": true
         },
@@ -2934,6 +3018,10 @@
   },
   {
     "type": "in",
+    "named": false
+  },
+  {
+    "type": "labels",
     "named": false
   },
   {

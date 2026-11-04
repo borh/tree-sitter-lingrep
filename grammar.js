@@ -16,6 +16,7 @@ export default grammar({
       $.policy_block,
       $.key_entry,
       $.analyzer_entry,
+      $.labels_entry,
       $.metadata_entry,
       $.set_definition,
       $.test_definition,
@@ -118,6 +119,28 @@ export default grammar({
       ':',
       field('value', $.analyzer_map)
     ),
+
+    // Per attribute, a named label set such as "ud-v2", a list of named sets,
+    // or an explicit value set.
+    labels_entry: $ => seq(
+      'labels',
+      ':',
+      field('value', $.labels_map)
+    ),
+
+    labels_map: $ => seq(
+      '{',
+      commaSep1($.labels_field),
+      '}'
+    ),
+
+    labels_field: $ => seq(
+      field('attribute', $.attribute_key),
+      ':',
+      field('value', choice($.metadata_string, $.labels_name_list, $.value_set))
+    ),
+
+    labels_name_list: $ => seq('[', commaSep1($.metadata_string), ']'),
 
     analyzer_map: $ => seq(
       '{',
