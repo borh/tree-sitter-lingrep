@@ -186,3 +186,54 @@ pattern bad_not_followed := not_followed_by.
 --------------------------------------------------------------------------------
 
 (source_file)
+
+================================================================================
+scoped lookarounds
+:language(lingrep)
+================================================================================
+pattern cc := [upos=CCONJ] followed_by([]{0,2} [dep.rel=nsubj], within=document).
+pattern first := not_preceded_by([], within=paragraph) [upos=PRON].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value)))
+      (followed_by
+        (pattern_sequence
+          (quantified_pattern
+            (node_pattern)
+            (quantifier))
+          (node_pattern
+            (attribute
+              (key
+                (attribute_key
+                  (provider_attribute_key
+                    (provider_segment)
+                    (provider_segment))))
+              (attribute_operator)
+              (value))))
+        (identifier))))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (not_preceded_by
+        (node_pattern)
+        (identifier))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))))

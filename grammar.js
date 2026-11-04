@@ -630,6 +630,7 @@ export default grammar({
       'preceded_by',
       '(',
       field('body', $._pattern),
+      optional($._lookaround_scope),
       ')'
     ),
 
@@ -637,6 +638,7 @@ export default grammar({
       'not_preceded_by',
       '(',
       field('body', $._pattern),
+      optional($._lookaround_scope),
       ')'
     ),
 
@@ -644,6 +646,7 @@ export default grammar({
       'followed_by',
       '(',
       field('body', $._pattern),
+      optional($._lookaround_scope),
       ')'
     ),
 
@@ -651,8 +654,13 @@ export default grammar({
       'not_followed_by',
       '(',
       field('body', $._pattern),
+      optional($._lookaround_scope),
       ')'
     ),
+
+    // With `within=document` or `within=<division kind>`, the body may match
+    // tokens of the neighbouring sentences in that unit.
+    _lookaround_scope: $ => seq(',', 'within', '=', field('scope', $.identifier)),
 
     // Bind named one-token nodes without imposing their sentence order. The
     // compiler owns the operand-count and node-shape diagnostics, so a

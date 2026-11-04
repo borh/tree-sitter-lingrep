@@ -127,6 +127,11 @@
 (sentence_start) @punctuation.special
 (sentence_end) @punctuation.special
 (preceded_by "preceded_by" @keyword)
+"within" @keyword
+(preceded_by scope: (identifier) @constant.builtin)
+(not_preceded_by scope: (identifier) @constant.builtin)
+(followed_by scope: (identifier) @constant.builtin)
+(not_followed_by scope: (identifier) @constant.builtin)
 (any_order "any_order" @keyword)
 
 ; Regex patterns

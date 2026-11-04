@@ -676,6 +676,16 @@
             "named": true
           }
         ]
+      },
+      "scope": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
       }
     }
   },
@@ -1476,6 +1486,16 @@
             "named": true
           }
         ]
+      },
+      "scope": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
       }
     }
   },
@@ -1553,6 +1573,16 @@
           },
           {
             "type": "sentence_start",
+            "named": true
+          }
+        ]
+      },
+      "scope": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -2216,6 +2246,16 @@
           },
           {
             "type": "sentence_start",
+            "named": true
+          }
+        ]
+      },
+      "scope": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -3220,6 +3260,10 @@
   },
   {
     "type": "where",
+    "named": false
+  },
+  {
+    "type": "within",
     "named": false
   },
   {
