@@ -787,7 +787,6 @@ pattern literal := [text=basic_head].
         (attribute_operator)
         (value)))))
 
-
 ================================================================================
 negative basic edge between captured endpoints
 :language(lingrep)
@@ -803,16 +802,21 @@ pattern absent := (?<h> a) (?<d> b) where not $h -[obj]-> $d.
     (pattern_sequence
       (named_group
         (identifier)
-        (bare_element (identifier)))
+        (bare_element
+          (identifier)))
       (named_group
         (identifier)
-        (bare_element (identifier))))
+        (bare_element
+          (identifier))))
     (where_clause
       (relation_constraint
         (relation_negation)
-        (capture_reference (identifier))
-        (label_set (relation_label))
-        (capture_reference (identifier))))))
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier))))))
 
 ================================================================================
 basic graph nodes at either endpoint
@@ -870,6 +874,58 @@ pattern dependent_node := (?<h> [upos=VERB]) where $h -[obj|iobj]-> (?<d> []).
           (identifier))
         (label_set
           (relation_label)
+          (relation_label))
+        (graph_node_binding
+          (identifier)
+          (node_pattern))))))
+
+================================================================================
+order constraint
+:language(lingrep)
+================================================================================
+pattern ordered := (?<n0> [upos=NOUN]) where $n0 < $n1 < $n2, $n0 -[obj]-> (?<n1> [upos=NOUN]), $n1 -[nmod]-> (?<n2> []).
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (where_clause
+      (order_constraint
+        (capture_reference
+          (identifier))
+        (capture_reference
+          (identifier))
+        (capture_reference
+          (identifier)))
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (graph_node_binding
+          (identifier)
+          (node_pattern
+            (attribute
+              (key
+                (attribute_key
+                  (portable_attribute_key)))
+              (attribute_operator)
+              (value)))))
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
           (relation_label))
         (graph_node_binding
           (identifier)

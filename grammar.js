@@ -685,7 +685,14 @@ export default grammar({
 
     where_clause: $ => seq(
       'where',
-      commaSep1(field('constraint', $.relation_constraint))
+      commaSep1(field('constraint', choice($.relation_constraint, $.order_constraint)))
+    ),
+
+    // `$a < $b < $c` requires each named node to precede the next in
+    // sentence order.
+    order_constraint: $ => seq(
+      field('operand', $.capture_reference),
+      repeat1(seq('<', field('operand', $.capture_reference)))
     ),
 
     // `$head -[labels]-> $dependent` points head \u2192 dependent, as UD draws a

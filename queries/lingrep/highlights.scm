@@ -102,6 +102,7 @@
 "|" @operator
 (test_negation "!" @operator)
 (relation_negation) @operator
+(order_constraint "<" @operator)
 (anonymous_dependency_node) @constant.builtin
 "." @punctuation.delimiter
 

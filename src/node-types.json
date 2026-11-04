@@ -1560,6 +1560,22 @@
     }
   },
   {
+    "type": "order_constraint",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "capture_reference",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "parenthesized_pattern",
     "named": true,
     "fields": {},
@@ -2842,6 +2858,10 @@
         "required": true,
         "types": [
           {
+            "type": "order_constraint",
+            "named": true
+          },
+          {
             "type": "relation_constraint",
             "named": true
           }
@@ -2931,6 +2951,10 @@
   },
   {
     "type": ":=",
+    "named": false
+  },
+  {
+    "type": "<",
     "named": false
   },
   {
