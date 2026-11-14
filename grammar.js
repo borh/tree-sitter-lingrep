@@ -17,6 +17,7 @@ export default grammar({
       $.key_entry,
       $.skip_entry,
       $.analyzer_entry,
+      $.vectors_entry,
       $.labels_entry,
       $.metadata_entry,
       $.set_definition,
@@ -119,6 +120,14 @@ export default grammar({
       'analyzer',
       ':',
       field('value', $.analyzer_map)
+    ),
+
+    // The word-vector table a catalog's `near` thresholds were chosen
+    // against. Repeated entries are alternatives, as `analyzer` entries are.
+    vectors_entry: $ => seq(
+      'vectors',
+      ':',
+      field('resource', $.analyzer_identifier)
     ),
 
     // Per attribute, a named label set such as "ud-v2", a list of named sets,
@@ -497,6 +506,13 @@ export default grammar({
       ),
       seq(
         field('key', $.key),
+        field('operator', alias($._near_attribute_operator, $.attribute_operator)),
+        field('value', $.value),
+        '>=',
+        field('threshold', $.similarity_threshold)
+      ),
+      seq(
+        field('key', $.key),
         field('operator', $.set_has_operator),
         field('value', $.value)
       ),
@@ -528,6 +544,15 @@ export default grammar({
     _scalar_attribute_operator: $ => choice('=', '!=', '~', '!~'),
 
     _set_attribute_operator: $ => choice('in', seq('not', 'in')),
+
+    // `near` holds for the values whose word vector has a cosine similarity
+    // to the operand's of at least the threshold. White space must separate
+    // the operand from `>=`, because `>` and `=` are legal value characters.
+    _near_attribute_operator: $ => choice('near', seq('not', 'near')),
+
+    // Its own token because `value` excludes `.`. The lowerer checks the
+    // range, so an out-of-range threshold gets a diagnostic that says so.
+    similarity_threshold: $ => /\d+(\.\d+)?/,
 
     set_has_operator: $ => 'has',
 

@@ -124,3 +124,45 @@ spaced := [text ~ /a b/].
         (attribute_operator)
         (value
           (regex))))))
+
+================================================================================
+near test with a similarity threshold, and its negation
+:language(lingrep)
+================================================================================
+vectors: "ruri-v3-310m-unidic-cwj"
+pattern p := [unidic.orthbase near 研究 >= 0.6] [text not near near >= 1 & upos=NOUN].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (vectors_entry
+    (analyzer_identifier))
+  (pattern_definition
+    (definition_kind)
+    (identifier)
+    (pattern_sequence
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value)
+          (similarity_threshold)))
+      (node_pattern
+        (attribute_conjunction
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value)
+            (similarity_threshold))
+          (attribute
+            (key
+              (attribute_key
+                (portable_attribute_key)))
+            (attribute_operator)
+            (value)))))))

@@ -33,6 +33,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "vectors_entry"
+          },
+          {
+            "type": "SYMBOL",
             "name": "labels_entry"
           },
           {
@@ -679,6 +683,27 @@
           "content": {
             "type": "SYMBOL",
             "name": "analyzer_map"
+          }
+        }
+      ]
+    },
+    "vectors_entry": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "vectors"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "resource",
+          "content": {
+            "type": "SYMBOL",
+            "name": "analyzer_identifier"
           }
         }
       ]
@@ -2429,6 +2454,52 @@
               "type": "FIELD",
               "name": "operator",
               "content": {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_near_attribute_operator"
+                },
+                "named": true,
+                "value": "attribute_operator"
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "value",
+              "content": {
+                "type": "SYMBOL",
+                "name": "value"
+              }
+            },
+            {
+              "type": "STRING",
+              "value": ">="
+            },
+            {
+              "type": "FIELD",
+              "name": "threshold",
+              "content": {
+                "type": "SYMBOL",
+                "name": "similarity_threshold"
+              }
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "key",
+              "content": {
+                "type": "SYMBOL",
+                "name": "key"
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "operator",
+              "content": {
                 "type": "SYMBOL",
                 "name": "set_has_operator"
               }
@@ -2600,6 +2671,32 @@
           ]
         }
       ]
+    },
+    "_near_attribute_operator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "near"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "not"
+            },
+            {
+              "type": "STRING",
+              "value": "near"
+            }
+          ]
+        }
+      ]
+    },
+    "similarity_threshold": {
+      "type": "PATTERN",
+      "value": "\\d+(\\.\\d+)?"
     },
     "set_has_operator": {
       "type": "STRING",
