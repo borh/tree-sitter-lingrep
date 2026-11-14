@@ -123,12 +123,39 @@ export default grammar({
     ),
 
     // The word-vector table a catalog's `near` thresholds were chosen
-    // against. Repeated entries are alternatives, as `analyzer` entries are.
+    // against: a label and the BLAKE3 digest of the file. Repeated entries
+    // are alternatives, as `analyzer` entries are; required and duplicate
+    // fields are checked in the lowerer.
     vectors_entry: $ => seq(
       'vectors',
       ':',
-      field('resource', $.analyzer_identifier)
+      field('value', $.vectors_map)
     ),
+
+    vectors_map: $ => seq(
+      '{',
+      commaSep1($.vectors_field),
+      '}'
+    ),
+
+    vectors_field: $ => choice(
+      $.vectors_resource_field,
+      $.vectors_digest_field
+    ),
+
+    vectors_resource_field: $ => seq(
+      'resource',
+      ':',
+      field('value', $.analyzer_identifier)
+    ),
+
+    vectors_digest_field: $ => seq(
+      'blake3',
+      ':',
+      field('value', $.vectors_digest)
+    ),
+
+    vectors_digest: $ => /"[0-9a-f]{64}"/,
 
     // Per attribute, a named label set such as "ud-v2", a list of named sets,
     // or an explicit value set.

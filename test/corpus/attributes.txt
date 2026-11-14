@@ -129,14 +129,20 @@ spaced := [text ~ /a b/].
 near test with a similarity threshold, and its negation
 :language(lingrep)
 ================================================================================
-vectors: "ruri-v3-310m-unidic-cwj"
+vectors: {resource: "ruri-v3-310m-unidic-cwj", blake3: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"}
 pattern p := [unidic.orthbase near 研究 >= 0.6] [text not near near >= 1 & upos=NOUN].
 
 --------------------------------------------------------------------------------
 
 (source_file
   (vectors_entry
-    (analyzer_identifier))
+    (vectors_map
+      (vectors_field
+        (vectors_resource_field
+          (analyzer_identifier)))
+      (vectors_field
+        (vectors_digest_field
+          (vectors_digest)))))
   (pattern_definition
     (definition_kind)
     (identifier)

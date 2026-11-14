@@ -2904,10 +2904,76 @@
     }
   },
   {
+    "type": "vectors_digest_field",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "vectors_digest",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "vectors_entry",
     "named": true,
     "fields": {
-      "resource": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "vectors_map",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "vectors_field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "vectors_digest_field",
+          "named": true
+        },
+        {
+          "type": "vectors_resource_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "vectors_map",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "vectors_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "vectors_resource_field",
+    "named": true,
+    "fields": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3096,6 +3162,10 @@
     "named": false
   },
   {
+    "type": "blake3",
+    "named": false
+  },
+  {
     "type": "by",
     "named": false
   },
@@ -3253,6 +3323,10 @@
     "named": false
   },
   {
+    "type": "resource",
+    "named": false
+  },
+  {
     "type": "same_as",
     "named": false
   },
@@ -3303,6 +3377,10 @@
   {
     "type": "vectors",
     "named": false
+  },
+  {
+    "type": "vectors_digest",
+    "named": true
   },
   {
     "type": "where",

@@ -127,7 +127,8 @@
 (attribute ">=" @operator)
 (similarity_threshold) @number
 (vectors_entry "vectors" @keyword)
-(vectors_entry resource: (analyzer_identifier) @string)
+(vectors_resource_field "resource" @property (analyzer_identifier) @string)
+(vectors_digest_field "blake3" @property (vectors_digest) @string)
 
 (sentence_start) @punctuation.special
 (sentence_end) @punctuation.special
