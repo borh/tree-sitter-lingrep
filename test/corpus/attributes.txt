@@ -93,6 +93,45 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
           (value))))))
 
 ================================================================================
+surface is a portable key
+:language(lingrep)
+================================================================================
+exact := [surface=葛󠄀].
+source := [unidic.surface=x] [text=surface].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (node_pattern
+      (attribute
+        (key
+          (attribute_key
+            (portable_attribute_key)))
+        (attribute_operator)
+        (value))))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (provider_attribute_key
+                (provider_segment)
+                (provider_segment))))
+          (attribute_operator)
+          (value)))
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))))
+
+================================================================================
 regex operands are always regex nodes
 :language(lingrep)
 ================================================================================

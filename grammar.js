@@ -606,7 +606,7 @@ export default grammar({
       $.provider_attribute_key
     ),
 
-    portable_attribute_key: $ => choice('text', 'lemma', 'norm', 'upos', 'xpos'),
+    portable_attribute_key: $ => choice('text', 'surface', 'lemma', 'norm', 'upos', 'xpos'),
 
     feature_attribute_key: $ => seq(
       'feat',
