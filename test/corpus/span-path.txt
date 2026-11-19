@@ -1,0 +1,53 @@
+==================
+Span paths and token relations
+==================
+p := (?<n> []) (?<v> []) where span(bunsetsu, $v.head@"V-P" -> $n.head), $v -[obj]-> $n.
+q := (?<word> []+) where span(sudachi.c, $word.whole).
+---
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (node_pattern))
+      (named_group
+        (identifier)
+        (node_pattern)))
+    (where_clause
+      (span_constraint
+        (span_layer_name
+          (identifier))
+        (span_operand
+          (capture_reference
+            (identifier))
+          (identifier)
+          (metadata_string))
+        (span_operand
+          (capture_reference
+            (identifier))
+          (identifier)))
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (identifier)
+    (named_group
+      (identifier)
+      (quantified_pattern
+        (node_pattern)
+        (quantifier)))
+    (where_clause
+      (span_constraint
+        (span_layer_name
+          (identifier)
+          (identifier))
+        (span_operand
+          (capture_reference
+            (identifier))
+          (identifier))))))

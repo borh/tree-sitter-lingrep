@@ -2727,6 +2727,91 @@
     }
   },
   {
+    "type": "span_constraint",
+    "named": true,
+    "fields": {
+      "layer": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "metadata_string",
+            "named": true
+          },
+          {
+            "type": "span_layer_name",
+            "named": true
+          }
+        ]
+      },
+      "operand": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "span_operand",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "span_layer_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "span_operand",
+    "named": true,
+    "fields": {
+      "capture": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "capture_reference",
+            "named": true
+          }
+        ]
+      },
+      "label": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "metadata_string",
+            "named": true
+          }
+        ]
+      },
+      "position": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "sudachi_split",
     "named": true,
     "fields": {}
@@ -3000,6 +3085,10 @@
           {
             "type": "relation_constraint",
             "named": true
+          },
+          {
+            "type": "span_constraint",
+            "named": true
           }
         ]
       }
@@ -3071,6 +3160,10 @@
   },
   {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "->",
     "named": false
   },
   {

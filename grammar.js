@@ -745,11 +745,24 @@ export default grammar({
 
     where_clause: $ => seq(
       'where',
-      commaSep1(field('constraint', choice($.relation_constraint, $.order_constraint)))
+      commaSep1(field('constraint', choice($.relation_constraint, $.order_constraint, $.span_constraint)))
     ),
 
     // `$a < $b < $c` requires each named node to precede the next in
     // sentence order.
+    span_constraint: $ => seq(
+      'span', '(', field('layer', choice($.span_layer_name, $.metadata_string)), ',',
+      field('operand', $.span_operand), repeat(seq('->', field('operand', $.span_operand))), ')'
+    ),
+
+    span_layer_name: $ => seq($.identifier, repeat(seq('.', $.identifier))),
+
+    span_operand: $ => seq(
+      field('capture', $.capture_reference),
+      optional(seq('.', field('position', $.identifier))),
+      optional(seq('@', field('label', choice($.identifier, $.metadata_string))))
+    ),
+
     order_constraint: $ => seq(
       field('operand', $.capture_reference),
       repeat1(seq('<', field('operand', $.capture_reference)))
