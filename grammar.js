@@ -12,6 +12,9 @@ export default grammar({
     // block gets a diagnostic naming where it belongs instead of an ERROR node.
     source_file: $ => repeat(choice(
       $.defaults_block,
+      $.bundle_block,
+      $.bundle_use,
+      $.override_entry,
       $.schema_block,
       $.policy_block,
       $.key_entry,
@@ -52,6 +55,23 @@ export default grammar({
       'defaults',
       repeat(choice($.key_entry, $.skip_entry, $.metadata_entry)),
       'end'
+    ),
+
+    bundle_block: $ => seq(
+      'bundle', field('name', $.identifier),
+      repeat($.metadata_entry),
+      'end'
+    ),
+
+    bundle_use: $ => seq('use', '@', field('name', $.identifier)),
+
+    override_entry: $ => seq('override', field('entry', $.metadata_entry)),
+
+    _annotation_identifier: $ => choice(
+      $.identifier,
+      alias('bundle', $.identifier),
+      alias('use', $.identifier),
+      alias('override', $.identifier)
     ),
 
     schema_block: $ => seq('schema', repeat($.schema_entry), 'end'),
@@ -107,7 +127,7 @@ export default grammar({
     metadata_value_set: $ => seq('in', '{', commaSep1($.metadata_string), '}'),
 
     metadata_entry: $ => seq(
-      field('key', $.identifier),
+      field('key', $._annotation_identifier),
       ':',
       field('value', $._metadata_value)
     ),
@@ -338,7 +358,7 @@ export default grammar({
         '.'
       ),
       seq(
-        field('name', $.identifier),
+        field('name', $._annotation_identifier),
         ':=',
         field('pattern', $._pattern),
         optional(field('where', $.where_clause)),

@@ -490,6 +490,48 @@
     }
   },
   {
+    "type": "bundle_block",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "metadata_entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bundle_use",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "capture_component",
     "named": true,
     "fields": {}
@@ -1616,6 +1658,22 @@
     }
   },
   {
+    "type": "override_entry",
+    "named": true,
+    "fields": {
+      "entry": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "metadata_entry",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "parenthesized_pattern",
     "named": true,
     "fields": {},
@@ -2672,6 +2730,14 @@
           "named": true
         },
         {
+          "type": "bundle_block",
+          "named": true
+        },
+        {
+          "type": "bundle_use",
+          "named": true
+        },
+        {
           "type": "defaults_block",
           "named": true
         },
@@ -2693,6 +2759,10 @@
         },
         {
           "type": "metadata_entry",
+          "named": true
+        },
+        {
+          "type": "override_entry",
           "named": true
         },
         {
@@ -3259,6 +3329,10 @@
     "named": false
   },
   {
+    "type": "bundle",
+    "named": false
+  },
+  {
     "type": "by",
     "named": false
   },
@@ -3376,6 +3450,10 @@
     "named": false
   },
   {
+    "type": "override",
+    "named": false
+  },
+  {
     "type": "pattern",
     "named": false
   },
@@ -3469,6 +3547,10 @@
   },
   {
     "type": "upos",
+    "named": false
+  },
+  {
+    "type": "use",
     "named": false
   },
   {

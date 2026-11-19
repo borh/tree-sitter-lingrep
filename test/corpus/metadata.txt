@@ -281,3 +281,51 @@ pattern p := [text=well].
             (portable_attribute_key)))
         (attribute_operator)
         (value)))))
+
+================================================================================
+named annotation bundle with a local override and an unset
+================================================================================
+bundle LightVerb
+  family: "light"
+  slot: "noun"
+end
+use @LightVerb
+override slot: "verb"
+p := [].
+use @LightVerb
+override family: none
+q := [].
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (bundle_block
+    (identifier)
+    (metadata_entry (identifier) (metadata_string))
+    (metadata_entry (identifier) (metadata_string)))
+  (bundle_use (identifier))
+  (override_entry (metadata_entry (identifier) (metadata_string)))
+  (pattern_definition (identifier) (node_pattern))
+  (bundle_use (identifier))
+  (override_entry (metadata_entry (identifier) (metadata_none)))
+  (pattern_definition (identifier) (node_pattern)))
+
+================================================================================
+bundle keywords remain valid definition and annotation names
+================================================================================
+bundle: "bundle"
+use: "use"
+override: "override"
+bundle := [].
+use := @bundle.
+override := @use.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (metadata_entry (identifier) (metadata_string))
+  (metadata_entry (identifier) (metadata_string))
+  (metadata_entry (identifier) (metadata_string))
+  (pattern_definition (identifier) (node_pattern))
+  (pattern_definition (identifier) (pattern_reference (identifier)))
+  (pattern_definition (identifier) (pattern_reference (identifier))))

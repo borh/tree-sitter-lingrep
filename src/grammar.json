@@ -13,6 +13,18 @@
           },
           {
             "type": "SYMBOL",
+            "name": "bundle_block"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "bundle_use"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "override_entry"
+          },
+          {
+            "type": "SYMBOL",
             "name": "schema_block"
           },
           {
@@ -170,6 +182,108 @@
         {
           "type": "STRING",
           "value": "end"
+        }
+      ]
+    },
+    "bundle_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "bundle"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "metadata_entry"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "end"
+        }
+      ]
+    },
+    "bundle_use": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "use"
+        },
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
+    },
+    "override_entry": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "override"
+        },
+        {
+          "type": "FIELD",
+          "name": "entry",
+          "content": {
+            "type": "SYMBOL",
+            "name": "metadata_entry"
+          }
+        }
+      ]
+    },
+    "_annotation_identifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "bundle"
+          },
+          "named": true,
+          "value": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "use"
+          },
+          "named": true,
+          "value": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "override"
+          },
+          "named": true,
+          "value": "identifier"
         }
       ]
     },
@@ -649,7 +763,7 @@
           "name": "key",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "_annotation_identifier"
           }
         },
         {
@@ -1711,7 +1825,7 @@
               "name": "name",
               "content": {
                 "type": "SYMBOL",
-                "name": "identifier"
+                "name": "_annotation_identifier"
               }
             },
             {

@@ -27,6 +27,10 @@
 ; so it takes the constant face.
 (metadata_none) @constant.builtin
 (metadata_type) @type
+(bundle_block "bundle" @keyword name: (identifier) @entity.name.function)
+(bundle_block "end" @keyword)
+(bundle_use "use" @keyword "@" @operator name: (identifier) @variable.member)
+(override_entry "override" @keyword)
 (defaults_block "defaults" @keyword)
 (defaults_block "end" @keyword)
 (schema_block "schema" @keyword)
