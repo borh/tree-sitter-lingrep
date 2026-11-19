@@ -280,6 +280,7 @@ export default grammar({
       commaSep1(choice(
         $.lexical_segments_projection,
         $.lexical_term_projection,
+        $.count_key_projection,
         $.match_key_projection,
         $.capture_key_projection
       )),
@@ -294,6 +295,8 @@ export default grammar({
       field('attribute', $.attribute_key),
       ')'
     ),
+
+    count_key_projection: $ => field('capture', $.capture_reference),
 
     match_key_projection: $ => field('attribute', $.attribute_key),
 
@@ -843,7 +846,8 @@ export default grammar({
         field('label', $.label_set),
         ']->',
         field('dependent', $.node_pattern),
-        optional(field('count', $.dependent_count))
+        optional(field('count', $.dependent_count)),
+        optional(seq('as', field('count_binding', $.capture_reference)))
       ),
       seq(
         field('head', $.graph_node_binding),

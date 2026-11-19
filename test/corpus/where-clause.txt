@@ -935,12 +935,19 @@ pattern ordered := (?<n0> [upos=NOUN]) where $n0 < $n1 < $n2, $n0 -[obj]-> (?<n1
 Dependent cardinality and comparison of bound words
 ================================================================================
 
-pattern p := (?<v> []) where $v -[*]-> [upos=NOUN]{2,3},
+key: [$n]
+pattern p := (?<v> []) where $v -[*]-> [upos=NOUN]{2,3} as $n,
   $v -[obj]-> (?<o> []), $v.lemma != $o.unidic.orthbase.
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (key_entry
+    (identifier)
+    (key_projection_list
+      (count_key_projection
+        (capture_reference
+          (identifier)))))
   (pattern_definition
     (definition_kind)
     (identifier)
@@ -960,7 +967,9 @@ pattern p := (?<v> []) where $v -[*]-> [upos=NOUN]{2,3},
                 (portable_attribute_key)))
             (attribute_operator)
             (value)))
-        (dependent_count))
+        (dependent_count)
+        (capture_reference
+          (identifier)))
       (relation_constraint
         (capture_reference
           (identifier))

@@ -664,6 +664,22 @@
     }
   },
   {
+    "type": "count_key_projection",
+    "named": true,
+    "fields": {
+      "capture": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "capture_reference",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "defaults_block",
     "named": true,
     "fields": {},
@@ -1072,6 +1088,10 @@
       "types": [
         {
           "type": "capture_key_projection",
+          "named": true
+        },
+        {
+          "type": "count_key_projection",
           "named": true
         },
         {
@@ -2530,6 +2550,16 @@
         "types": [
           {
             "type": "dependent_count",
+            "named": true
+          }
+        ]
+      },
+      "count_binding": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "capture_reference",
             "named": true
           }
         ]
