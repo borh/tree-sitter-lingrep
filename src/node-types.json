@@ -404,6 +404,46 @@
     }
   },
   {
+    "type": "attribute_comparison",
+    "named": true,
+    "fields": {
+      "attribute": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "attribute_key",
+            "named": true
+          }
+        ]
+      },
+      "operand": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "capture_reference",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "!=",
+            "named": false
+          },
+          {
+            "type": "=",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "attribute_conjunction",
     "named": true,
     "fields": {},
@@ -648,6 +688,11 @@
   },
   {
     "type": "definition_kind",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "dependent_count",
     "named": true,
     "fields": {}
   },
@@ -2479,6 +2524,16 @@
     "type": "relation_constraint",
     "named": true,
     "fields": {
+      "count": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "dependent_count",
+            "named": true
+          }
+        ]
+      },
       "dependent": {
         "multiple": false,
         "required": true,
@@ -3208,6 +3263,10 @@
         "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "attribute_comparison",
+            "named": true
+          },
           {
             "type": "order_constraint",
             "named": true

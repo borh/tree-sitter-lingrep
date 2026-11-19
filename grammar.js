@@ -7,6 +7,8 @@ export default grammar({
     $.comment,
   ],
 
+  conflicts: $ => [[$.provider_attribute_key]],
+
   rules: {
     // Placement and uniqueness are enforced in the lowerer so a misplaced
     // block gets a diagnostic naming where it belongs instead of an ERROR node.
@@ -776,8 +778,16 @@ export default grammar({
 
     where_clause: $ => seq(
       'where',
-      commaSep1(field('constraint', choice($.relation_constraint, $.order_constraint, $.span_constraint)))
+      commaSep1(field('constraint', choice($.relation_constraint, $.order_constraint, $.attribute_comparison, $.span_constraint)))
     ),
+
+    attribute_comparison: $ => seq(
+      field('operand', $.capture_reference), '.', field('attribute', $.attribute_key),
+      field('operator', choice('=', '!=')),
+      field('operand', $.capture_reference), '.', field('attribute', $.attribute_key)
+    ),
+
+    dependent_count: _ => /\{\d+(?:,\d*)?\}/,
 
     span_constraint: $ => seq(
       'span', '(', field('layer', choice($.span_layer_name, $.metadata_string)), ',',
@@ -832,7 +842,8 @@ export default grammar({
         '-[',
         field('label', $.label_set),
         ']->',
-        field('dependent', $.node_pattern)
+        field('dependent', $.node_pattern),
+        optional(field('count', $.dependent_count))
       ),
       seq(
         field('head', $.graph_node_binding),

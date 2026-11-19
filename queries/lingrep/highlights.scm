@@ -188,6 +188,8 @@
 
 ; Quantifiers
 (quantifier) @operator
+(dependent_count) @operator
+(attribute_comparison operator: _ @operator)
 
 (span_constraint "span" @keyword)
 (span_constraint "->" @operator)

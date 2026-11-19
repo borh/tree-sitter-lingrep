@@ -3701,6 +3701,10 @@
                   },
                   {
                     "type": "SYMBOL",
+                    "name": "attribute_comparison"
+                  },
+                  {
+                    "type": "SYMBOL",
                     "name": "span_constraint"
                   }
                 ]
@@ -3731,6 +3735,10 @@
                         },
                         {
                           "type": "SYMBOL",
+                          "name": "attribute_comparison"
+                        },
+                        {
+                          "type": "SYMBOL",
                           "name": "span_constraint"
                         }
                       ]
@@ -3742,6 +3750,72 @@
           ]
         }
       ]
+    },
+    "attribute_comparison": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "operand",
+          "content": {
+            "type": "SYMBOL",
+            "name": "capture_reference"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "FIELD",
+          "name": "attribute",
+          "content": {
+            "type": "SYMBOL",
+            "name": "attribute_key"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "operator",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "="
+              },
+              {
+                "type": "STRING",
+                "value": "!="
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "operand",
+          "content": {
+            "type": "SYMBOL",
+            "name": "capture_reference"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "FIELD",
+          "name": "attribute",
+          "content": {
+            "type": "SYMBOL",
+            "name": "attribute_key"
+          }
+        }
+      ]
+    },
+    "dependent_count": {
+      "type": "PATTERN",
+      "value": "\\{\\d+(?:,\\d*)?\\}"
     },
     "span_constraint": {
       "type": "SEQ",
@@ -4098,6 +4172,22 @@
                 "type": "SYMBOL",
                 "name": "node_pattern"
               }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "count",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "dependent_count"
+                  }
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
         },
@@ -4496,7 +4586,11 @@
       "name": "comment"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "provider_attribute_key"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],
