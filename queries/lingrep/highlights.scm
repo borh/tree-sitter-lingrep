@@ -199,3 +199,11 @@
 
 ; Identifiers and literals
 (identifier) @variable
+
+(measure_clause "measure" @keyword)
+(named_measure "as" @keyword)
+(reduction_operator) @function.builtin
+(tree_source "tree" @function.builtin)
+(tree_layer) @constant.builtin
+(tree_items) @property
+(tree_property) @property

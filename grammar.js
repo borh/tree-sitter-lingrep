@@ -371,6 +371,7 @@ export default grammar({
         ':=',
         field('pattern', $._pattern),
         optional(field('where', $.where_clause)),
+        optional(field('measure', $.measure_clause)),
         '.'
       ),
       seq(
@@ -378,6 +379,7 @@ export default grammar({
         ':=',
         field('pattern', $._pattern),
         optional(field('where', $.where_clause)),
+        optional(field('measure', $.measure_clause)),
         '.'
       )
     ),
@@ -778,6 +780,28 @@ export default grammar({
       '?',
       /\{\d+(?:,\d*)?\}/
     ),
+
+    measure_clause: $ => seq('measure', commaSep1($.named_measure)),
+    named_measure: $ => seq(
+      field('value', choice($.reduction, $.capture_depth)), 'as',
+      field('name', $.capture_reference)
+    ),
+    reduction: $ => seq(
+      field('operator', $.reduction_operator), '(',
+      field('collection', choice($.tree_collection, $.match_words, $.link_selection, $.link_lengths)), ')'
+    ),
+    reduction_operator: _ => choice('count', 'mean', 'max'),
+    tree_items: _ => choice('links', 'nodes', 'boundaries'),
+    tree_property: _ => choice('length', 'depth', 'open_links'),
+    tree_layer: _ => choice('word', 'bunsetsu'),
+    tree_source: $ => seq('tree', '(', field('layer', $.tree_layer), ')'),
+    tree_collection: $ => seq($.tree_source, '.', field('items', $.tree_items),
+      optional(seq('.', field('property', $.tree_property)))),
+    capture_depth: $ => seq($.tree_source, '.', 'depth', '(', field('capture', $.capture_reference), ')'),
+    match_words: $ => seq('match', '.', 'words', field('test', $.node_pattern)),
+    link_selection: $ => seq(field('head', $.capture_reference), '-[',
+      field('label', $.label_set), ']->', field('test', $.node_pattern)),
+    link_lengths: $ => seq('(', $.link_selection, ')', '.', 'length'),
 
     where_clause: $ => seq(
       'where',

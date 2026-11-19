@@ -1,0 +1,102 @@
+==================
+Measurements on occurrences
+==================
+
+profile := ^ []+ $ measure mean(tree(word).links.length) as $distance, max(tree(bunsetsu).boundaries.open_links) as $peak.
+verbs := (?<v> [upos=VERB]) measure count($v -[*]-> [@nominal]) as $n, mean(($v -[*]-> [@nominal]).length) as $distance, tree(word).depth($v) as $depth.
+chunk := []+ measure count(match.words[@kanji]) as $n.
+
+---
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (sentence_start)
+      (quantified_pattern
+        (node_pattern)
+        (quantifier))
+      (sentence_end))
+    (measure_clause
+      (named_measure
+        (reduction
+          (reduction_operator)
+          (tree_collection
+            (tree_source
+              (tree_layer))
+            (tree_items)
+            (tree_property)))
+        (capture_reference
+          (identifier)))
+      (named_measure
+        (reduction
+          (reduction_operator)
+          (tree_collection
+            (tree_source
+              (tree_layer))
+            (tree_items)
+            (tree_property)))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern
+        (attribute
+          (key
+            (attribute_key
+              (portable_attribute_key)))
+          (attribute_operator)
+          (value))))
+    (measure_clause
+      (named_measure
+        (reduction
+          (reduction_operator)
+          (link_selection
+            (capture_reference
+              (identifier))
+            (label_set
+              (any_relation))
+            (node_pattern
+              (test_reference
+                (identifier)))))
+        (capture_reference
+          (identifier)))
+      (named_measure
+        (reduction
+          (reduction_operator)
+          (link_lengths
+            (link_selection
+              (capture_reference
+                (identifier))
+              (label_set
+                (any_relation))
+              (node_pattern
+                (test_reference
+                  (identifier))))))
+        (capture_reference
+          (identifier)))
+      (named_measure
+        (capture_depth
+          (tree_source
+            (tree_layer))
+          (capture_reference
+            (identifier)))
+        (capture_reference
+          (identifier)))))
+  (pattern_definition
+    (identifier)
+    (quantified_pattern
+      (node_pattern)
+      (quantifier))
+    (measure_clause
+      (named_measure
+        (reduction
+          (reduction_operator)
+          (match_words
+            (node_pattern
+              (test_reference
+                (identifier)))))
+        (capture_reference
+          (identifier))))))
