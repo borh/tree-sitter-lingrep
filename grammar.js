@@ -748,8 +748,6 @@ export default grammar({
       commaSep1(field('constraint', choice($.relation_constraint, $.order_constraint, $.span_constraint)))
     ),
 
-    // `$a < $b < $c` requires each named node to precede the next in
-    // sentence order.
     span_constraint: $ => seq(
       'span', '(', field('layer', choice($.span_layer_name, $.metadata_string)), ',',
       field('operand', $.span_operand), repeat(seq('->', field('operand', $.span_operand))), ')'
@@ -763,6 +761,8 @@ export default grammar({
       optional(seq('@', field('label', choice($.identifier, $.metadata_string))))
     ),
 
+    // `$a < $b < $c` requires each named node to precede the next in
+    // sentence order.
     order_constraint: $ => seq(
       field('operand', $.capture_reference),
       repeat1(seq('<', field('operand', $.capture_reference)))

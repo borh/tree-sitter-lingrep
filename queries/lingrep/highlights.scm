@@ -179,11 +179,11 @@
 ; Quantifiers
 (quantifier) @operator
 
-; Identifiers and literals
-(identifier) @variable
-
 (span_constraint "span" @keyword)
 (span_constraint "->" @operator)
-(span_layer_name) @type
+(span_layer_name) @property
 (span_operand position: (identifier) @property)
 (span_operand label: (identifier) @string)
+
+; Identifiers and literals
+(identifier) @variable
