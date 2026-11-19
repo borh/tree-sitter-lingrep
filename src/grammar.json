@@ -25,6 +25,14 @@
           },
           {
             "type": "SYMBOL",
+            "name": "interpret_entry"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "classify_entry"
+          },
+          {
+            "type": "SYMBOL",
             "name": "schema_block"
           },
           {
@@ -251,6 +259,64 @@
         }
       ]
     },
+    "interpret_entry": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "interpret"
+        },
+        {
+          "type": "FIELD",
+          "name": "capture",
+          "content": {
+            "type": "SYMBOL",
+            "name": "capture_reference"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "as"
+        },
+        {
+          "type": "FIELD",
+          "name": "role",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "labels",
+          "content": {
+            "type": "SYMBOL",
+            "name": "metadata_map"
+          }
+        }
+      ]
+    },
+    "classify_entry": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "classify"
+        },
+        {
+          "type": "STRING",
+          "value": "by"
+        },
+        {
+          "type": "FIELD",
+          "name": "role",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
+    },
     "_annotation_identifier": {
       "type": "CHOICE",
       "members": [
@@ -281,6 +347,24 @@
           "content": {
             "type": "STRING",
             "value": "override"
+          },
+          "named": true,
+          "value": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "interpret"
+          },
+          "named": true,
+          "value": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "classify"
           },
           "named": true,
           "value": "identifier"

@@ -15,6 +15,8 @@ export default grammar({
       $.bundle_block,
       $.bundle_use,
       $.override_entry,
+      $.interpret_entry,
+      $.classify_entry,
       $.schema_block,
       $.policy_block,
       $.key_entry,
@@ -67,11 +69,20 @@ export default grammar({
 
     override_entry: $ => seq('override', field('entry', $.metadata_entry)),
 
+    interpret_entry: $ => seq(
+      'interpret', field('capture', $.capture_reference),
+      'as', field('role', $.identifier), field('labels', $.metadata_map)
+    ),
+
+    classify_entry: $ => seq('classify', 'by', field('role', $.identifier)),
+
     _annotation_identifier: $ => choice(
       $.identifier,
       alias('bundle', $.identifier),
       alias('use', $.identifier),
-      alias('override', $.identifier)
+      alias('override', $.identifier),
+      alias('interpret', $.identifier),
+      alias('classify', $.identifier)
     ),
 
     schema_block: $ => seq('schema', repeat($.schema_entry), 'end'),

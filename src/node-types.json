@@ -608,6 +608,22 @@
     }
   },
   {
+    "type": "classify_entry",
+    "named": true,
+    "fields": {
+      "role": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "defaults_block",
     "named": true,
     "fields": {},
@@ -847,6 +863,42 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "interpret_entry",
+    "named": true,
+    "fields": {
+      "capture": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "capture_reference",
+            "named": true
+          }
+        ]
+      },
+      "labels": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "metadata_map",
+            "named": true
+          }
+        ]
+      },
+      "role": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2738,11 +2790,19 @@
           "named": true
         },
         {
+          "type": "classify_entry",
+          "named": true
+        },
+        {
           "type": "defaults_block",
           "named": true
         },
         {
           "type": "group_definition",
+          "named": true
+        },
+        {
+          "type": "interpret_entry",
           "named": true
         },
         {
@@ -3337,6 +3397,10 @@
     "named": false
   },
   {
+    "type": "classify",
+    "named": false
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true
@@ -3391,6 +3455,10 @@
   },
   {
     "type": "in",
+    "named": false
+  },
+  {
+    "type": "interpret",
     "named": false
   },
   {

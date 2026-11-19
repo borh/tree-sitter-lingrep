@@ -31,6 +31,12 @@
 (bundle_block "end" @keyword)
 (bundle_use "use" @keyword "@" @operator name: (identifier) @variable.member)
 (override_entry "override" @keyword)
+(interpret_entry
+  "interpret" @keyword
+  capture: (capture_reference "$" @operator name: (identifier) @variable.member)
+  "as" @keyword
+  role: (identifier) @variable.member)
+(classify_entry "classify" @keyword "by" @keyword role: (identifier) @variable.member)
 (defaults_block "defaults" @keyword)
 (defaults_block "end" @keyword)
 (schema_block "schema" @keyword)
