@@ -100,3 +100,53 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
                 (identifier)))))
         (capture_reference
           (identifier))))))
+
+==================
+Measurement keywords remain ordinary words
+==================
+
+measure := measure.
+p := [] measure.
+q := [] measure mean.
+r := [] measure tree.
+s := [] measure max count.
+
+---
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (bare_element
+      (identifier)))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (node_pattern)
+      (bare_element
+        (identifier))))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (node_pattern)
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier))))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (node_pattern)
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier))))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (node_pattern)
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier))
+      (bare_element
+        (identifier)))))

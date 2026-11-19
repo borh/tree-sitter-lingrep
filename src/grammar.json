@@ -3343,8 +3343,58 @@
       }
     },
     "bare_element": {
-      "type": "SYMBOL",
-      "name": "identifier"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "measure"
+          },
+          "named": true,
+          "value": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "mean"
+          },
+          "named": true,
+          "value": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "max"
+          },
+          "named": true,
+          "value": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "count"
+          },
+          "named": true,
+          "value": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "tree"
+          },
+          "named": true,
+          "value": "identifier"
+        }
+      ]
     },
     "named_group": {
       "type": "SEQ",
@@ -5031,6 +5081,10 @@
   "conflicts": [
     [
       "provider_attribute_key"
+    ],
+    [
+      "_pattern",
+      "_term"
     ]
   ],
   "precedences": [],

@@ -7,7 +7,8 @@ export default grammar({
     $.comment,
   ],
 
-  conflicts: $ => [[$.provider_attribute_key]],
+  conflicts: $ => [[$.provider_attribute_key], [$._pattern, $._term]],
+
 
   rules: {
     // Placement and uniqueness are enforced in the lowerer so a misplaced
@@ -697,7 +698,7 @@ export default grammar({
       )));
     },
 
-    bare_element: $ => $.identifier,
+    bare_element: $ => choice($.identifier, alias('measure', $.identifier), alias('mean', $.identifier), alias('max', $.identifier), alias('count', $.identifier), alias('tree', $.identifier)),
 
     named_group: $ => seq(
       '(?<',
