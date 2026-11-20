@@ -7,6 +7,9 @@ from setuptools.command.build import build
 from wheel.bdist_wheel import bdist_wheel
 
 
+free_threaded = bool(get_config_var("Py_GIL_DISABLED"))
+
+
 class Build(build):
     def run(self):
         if isdir("queries"):
@@ -18,7 +21,7 @@ class Build(build):
 class BdistWheel(bdist_wheel):
     def get_tag(self):
         python, abi, platform = super().get_tag()
-        if python.startswith("cp") and not get_config_var("Py_GIL_DISABLED"):
+        if python.startswith("cp") and not free_threaded:
             python, abi = "cp310", "abi3"
         return python, abi, platform
 
@@ -47,12 +50,12 @@ setup(
                 "/utf-8",
             ],
             define_macros=[
-                ("Py_LIMITED_API", "0x030A0000"),
+                ("Py_GIL_DISABLED", "1") if free_threaded else ("Py_LIMITED_API", "0x030A0000"),
                 ("PY_SSIZE_T_CLEAN", None),
                 ("TREE_SITTER_HIDE_SYMBOLS", None),
             ],
             include_dirs=["src"],
-            py_limited_api=True,
+            py_limited_api=not free_threaded,
         )
     ],
     cmdclass={
