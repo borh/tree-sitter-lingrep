@@ -207,3 +207,7 @@
 (tree_layer) @constant.builtin
 (tree_items) @property
 (tree_property) @property
+(match_words "match" @keyword "words" @property)
+(link_lengths "length" @property)
+(capture_depth "depth" @property)
+(relation_constraint "as" @keyword)
