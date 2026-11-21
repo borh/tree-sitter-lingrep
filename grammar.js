@@ -853,6 +853,13 @@ export default grammar({
     relation_constraint: $ => choice(
       seq(
         optional(field('polarity', $.relation_negation)),
+        field('head', choice($.capture_reference, $.graph_node_binding)),
+        '-[', field('path', '+'), field('label', $.label_set),
+        optional(seq(field('boundary', choice('first', 'last')), field('boundary_label', $.label_set))),
+        ']->', field('dependent', choice($.capture_reference, $.graph_node_binding))
+      ),
+      seq(
+        optional(field('polarity', $.relation_negation)),
         field('head', $.capture_reference),
         '-[',
         field('label', $.label_set),

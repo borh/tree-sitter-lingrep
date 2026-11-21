@@ -2759,6 +2759,30 @@
     "type": "relation_constraint",
     "named": true,
     "fields": {
+      "boundary": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "first",
+            "named": false
+          },
+          {
+            "type": "last",
+            "named": false
+          }
+        ]
+      },
+      "boundary_label": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "label_set",
+            "named": true
+          }
+        ]
+      },
       "count": {
         "multiple": false,
         "required": false,
@@ -2850,6 +2874,16 @@
           {
             "type": "label_set",
             "named": true
+          }
+        ]
+      },
+      "path": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "+",
+            "named": false
           }
         ]
       },

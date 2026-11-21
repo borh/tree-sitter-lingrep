@@ -1050,3 +1050,47 @@ p := (?<d> []) (?<h> []) where $h -[comp:aux@pass]-> $d, $h -[enhanced @PASS|*@!
           (identifier))
         (capture_reference
           (identifier))))))
+
+================================================================================
+basic dependency paths
+================================================================================
+p := (?<w> []) where (?<v> []) -[+ comp first comp:obj]-> $w, $w -[+ comp last comp|comp:pred]-> (?<n> []), not $n -[+ *]-> $v.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern))
+    (where_clause
+      (relation_constraint
+        (graph_node_binding
+          (identifier)
+          (node_pattern))
+        (label_set
+          (relation_label))
+        (label_set
+          (relation_label))
+        (capture_reference
+          (identifier)))
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (relation_label))
+        (label_set
+          (relation_label)
+          (relation_label))
+        (graph_node_binding
+          (identifier)
+          (node_pattern)))
+      (relation_constraint
+        (relation_negation)
+        (capture_reference
+          (identifier))
+        (label_set
+          (any_relation))
+        (capture_reference
+          (identifier))))))
