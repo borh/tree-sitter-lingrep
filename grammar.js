@@ -794,7 +794,7 @@ export default grammar({
     reduction_operator: _ => choice('count', 'mean', 'max'),
     tree_items: _ => choice('links', 'nodes', 'boundaries'),
     tree_property: _ => choice('length', 'depth', 'open_links'),
-    tree_layer: _ => choice('word', 'bunsetsu'),
+    tree_layer: $ => choice($.span_layer_name, $.metadata_string),
     tree_source: $ => seq('tree', '(', field('layer', $.tree_layer), ')'),
     tree_collection: $ => seq($.tree_source, '.', field('items', $.tree_items),
       optional(seq('.', field('property', $.tree_property)))),

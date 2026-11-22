@@ -3377,7 +3377,21 @@
   {
     "type": "tree_layer",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "metadata_string",
+          "named": true
+        },
+        {
+          "type": "span_layer_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "tree_property",
@@ -3744,10 +3758,6 @@
     "named": false
   },
   {
-    "type": "bunsetsu",
-    "named": false
-  },
-  {
     "type": "by",
     "named": false
   },
@@ -4034,10 +4044,6 @@
   },
   {
     "type": "within",
-    "named": false
-  },
-  {
-    "type": "word",
     "named": false
   },
   {

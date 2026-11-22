@@ -23,7 +23,9 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
           (reduction_operator)
           (tree_collection
             (tree_source
-              (tree_layer))
+              (tree_layer
+                (span_layer_name
+                  (identifier))))
             (tree_items)
             (tree_property)))
         (capture_reference
@@ -33,7 +35,9 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
           (reduction_operator)
           (tree_collection
             (tree_source
-              (tree_layer))
+              (tree_layer
+                (span_layer_name
+                  (identifier))))
             (tree_items)
             (tree_property)))
         (capture_reference
@@ -80,7 +84,9 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
       (named_measure
         (capture_depth
           (tree_source
-            (tree_layer))
+            (tree_layer
+              (span_layer_name
+                (identifier))))
           (capture_reference
             (identifier)))
         (capture_reference
@@ -150,3 +156,40 @@ s := [] measure max count.
         (identifier))
       (bare_element
         (identifier)))))
+
+==================
+Named span trees
+==================
+
+profile := (?<v> []) measure count(tree(custom.layer).nodes) as $n, tree("custom layer").depth($v) as $d.
+
+---
+
+(source_file
+  (pattern_definition
+    (identifier)
+    (named_group
+      (identifier)
+      (node_pattern))
+    (measure_clause
+      (named_measure
+        (reduction
+          (reduction_operator)
+          (tree_collection
+            (tree_source
+              (tree_layer
+                (span_layer_name
+                  (identifier)
+                  (identifier))))
+            (tree_items)))
+        (capture_reference
+          (identifier)))
+      (named_measure
+        (capture_depth
+          (tree_source
+            (tree_layer
+              (metadata_string)))
+          (capture_reference
+            (identifier)))
+        (capture_reference
+          (identifier))))))

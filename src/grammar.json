@@ -3942,12 +3942,12 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "word"
+          "type": "SYMBOL",
+          "name": "span_layer_name"
         },
         {
-          "type": "STRING",
-          "value": "bunsetsu"
+          "type": "SYMBOL",
+          "name": "metadata_string"
         }
       ]
     },

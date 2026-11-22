@@ -204,7 +204,8 @@
 (named_measure "as" @keyword)
 (reduction_operator) @function.builtin
 (tree_source "tree" @function.builtin)
-(tree_layer) @constant.builtin
+((tree_layer (span_layer_name) @constant.builtin)
+ (#any-of? @constant.builtin "word" "bunsetsu"))
 (tree_items) @property
 (tree_property) @property
 (match_words "match" @keyword "words" @property)
