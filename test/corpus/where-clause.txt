@@ -989,3 +989,64 @@ pattern p := (?<v> []) where $v -[*]-> [upos=NOUN]{2,3} as $n,
           (provider_attribute_key
             (provider_segment)
             (provider_segment)))))))
+
+==================
+SUD deep relation features and key projections
+==================
+
+set PASS := {comp:aux@pass}.
+key: [deep($d.dep.rel), deep($e.rel)]
+p := (?<d> []) (?<h> []) where $h -[comp:aux@pass]-> $d, $h -[enhanced @PASS|*@!pass as $e]-> $d.
+
+---
+
+(source_file
+  (set_definition
+    (identifier)
+    (value_set
+      (value)))
+  (key_entry
+    (identifier)
+    (key_projection_list
+      (deep_key_projection
+        (capture_key_projection
+          (capture_reference
+            (identifier))
+          (attribute_key
+            (provider_attribute_key
+              (provider_segment)
+              (provider_segment)))))
+      (deep_key_projection
+        (capture_key_projection
+          (capture_reference
+            (identifier))
+          (identifier)))))
+  (pattern_definition
+    (identifier)
+    (pattern_sequence
+      (named_group
+        (identifier)
+        (node_pattern))
+      (named_group
+        (identifier)
+        (node_pattern)))
+    (where_clause
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (label_set
+          (deep_relation_label))
+        (capture_reference
+          (identifier)))
+      (relation_constraint
+        (capture_reference
+          (identifier))
+        (relation_kind)
+        (label_set
+          (set_reference
+            (identifier))
+          (deep_relation_label))
+        (capture_reference
+          (identifier))
+        (capture_reference
+          (identifier))))))

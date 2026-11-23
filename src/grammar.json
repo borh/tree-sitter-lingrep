@@ -1494,6 +1494,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "capture_key_projection"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "deep_key_projection"
                 }
               ]
             },
@@ -1528,6 +1532,10 @@
                       {
                         "type": "SYMBOL",
                         "name": "capture_key_projection"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "deep_key_projection"
                       }
                     ]
                   }
@@ -1586,6 +1594,31 @@
         "type": "SYMBOL",
         "name": "attribute_key"
       }
+    },
+    "deep_key_projection": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "deep"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "relation",
+          "content": {
+            "type": "SYMBOL",
+            "name": "capture_key_projection"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "capture_key_projection": {
       "type": "SEQ",
@@ -5051,6 +5084,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "deep_relation_label"
+        },
+        {
+          "type": "SYMBOL",
           "name": "set_reference"
         }
       ]
@@ -5058,6 +5095,10 @@
     "relation_label": {
       "type": "PATTERN",
       "value": "[a-z][a-z0-9_]*(?::(?:[a-z0-9_]+|\\*))?"
+    },
+    "deep_relation_label": {
+      "type": "PATTERN",
+      "value": "(?:[a-z][a-z0-9_]*(?::(?:[a-z0-9_]+|\\*))?|\\*)@!?[a-z][a-z0-9_]*"
     },
     "identifier": {
       "type": "PATTERN",

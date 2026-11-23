@@ -283,7 +283,8 @@ export default grammar({
         $.lexical_term_projection,
         $.count_key_projection,
         $.match_key_projection,
-        $.capture_key_projection
+        $.capture_key_projection,
+        $.deep_key_projection
       )),
       ']'
     ),
@@ -300,6 +301,8 @@ export default grammar({
     count_key_projection: $ => field('capture', $.capture_reference),
 
     match_key_projection: $ => field('attribute', $.attribute_key),
+
+    deep_key_projection: $ => seq('deep', '(', field('relation', $.capture_key_projection), ')'),
 
     capture_key_projection: $ => seq(
       field('capture', $.capture_reference),
@@ -965,7 +968,7 @@ export default grammar({
 
     // A term is a literal label or a `@name` reference to a `set` declaration,
     // resolved against the accumulated catalog where `[x in @S]` resolves.
-    _label_term: $ => choice($.relation_label, $.set_reference),
+    _label_term: $ => choice($.relation_label, $.deep_relation_label, $.set_reference),
 
     // A basic UD relation label: lowercase, with at most one `:` subtype,
     // matching what the CoNLL-U reader publishes as `dep.rel` (DEPREL
@@ -978,6 +981,8 @@ export default grammar({
     // `-[obl|obl:*]->` for "obl, subtyped or not". A bare `*` is the distinct
     // `any_relation` form above rather than a relation label.
     relation_label: $ => /[a-z][a-z0-9_]*(?::(?:[a-z0-9_]+|\*))?/,
+
+    deep_relation_label: $ => /(?:[a-z][a-z0-9_]*(?::(?:[a-z0-9_]+|\*))?|\*)@!?[a-z][a-z0-9_]*/,
 
     identifier: $ => /[a-zA-Z_\u4E00-\u9FFF\u3040-\u309F\u30A0-\u30FF][\w\u4E00-\u9FFF\u3040-\u309F\u30A0-\u30FF]*/,
     

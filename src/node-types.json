@@ -706,6 +706,22 @@
     }
   },
   {
+    "type": "deep_key_projection",
+    "named": true,
+    "fields": {
+      "relation": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "capture_key_projection",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "defaults_block",
     "named": true,
     "fields": {},
@@ -1121,6 +1137,10 @@
           "named": true
         },
         {
+          "type": "deep_key_projection",
+          "named": true
+        },
+        {
           "type": "lexical_segments_projection",
           "named": true
         },
@@ -1143,6 +1163,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "deep_relation_label",
+            "named": true
+          },
           {
             "type": "relation_label",
             "named": true
@@ -3773,6 +3797,14 @@
   {
     "type": "count",
     "named": false
+  },
+  {
+    "type": "deep",
+    "named": false
+  },
+  {
+    "type": "deep_relation_label",
+    "named": true
   },
   {
     "type": "defaults",
