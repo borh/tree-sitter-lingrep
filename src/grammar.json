@@ -2412,19 +2412,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "intersection"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "pattern_sequence"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "quantified_pattern"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_primary"
+          "name": "_intersection_or_below"
         }
       ]
     },

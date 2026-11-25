@@ -444,13 +444,7 @@ export default grammar({
 
     _group_set_operator: $ => choice('in', seq('not', 'in')),
 
-    _pattern: $ => choice(
-      $.alternation,
-      $.intersection,
-      $.pattern_sequence,
-      $.quantified_pattern,
-      $._primary
-    ),
+    _pattern: $ => choice($.alternation, $._intersection_or_below),
 
     alternation: $ => prec.left(1, seq(
       $._intersection_or_below,
