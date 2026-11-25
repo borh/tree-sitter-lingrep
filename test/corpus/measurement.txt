@@ -10,102 +10,102 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
 
 (source_file
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (sentence_start)
       (quantified_pattern
         (node_pattern)
         (quantifier))
       (sentence_end))
-    (measure_clause
+    measure: (measure_clause
       (named_measure
-        (reduction
-          (reduction_operator)
-          (tree_collection
+        value: (reduction
+          operator: (reduction_operator)
+          collection: (tree_collection
             (tree_source
-              (tree_layer
+              layer: (tree_layer
                 (span_layer_name
                   (identifier))))
-            (tree_items)
-            (tree_property)))
-        (capture_reference
-          (identifier)))
+            items: (tree_items)
+            property: (tree_property)))
+        name: (capture_reference
+          name: (identifier)))
       (named_measure
-        (reduction
-          (reduction_operator)
-          (tree_collection
+        value: (reduction
+          operator: (reduction_operator)
+          collection: (tree_collection
             (tree_source
-              (tree_layer
+              layer: (tree_layer
                 (span_layer_name
                   (identifier))))
-            (tree_items)
-            (tree_property)))
-        (capture_reference
-          (identifier)))))
+            items: (tree_items)
+            property: (tree_property)))
+        name: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (measure_clause
+          operator: (attribute_operator)
+          value: (value))))
+    measure: (measure_clause
       (named_measure
-        (reduction
-          (reduction_operator)
-          (link_selection
-            (capture_reference
-              (identifier))
-            (label_set
+        value: (reduction
+          operator: (reduction_operator)
+          collection: (link_selection
+            head: (capture_reference
+              name: (identifier))
+            label: (label_set
               (any_relation))
-            (node_pattern
+            test: (node_pattern
               (test_reference
                 (identifier)))))
-        (capture_reference
-          (identifier)))
+        name: (capture_reference
+          name: (identifier)))
       (named_measure
-        (reduction
-          (reduction_operator)
-          (link_lengths
+        value: (reduction
+          operator: (reduction_operator)
+          collection: (link_lengths
             (link_selection
-              (capture_reference
-                (identifier))
-              (label_set
+              head: (capture_reference
+                name: (identifier))
+              label: (label_set
                 (any_relation))
-              (node_pattern
+              test: (node_pattern
                 (test_reference
                   (identifier))))))
-        (capture_reference
-          (identifier)))
+        name: (capture_reference
+          name: (identifier)))
       (named_measure
-        (capture_depth
+        value: (capture_depth
           (tree_source
-            (tree_layer
+            layer: (tree_layer
               (span_layer_name
                 (identifier))))
-          (capture_reference
-            (identifier)))
-        (capture_reference
-          (identifier)))))
+          capture: (capture_reference
+            name: (identifier)))
+        name: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (identifier)
-    (quantified_pattern
+    name: (identifier)
+    pattern: (quantified_pattern
       (node_pattern)
       (quantifier))
-    (measure_clause
+    measure: (measure_clause
       (named_measure
-        (reduction
-          (reduction_operator)
-          (match_words
-            (node_pattern
+        value: (reduction
+          operator: (reduction_operator)
+          collection: (match_words
+            test: (node_pattern
               (test_reference
                 (identifier)))))
-        (capture_reference
-          (identifier))))))
+        name: (capture_reference
+          name: (identifier))))))
 
 ==================
 Measurement keywords stay legal names, words, and bracketed values
@@ -119,12 +119,12 @@ q := [] [text=measure].
 
 (source_file
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier)))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (bare_element
         (identifier))
       (bare_element
@@ -134,16 +134,16 @@ q := [] [text=measure].
       (bare_element
         (identifier))))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (node_pattern)
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))))
+          operator: (attribute_operator)
+          value: (value))))))
 
 ==================
 measure after an expression opens the clause, not a word
@@ -153,6 +153,8 @@ measure after an expression opens the clause, not a word
 p := [] measure.
 
 ---
+
+
 
 ==================
 Named span trees
@@ -164,32 +166,32 @@ profile := (?<v> []) measure count(tree(custom.layer).nodes) as $n, tree("custom
 
 (source_file
   (pattern_definition
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern))
-    (measure_clause
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern))
+    measure: (measure_clause
       (named_measure
-        (reduction
-          (reduction_operator)
-          (tree_collection
+        value: (reduction
+          operator: (reduction_operator)
+          collection: (tree_collection
             (tree_source
-              (tree_layer
+              layer: (tree_layer
                 (span_layer_name
                   (identifier)
                   (identifier))))
-            (tree_items)))
-        (capture_reference
-          (identifier)))
+            items: (tree_items)))
+        name: (capture_reference
+          name: (identifier)))
       (named_measure
-        (capture_depth
+        value: (capture_depth
           (tree_source
-            (tree_layer
+            layer: (tree_layer
               (metadata_string)))
-          (capture_reference
-            (identifier)))
-        (capture_reference
-          (identifier))))))
+          capture: (capture_reference
+            name: (identifier)))
+        name: (capture_reference
+          name: (identifier))))))
 
 ==================
 Measurement after an alternation, an intersection, and a where clause
@@ -205,101 +207,101 @@ related := (?<v> []) | (?<o> []) where $v -[obj]-> $o measure count(match.words[
 
 (source_file
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))
+          operator: (attribute_operator)
+          value: (value)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (measure_clause
+          operator: (attribute_operator)
+          value: (value))))
+    measure: (measure_clause
       (named_measure
-        (reduction
-          (reduction_operator)
-          (match_words
-            (node_pattern)))
-        (capture_reference
-          (identifier)))))
+        value: (reduction
+          operator: (reduction_operator)
+          collection: (match_words
+            test: (node_pattern)))
+        name: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (identifier)
-    (intersection
+    name: (identifier)
+    pattern: (intersection
       (node_pattern)
       (node_pattern))
-    (measure_clause
+    measure: (measure_clause
       (named_measure
-        (reduction
-          (reduction_operator)
-          (match_words
-            (node_pattern)))
-        (capture_reference
-          (identifier)))))
+        value: (reduction
+          operator: (reduction_operator)
+          collection: (match_words
+            test: (node_pattern)))
+        name: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (node_pattern)
       (quantified_pattern
         (node_pattern)
         (quantifier)))
-    (measure_clause
+    measure: (measure_clause
       (named_measure
-        (reduction
-          (reduction_operator)
-          (tree_collection
+        value: (reduction
+          operator: (reduction_operator)
+          collection: (tree_collection
             (tree_source
-              (tree_layer
+              layer: (tree_layer
                 (span_layer_name
                   (identifier))))
-            (tree_items)
-            (tree_property)))
-        (capture_reference
-          (identifier)))))
+            items: (tree_items)
+            property: (tree_property)))
+        name: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (node_pattern)
       (node_pattern))
-    (measure_clause
+    measure: (measure_clause
       (named_measure
-        (capture_depth
+        value: (capture_depth
           (tree_source
-            (tree_layer
+            layer: (tree_layer
               (span_layer_name
                 (identifier))))
-          (capture_reference
-            (identifier)))
-        (capture_reference
-          (identifier)))))
+          capture: (capture_reference
+            name: (identifier)))
+        name: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (named_group
-        (identifier)
-        (node_pattern))
+        name: (identifier)
+        pattern: (node_pattern))
       (named_group
-        (identifier)
-        (node_pattern)))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier))))
-    (measure_clause
+        name: (identifier)
+        pattern: (node_pattern)))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier))))
+    measure: (measure_clause
       (named_measure
-        (reduction
-          (reduction_operator)
-          (match_words
-            (node_pattern)))
-        (capture_reference
-          (identifier))))))
+        value: (reduction
+          operator: (reduction_operator)
+          collection: (match_words
+            test: (node_pattern)))
+        name: (capture_reference
+          name: (identifier))))))

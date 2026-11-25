@@ -11,31 +11,31 @@ group upper := layer not in {"S0", "S1"}.
 
 (source_file
   (group_definition
-    (identifier)
-    (group_predicate
-      (identifier)
-      (group_operator)
-      (metadata_string)))
+    name: (identifier)
+    body: (group_predicate
+      key: (identifier)
+      operator: (group_operator)
+      value: (metadata_string)))
   (group_definition
-    (identifier)
-    (group_predicate
-      (identifier)
-      (group_operator)
-      (metadata_string)))
+    name: (identifier)
+    body: (group_predicate
+      key: (identifier)
+      operator: (group_operator)
+      value: (metadata_string)))
   (group_definition
-    (identifier)
-    (group_predicate
-      (identifier)
-      (group_operator)
-      (metadata_string)
-      (metadata_string)))
+    name: (identifier)
+    body: (group_predicate
+      key: (identifier)
+      operator: (group_operator)
+      value: (metadata_string)
+      value: (metadata_string)))
   (group_definition
-    (identifier)
-    (group_predicate
-      (identifier)
-      (group_operator)
-      (metadata_string)
-      (metadata_string))))
+    name: (identifier)
+    body: (group_predicate
+      key: (identifier)
+      operator: (group_operator)
+      value: (metadata_string)
+      value: (metadata_string))))
 
 ================================================================================
 group is a reserved name
@@ -82,6 +82,6 @@ pattern group := [].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern)))
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern)))

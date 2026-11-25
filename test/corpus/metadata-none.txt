@@ -9,18 +9,18 @@ pattern p := [text=あ].
 
 (source_file
   (metadata_entry
-    (identifier)
-    (metadata_none))
+    key: (identifier)
+    value: (metadata_none))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value)))))
+        operator: (attribute_operator)
+        value: (value)))))
 
 ================================================================================
 none stays an identifier outside a value position
@@ -33,17 +33,17 @@ none := [text=none].
 
 (source_file
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value)))))
+        operator: (attribute_operator)
+        value: (value)))))
 
 ================================================================================
 none is admitted anywhere a metadata value is; the compiler scopes it
@@ -57,23 +57,23 @@ pattern p := [text=あ].
 
 (source_file
   (metadata_entry
-    (identifier)
-    (metadata_list
+    key: (identifier)
+    value: (metadata_list
       (metadata_none)
       (metadata_string)))
   (metadata_entry
-    (identifier)
-    (metadata_map
+    key: (identifier)
+    value: (metadata_map
       (metadata_map_entry
-        (identifier)
-        (metadata_none))))
+        key: (identifier)
+        value: (metadata_none))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value)))))
+        operator: (attribute_operator)
+        value: (value)))))

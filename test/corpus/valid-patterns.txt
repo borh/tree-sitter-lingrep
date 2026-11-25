@@ -14,12 +14,12 @@ attributes := [upos=VERB & unidic.cform=終止形 & lemma=為る].
 
 (source_file
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier)))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (quantified_pattern
         (bare_element
           (identifier))
@@ -37,8 +37,8 @@ attributes := [upos=VERB & unidic.cform=終止形 & lemma=為る].
               (identifier))))
         (quantifier))))
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (pattern_sequence
         (bare_element
           (identifier))
@@ -47,8 +47,8 @@ attributes := [upos=VERB & unidic.cform=終止形 & lemma=為る].
       (bare_element
         (identifier))))
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (bare_element
         (identifier))
       (pattern_sequence
@@ -57,8 +57,8 @@ attributes := [upos=VERB & unidic.cform=終止形 & lemma=為る].
         (bare_element
           (identifier)))))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (parenthesized_pattern
         (alternation
           (bare_element
@@ -68,8 +68,8 @@ attributes := [upos=VERB & unidic.cform=終止形 & lemma=為る].
       (bare_element
         (identifier))))
   (pattern_definition
-    (identifier)
-    (quantified_pattern
+    name: (identifier)
+    pattern: (quantified_pattern
       (parenthesized_pattern
         (pattern_sequence
           (bare_element
@@ -78,29 +78,29 @@ attributes := [upos=VERB & unidic.cform=終止形 & lemma=為る].
             (identifier))))
       (quantifier)))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))
+          operator: (attribute_operator)
+          value: (value))
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value))
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))))
+          operator: (attribute_operator)
+          value: (value))))))
 
 ================================================================================
 basic-metadata-group.lx
@@ -115,36 +115,36 @@ pattern2 := @pattern1 [custom.other=val].
 
 (source_file
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (provider_attribute_key
-              (provider_segment)
-              (provider_segment))))
-        (attribute_operator)
-        (value))))
+              segment: (provider_segment)
+              segment: (provider_segment))))
+        operator: (attribute_operator)
+        value: (value))))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (pattern_reference
         (identifier))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value))))))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value))))))
 
 ================================================================================
 boolean-attributes.lx
@@ -156,25 +156,25 @@ sample := [custom.key1=val1 & custom.key2=/regex/].
 
 (source_file
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value))
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value
             (regex)))))))
 
 ================================================================================
@@ -187,19 +187,19 @@ sample := (?<group> [custom.attr=val])+.
 
 (source_file
   (pattern_definition
-    (identifier)
-    (quantified_pattern
+    name: (identifier)
+    pattern: (quantified_pattern
       (named_group
-        (identifier)
-        (node_pattern
+        name: (identifier)
+        pattern: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (provider_attribute_key
-                  (provider_segment)
-                  (provider_segment))))
-            (attribute_operator)
-            (value))))
+                  segment: (provider_segment)
+                  segment: (provider_segment))))
+            operator: (attribute_operator)
+            value: (value))))
       (quantifier))))
 
 ================================================================================
@@ -212,22 +212,22 @@ sample := [lemma=/^abc/ & text=/xyz$/].
 
 (source_file
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value
+          operator: (attribute_operator)
+          value: (value
             (regex)))
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value
+          operator: (attribute_operator)
+          value: (value
             (regex)))))))
 
 ================================================================================
@@ -240,29 +240,29 @@ example := (?<name> [upos=/VERB|NOUN/]) foo (?<focus>[lemma=test]).
 
 (source_file
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (node_pattern
+        name: (identifier)
+        pattern: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value
+            operator: (attribute_operator)
+            value: (value
               (regex)))))
       (bare_element
         (identifier))
       (named_group
-        (identifier)
-        (node_pattern
+        name: (identifier)
+        pattern: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value)))))))
+            operator: (attribute_operator)
+            value: (value)))))))
 
 ================================================================================
 metadata-2.lx
@@ -276,19 +276,19 @@ test_pattern :=
 
 (source_file
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (provider_attribute_key
-              (provider_segment)
-              (provider_segment))))
-        (attribute_operator)
-        (value)))))
+              segment: (provider_segment)
+              segment: (provider_segment))))
+        operator: (attribute_operator)
+        value: (value)))))
 
 ================================================================================
 complex-quantifiers.lx
@@ -300,29 +300,29 @@ sample := [custom.attr=val]{2,5} [custom.other=foo]*.
 
 (source_file
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (quantified_pattern
         (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (provider_attribute_key
-                  (provider_segment)
-                  (provider_segment))))
-            (attribute_operator)
-            (value)))
+                  segment: (provider_segment)
+                  segment: (provider_segment))))
+            operator: (attribute_operator)
+            value: (value)))
         (quantifier))
       (quantified_pattern
         (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (provider_attribute_key
-                  (provider_segment)
-                  (provider_segment))))
-            (attribute_operator)
-            (value)))
+                  segment: (provider_segment)
+                  segment: (provider_segment))))
+            operator: (attribute_operator)
+            value: (value)))
         (quantifier)))))
 
 ================================================================================
@@ -399,91 +399,91 @@ meidai: "動詞終止形, 名詞, 用言終止形"
   (comment)
   (comment)
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (pattern_sequence
         (quantified_pattern
           (node_pattern
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value
+              operator: (attribute_operator)
+              value: (value
                 (regex))))
           (quantifier))
         (node_pattern
           (attribute_conjunction
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value
+              operator: (attribute_operator)
+              value: (value
                 (regex)))
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (provider_attribute_key
-                    (provider_segment)
-                    (provider_segment))))
-              (attribute_operator)
-              (value)))))
+                    segment: (provider_segment)
+                    segment: (provider_segment))))
+              operator: (attribute_operator)
+              value: (value)))))
       (node_pattern
         (attribute_conjunction
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value))
+            operator: (attribute_operator)
+            value: (value))
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (provider_attribute_key
-                  (provider_segment)
-                  (provider_segment))))
-            (attribute_operator)
-            (value))))))
+                  segment: (provider_segment)
+                  segment: (provider_segment))))
+            operator: (attribute_operator)
+            value: (value))))))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))
+          operator: (attribute_operator)
+          value: (value))
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value)))))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value)))))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))
+          operator: (attribute_operator)
+          value: (value))
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value)))))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value)))))
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (pattern_reference
         (identifier))
       (pattern_reference
@@ -491,100 +491,100 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (pattern_reference
         (identifier))))
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (pattern_sequence
         (quantified_pattern
           (node_pattern
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value
+              operator: (attribute_operator)
+              value: (value
                 (regex))))
           (quantifier))
         (node_pattern
           (attribute_conjunction
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value
+              operator: (attribute_operator)
+              value: (value
                 (regex)))
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (provider_attribute_key
-                    (provider_segment)
-                    (provider_segment))))
-              (attribute_operator)
-              (value)))))
+                    segment: (provider_segment)
+                    segment: (provider_segment))))
+              operator: (attribute_operator)
+              value: (value)))))
       (node_pattern
         (attribute_conjunction
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value))
+            operator: (attribute_operator)
+            value: (value))
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (provider_attribute_key
-                  (provider_segment)
-                  (provider_segment))))
-            (attribute_operator)
-            (value))))))
+                  segment: (provider_segment)
+                  segment: (provider_segment))))
+            operator: (attribute_operator)
+            value: (value))))))
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (pattern_reference
         (identifier))
       (pattern_reference
         (identifier))))
   (pattern_definition
-    (identifier)
-    (alternation
+    name: (identifier)
+    pattern: (alternation
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value)))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value)))))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value)))))
   (comment)
   (comment)
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (node_pattern
         (attribute_conjunction
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value
+            operator: (attribute_operator)
+            value: (value
               (regex)))
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value
+            operator: (attribute_operator)
+            value: (value
               (regex)))))
       (quantified_pattern
         (bare_element
@@ -598,183 +598,183 @@ meidai: "動詞終止形, 名詞, 用言終止形"
   (comment)
   (comment)
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (pattern_reference
+        name: (identifier)
+        pattern: (pattern_reference
           (identifier)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))
+          operator: (attribute_operator)
+          value: (value)))
       (bare_element
         (identifier))
       (pattern_reference
         (identifier))))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (pattern_reference
+        name: (identifier)
+        pattern: (pattern_reference
           (identifier)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))
+          operator: (attribute_operator)
+          value: (value)))
       (bare_element
         (identifier))
       (pattern_reference
         (identifier))))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (pattern_reference
+        name: (identifier)
+        pattern: (pattern_reference
           (identifier)))
       (bare_element
         (identifier))))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (pattern_reference
+        name: (identifier)
+        pattern: (pattern_reference
           (identifier)))
       (bare_element
         (identifier))
       (bare_element
         (identifier))))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (pattern_reference
+        name: (identifier)
+        pattern: (pattern_reference
           (identifier)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value)))))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value)))))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (pattern_reference
+        name: (identifier)
+        pattern: (pattern_reference
           (identifier)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value)))))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value)))))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (alternation
+        name: (identifier)
+        pattern: (alternation
           (pattern_reference
             (identifier))
           (node_pattern
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value)))
+              operator: (attribute_operator)
+              value: (value)))
           (pattern_reference
             (identifier))))
       (bare_element
@@ -783,11 +783,11 @@ meidai: "動詞終止形, 名詞, 用言終止形"
         (identifier))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))
+          operator: (attribute_operator)
+          value: (value)))
       (pattern_reference
         (identifier)))))
 

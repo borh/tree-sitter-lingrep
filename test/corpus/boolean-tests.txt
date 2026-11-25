@@ -9,17 +9,17 @@ pattern p := [@t].
 
 (source_file
   (test_definition
-    (identifier)
-    (attribute
-      (key
+    name: (identifier)
+    body: (attribute
+      key: (key
         (attribute_key
           (portable_attribute_key)))
-      (attribute_operator)
-      (value)))
+      operator: (attribute_operator)
+      value: (value)))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (test_reference
         (identifier)))))
 
@@ -33,9 +33,9 @@ pattern p := [!@t].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (test_negation
         (test_reference
           (identifier))))))
@@ -50,17 +50,17 @@ pattern p := [!(text=a)].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (test_negation
         (parenthesized_test
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value)))))))
+            operator: (attribute_operator)
+            value: (value)))))))
 
 ================================================================================
 test disjunction
@@ -72,26 +72,26 @@ pattern p := [custom.a=1 | custom.b=2].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (test_disjunction
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value))
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value))))))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value))))))
 
 ================================================================================
 conjunction with a parenthesized disjunction
@@ -103,36 +103,36 @@ pattern p := [custom.a=1 & (custom.b=2 | custom.c=3)].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value))
         (parenthesized_test
           (test_disjunction
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (provider_attribute_key
-                    (provider_segment)
-                    (provider_segment))))
-              (attribute_operator)
-              (value))
+                    segment: (provider_segment)
+                    segment: (provider_segment))))
+              operator: (attribute_operator)
+              value: (value))
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (provider_attribute_key
-                    (provider_segment)
-                    (provider_segment))))
-              (attribute_operator)
-              (value))))))))
+                    segment: (provider_segment)
+                    segment: (provider_segment))))
+              operator: (attribute_operator)
+              value: (value))))))))
 
 ================================================================================
 attribute inequality and test negation share a conjunction
@@ -144,16 +144,16 @@ pattern p := [text!=x & !@t].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))
+          operator: (attribute_operator)
+          value: (value))
         (test_negation
           (test_reference
             (identifier)))))))

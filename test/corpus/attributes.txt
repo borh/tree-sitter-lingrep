@@ -14,83 +14,83 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
 
 (source_file
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value))))
+        operator: (attribute_operator)
+        value: (value))))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (provider_attribute_key
-              (provider_segment)
-              (provider_segment))))
-        (attribute_operator)
-        (value
+              segment: (provider_segment)
+              segment: (provider_segment))))
+        operator: (attribute_operator)
+        value: (value
           (regex)))))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value))))
+        operator: (attribute_operator)
+        value: (value))))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (provider_attribute_key
-              (provider_segment)
-              (provider_segment))))
-        (attribute_operator)
-        (value
+              segment: (provider_segment)
+              segment: (provider_segment))))
+        operator: (attribute_operator)
+        value: (value
           (regex)))))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value))))
+        operator: (attribute_operator)
+        value: (value))))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value))))
+        operator: (attribute_operator)
+        value: (value))))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))
+          operator: (attribute_operator)
+          value: (value))
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value))))))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value))))))
 
 ================================================================================
 surface is a portable key
@@ -103,33 +103,33 @@ source := [unidic.surface=x] [text=surface].
 
 (source_file
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value))))
+        operator: (attribute_operator)
+        value: (value))))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value)))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))))
+          operator: (attribute_operator)
+          value: (value))))))
 
 ================================================================================
 regex operands are always regex nodes
@@ -142,26 +142,26 @@ spaced := [text ~ /a b/].
 
 (source_file
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (provider_attribute_key
-              (provider_segment)
-              (provider_segment))))
-        (attribute_operator)
-        (value
+              segment: (provider_segment)
+              segment: (provider_segment))))
+        operator: (attribute_operator)
+        value: (value
           (regex)))))
   (pattern_definition
-    (identifier)
-    (node_pattern
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value
+        operator: (attribute_operator)
+        value: (value
           (regex))))))
 
 ================================================================================
@@ -175,39 +175,39 @@ pattern p := [unidic.orthbase near 研究 >= 0.6] [text not near near >= 1 & upo
 
 (source_file
   (vectors_entry
-    (vectors_map
+    value: (vectors_map
       (vectors_field
         (vectors_resource_field
-          (analyzer_identifier)))
+          value: (analyzer_identifier)))
       (vectors_field
         (vectors_digest_field
-          (vectors_digest)))))
+          value: (vectors_digest)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value)
-          (similarity_threshold)))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value)
+          threshold: (similarity_threshold)))
       (node_pattern
         (attribute_conjunction
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value)
-            (similarity_threshold))
+            operator: (attribute_operator)
+            value: (value)
+            threshold: (similarity_threshold))
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value)))))))
+            operator: (attribute_operator)
+            value: (value)))))))

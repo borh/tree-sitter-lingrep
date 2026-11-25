@@ -11,121 +11,121 @@ chain := (?<a> x) (?<b> y) (?<c> z) where $a -[acl]-> $b, $b -[nmod]-> $c.
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (node_pattern
+        name: (identifier)
+        pattern: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (provider_attribute_key
-                  (provider_segment)
-                  (provider_segment))))
-            (attribute_operator)
-            (value))))
+                  segment: (provider_segment)
+                  segment: (provider_segment))))
+            operator: (attribute_operator)
+            value: (value))))
       (quantified_pattern
         (node_pattern)
         (quantifier))
       (named_group
-        (identifier)
-        (node_pattern
+        name: (identifier)
+        pattern: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value)))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))))
+            operator: (attribute_operator)
+            value: (value)))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier))))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier))))))
 
 ================================================================================
 anonymous positive and negative edge existence
@@ -138,46 +138,46 @@ pattern absent := (?<v> [upos=VERB]) where not $v -[@OBJECT]-> _.
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label)
-          (relation_label))
-        (anonymous_dependency_node))))
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label)
+          term: (relation_label))
+        dependent: (anonymous_dependency_node))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (relation_negation)
-        (capture_reference
-          (identifier))
-        (label_set
-          (set_reference
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        polarity: (relation_negation)
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (set_reference
             (identifier)))
-        (anonymous_dependency_node)))))
+        dependent: (anonymous_dependency_node)))))
 
 ================================================================================
 anonymous dependent predicates
@@ -191,91 +191,91 @@ pattern no_pron := (?<v> [upos=VERB]) where not $v -[obj|obj:*]-> [upos=PRON].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label)
-          (relation_label))
-        (node_pattern
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label)
+          term: (relation_label))
+        dependent: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value))))))
+            operator: (attribute_operator)
+            value: (value))))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (set_reference
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (set_reference
             (identifier)))
-        (node_pattern
+        dependent: (node_pattern
           (test_disjunction
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value))
+              operator: (attribute_operator)
+              value: (value))
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value)))))))
+              operator: (attribute_operator)
+              value: (value)))))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (relation_negation)
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label)
-          (relation_label))
-        (node_pattern
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        polarity: (relation_negation)
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label)
+          term: (relation_label))
+        dependent: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value)))))))
+            operator: (attribute_operator)
+            value: (value)))))))
 
 ================================================================================
 anonymous edge words stay contextual outside the target position
@@ -289,29 +289,29 @@ pattern literal := [text=not] [text=_].
 
 (source_file
   (pattern_definition
-    (identifier)
-    (node_pattern))
+    name: (identifier)
+    pattern: (node_pattern))
   (pattern_definition
-    (identifier)
-    (node_pattern))
+    name: (identifier)
+    pattern: (node_pattern))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))
+          operator: (attribute_operator)
+          value: (value)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))))
+          operator: (attribute_operator)
+          value: (value))))))
 
 ================================================================================
 where stays a legal name and bracketed value
@@ -324,18 +324,18 @@ pattern literal := [text=where].
 
 (source_file
   (pattern_definition
-    (identifier)
-    (node_pattern))
+    name: (identifier)
+    pattern: (node_pattern))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value)))))
+        operator: (attribute_operator)
+        value: (value)))))
 
 ================================================================================
 label sets: inline alternation, named set, and mixed terms
@@ -350,75 +350,75 @@ pattern mixed := (?<v> a) (?<s> b) where $v -[@SUBJ|expl|obl:*]-> $s.
 
 (source_file
   (set_definition
-    (identifier)
-    (value_set
+    name: (identifier)
+    members: (value_set
       (value)
       (value)))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label)
-          (relation_label))
-        (capture_reference
-          (identifier)))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label)
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (set_reference
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (set_reference
             (identifier)))
-        (capture_reference
-          (identifier)))))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (set_reference
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (set_reference
             (identifier))
-          (relation_label)
-          (relation_label))
-        (capture_reference
-          (identifier))))))
+          term: (relation_label)
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier))))))
 
 ================================================================================
 any present dependency relation
@@ -430,25 +430,25 @@ pattern any := (?<h> a) (?<d> b) where $h -[*]-> $d.
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
           (any_relation))
-        (capture_reference
-          (identifier))))))
+        dependent: (capture_reference
+          name: (identifier))))))
 
 ================================================================================
 subtype wildcard is one label, distinct from the exact subtype
@@ -462,66 +462,66 @@ pattern both := (?<v> a) (?<n> b) where $v -[obl|obl:*]-> $n.
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label)
-          (relation_label))
-        (capture_reference
-          (identifier))))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label)
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier))))))
 
 ================================================================================
 enhanced graph nodes and optional edge identity
@@ -539,89 +539,89 @@ pattern chain := (?<surface> [upos=NOUN])
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (graph_node_binding
-          (identifier)
-          (node_pattern
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value))))
-        (relation_kind)
-        (label_set
-          (relation_label)
-          (relation_label))
-        (capture_reference
-          (identifier))
-        (capture_reference
-          (identifier)))))
+              operator: (attribute_operator)
+              value: (value))))
+        kind: (relation_kind)
+        label: (label_set
+          term: (relation_label)
+          term: (relation_label))
+        edge: (capture_reference
+          name: (identifier))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (graph_node_binding
-          (identifier)
-          (node_pattern
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value))))
-        (relation_kind)
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (relation_kind)
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier))
-        (graph_node_binding
-          (identifier)
-          (node_pattern
+              operator: (attribute_operator)
+              value: (value))))
+        kind: (relation_kind)
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        kind: (relation_kind)
+        label: (label_set
+          term: (relation_label))
+        edge: (capture_reference
+          name: (identifier))
+        dependent: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value)))))
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (relation_kind)
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier))))))
+              operator: (attribute_operator)
+              value: (value)))))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        kind: (relation_kind)
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier))))))
 
 ================================================================================
 exact negative enhanced edge between captured nodes
@@ -636,44 +636,44 @@ pattern private_argument := (?<first> [upos=VERB]) (?<second> [upos=VERB])
 
 (source_file
   (set_definition
-    (identifier)
-    (value_set
+    name: (identifier)
+    members: (value_set
       (value)
       (value)))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (node_pattern
+        name: (identifier)
+        pattern: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value))))
+            operator: (attribute_operator)
+            value: (value))))
       (named_group
-        (identifier)
-        (node_pattern
+        name: (identifier)
+        pattern: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value)))))
-    (where_clause
-      (relation_constraint
-        (relation_negation)
-        (capture_reference
-          (identifier))
-        (relation_kind)
-        (label_set
-          (set_reference
+            operator: (attribute_operator)
+            value: (value)))))
+    where: (where_clause
+      constraint: (relation_constraint
+        polarity: (relation_negation)
+        head: (capture_reference
+          name: (identifier))
+        kind: (relation_kind)
+        label: (label_set
+          term: (set_reference
             (identifier))
-          (relation_label))
-        (capture_reference
-          (identifier))))))
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier))))))
 
 ================================================================================
 derived basic heads as enhanced endpoints
@@ -692,76 +692,76 @@ pattern negative_endpoints := (?<left> []) (?<right> [])
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (basic_head_endpoint
-          (capture_reference
-            (identifier)))
-        (relation_kind)
-        (label_set
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (basic_head_endpoint
+          dependent: (capture_reference
+            name: (identifier)))
+        kind: (relation_kind)
+        label: (label_set
           (any_relation))
-        (capture_reference
-          (identifier))
-        (capture_reference
-          (identifier)))))
+        edge: (capture_reference
+          name: (identifier))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (relation_kind)
-        (label_set
-          (relation_label))
-        (basic_head_endpoint
-          (capture_reference
-            (identifier))))))
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        kind: (relation_kind)
+        label: (label_set
+          term: (relation_label))
+        dependent: (basic_head_endpoint
+          dependent: (capture_reference
+            name: (identifier))))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (node_pattern))
+        name: (identifier)
+        pattern: (node_pattern))
       (named_group
-        (identifier)
-        (node_pattern)))
-    (where_clause
-      (relation_constraint
-        (relation_negation)
-        (basic_head_endpoint
-          (capture_reference
-            (identifier)))
-        (relation_kind)
-        (label_set
-          (relation_label)
-          (relation_label))
-        (basic_head_endpoint
-          (capture_reference
-            (identifier)))))))
+        name: (identifier)
+        pattern: (node_pattern)))
+    where: (where_clause
+      constraint: (relation_constraint
+        polarity: (relation_negation)
+        head: (basic_head_endpoint
+          dependent: (capture_reference
+            name: (identifier)))
+        kind: (relation_kind)
+        label: (label_set
+          term: (relation_label)
+          term: (relation_label))
+        dependent: (basic_head_endpoint
+          dependent: (capture_reference
+            name: (identifier)))))))
 
 ================================================================================
 basic head is contextual outside an enhanced endpoint
@@ -774,18 +774,18 @@ pattern literal := [text=basic_head].
 
 (source_file
   (pattern_definition
-    (identifier)
-    (node_pattern))
+    name: (identifier)
+    pattern: (node_pattern))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value)))))
+        operator: (attribute_operator)
+        value: (value)))))
 
 ================================================================================
 negative basic edge between captured endpoints
@@ -797,26 +797,26 @@ pattern absent := (?<h> a) (?<d> b) where not $h -[obj]-> $d.
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier)))
       (named_group
-        (identifier)
-        (bare_element
+        name: (identifier)
+        pattern: (bare_element
           (identifier))))
-    (where_clause
-      (relation_constraint
-        (relation_negation)
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier))))))
+    where: (where_clause
+      constraint: (relation_constraint
+        polarity: (relation_negation)
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier))))))
 
 ================================================================================
 basic graph nodes at either endpoint
@@ -830,54 +830,54 @@ pattern dependent_node := (?<h> [upos=VERB]) where $h -[obj|iobj]-> (?<d> []).
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (graph_node_binding
-          (identifier)
-          (node_pattern
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value))))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))))
+              operator: (attribute_operator)
+              value: (value))))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label)
-          (relation_label))
-        (graph_node_binding
-          (identifier)
-          (node_pattern))))))
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label)
+          term: (relation_label))
+        dependent: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern))))))
 
 ================================================================================
 order constraint
@@ -889,47 +889,47 @@ pattern ordered := (?<n0> [upos=NOUN]) where $n0 < $n1 < $n2, $n0 -[obj]-> (?<n1
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))
-    (where_clause
-      (order_constraint
-        (capture_reference
-          (identifier))
-        (capture_reference
-          (identifier))
-        (capture_reference
-          (identifier)))
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (graph_node_binding
-          (identifier)
-          (node_pattern
+          operator: (attribute_operator)
+          value: (value))))
+    where: (where_clause
+      constraint: (order_constraint
+        operand: (capture_reference
+          name: (identifier))
+        operand: (capture_reference
+          name: (identifier))
+        operand: (capture_reference
+          name: (identifier)))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (portable_attribute_key)))
-              (attribute_operator)
-              (value)))))
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (graph_node_binding
-          (identifier)
-          (node_pattern))))))
+              operator: (attribute_operator)
+              value: (value)))))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern))))))
 
 ================================================================================
 Dependent cardinality and comparison of bound words
@@ -943,52 +943,52 @@ pattern p := (?<v> []) where $v -[*]-> [upos=NOUN]{2,3} as $n,
 
 (source_file
   (key_entry
-    (identifier)
-    (key_projection_list
+    key: (identifier)
+    value: (key_projection_list
       (count_key_projection
-        (capture_reference
-          (identifier)))))
+        capture: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
           (any_relation))
-        (node_pattern
+        dependent: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value)))
-        (dependent_count)
-        (capture_reference
-          (identifier)))
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (graph_node_binding
-          (identifier)
-          (node_pattern)))
-      (attribute_comparison
-        (capture_reference
-          (identifier))
-        (attribute_key
+            operator: (attribute_operator)
+            value: (value)))
+        count: (dependent_count)
+        count_binding: (capture_reference
+          name: (identifier)))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern)))
+      constraint: (attribute_comparison
+        operand: (capture_reference
+          name: (identifier))
+        attribute: (attribute_key
           (portable_attribute_key))
-        (capture_reference
-          (identifier))
-        (attribute_key
+        operand: (capture_reference
+          name: (identifier))
+        attribute: (attribute_key
           (provider_attribute_key
-            (provider_segment)
-            (provider_segment)))))))
+            segment: (provider_segment)
+            segment: (provider_segment)))))))
 
 ==================
 SUD deep relation features and key projections
@@ -1002,54 +1002,54 @@ p := (?<d> []) (?<h> []) where $h -[comp:aux@pass]-> $d, $h -[enhanced @PASS|*@!
 
 (source_file
   (set_definition
-    (identifier)
-    (value_set
+    name: (identifier)
+    members: (value_set
       (value)))
   (key_entry
-    (identifier)
-    (key_projection_list
+    key: (identifier)
+    value: (key_projection_list
       (deep_key_projection
-        (capture_key_projection
-          (capture_reference
-            (identifier))
-          (attribute_key
+        relation: (capture_key_projection
+          capture: (capture_reference
+            name: (identifier))
+          attribute: (attribute_key
             (provider_attribute_key
-              (provider_segment)
-              (provider_segment)))))
+              segment: (provider_segment)
+              segment: (provider_segment)))))
       (deep_key_projection
-        (capture_key_projection
-          (capture_reference
-            (identifier))
-          (identifier)))))
+        relation: (capture_key_projection
+          capture: (capture_reference
+            name: (identifier))
+          attribute: (identifier)))))
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (node_pattern))
+        name: (identifier)
+        pattern: (node_pattern))
       (named_group
-        (identifier)
-        (node_pattern)))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (deep_relation_label))
-        (capture_reference
-          (identifier)))
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (relation_kind)
-        (label_set
-          (set_reference
+        name: (identifier)
+        pattern: (node_pattern)))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (deep_relation_label))
+        dependent: (capture_reference
+          name: (identifier)))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        kind: (relation_kind)
+        label: (label_set
+          term: (set_reference
             (identifier))
-          (deep_relation_label))
-        (capture_reference
-          (identifier))
-        (capture_reference
-          (identifier))))))
+          term: (deep_relation_label))
+        edge: (capture_reference
+          name: (identifier))
+        dependent: (capture_reference
+          name: (identifier))))))
 
 ================================================================================
 basic dependency paths
@@ -1060,37 +1060,37 @@ p := (?<w> []) where (?<v> []) -[+ comp first comp:obj]-> $w, $w -[+ comp last c
 
 (source_file
   (pattern_definition
-    (identifier)
-    (named_group
-      (identifier)
-      (node_pattern))
-    (where_clause
-      (relation_constraint
-        (graph_node_binding
-          (identifier)
-          (node_pattern))
-        (label_set
-          (relation_label))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (label_set
-          (relation_label)
-          (relation_label))
-        (graph_node_binding
-          (identifier)
-          (node_pattern)))
-      (relation_constraint
-        (relation_negation)
-        (capture_reference
-          (identifier))
-        (label_set
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (node_pattern))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern))
+        label: (label_set
+          term: (relation_label))
+        boundary_label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        boundary_label: (label_set
+          term: (relation_label)
+          term: (relation_label))
+        dependent: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern)))
+      constraint: (relation_constraint
+        polarity: (relation_negation)
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
           (any_relation))
-        (capture_reference
-          (identifier))))))
+        dependent: (capture_reference
+          name: (identifier))))))

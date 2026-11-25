@@ -14,164 +14,164 @@ pattern literals := [text=followed_by] [lemma=not_preceded_by].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value)))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value)))
       (sentence_end)))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (preceded_by
-        (alternation
+        body: (alternation
           (parenthesized_pattern
             (pattern_sequence
               (node_pattern
                 (attribute
-                  (key
+                  key: (key
                     (attribute_key
                       (portable_attribute_key)))
-                  (attribute_operator)
-                  (value)))
+                  operator: (attribute_operator)
+                  value: (value)))
               (quantified_pattern
                 (node_pattern
                   (attribute
-                    (key
+                    key: (key
                       (attribute_key
                         (portable_attribute_key)))
-                    (attribute_operator)
-                    (value)))
+                    operator: (attribute_operator)
+                    value: (value)))
                 (quantifier))))
           (sentence_start)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))))
+          operator: (attribute_operator)
+          value: (value)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (not_preceded_by
-        (node_pattern
+        body: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (provider_attribute_key
-                  (provider_segment)
-                  (provider_segment))))
-            (attribute_operator)
-            (value))))
+                  segment: (provider_segment)
+                  segment: (provider_segment))))
+            operator: (attribute_operator)
+            value: (value))))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))))
+          operator: (attribute_operator)
+          value: (value)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (followed_by
-        (pattern_reference
+        body: (pattern_reference
           (identifier)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))))
+          operator: (attribute_operator)
+          value: (value)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (not_followed_by
-        (quantified_pattern
+        body: (quantified_pattern
           (parenthesized_pattern
             (alternation
               (node_pattern
                 (attribute
-                  (key
+                  key: (key
                     (attribute_key
                       (portable_attribute_key)))
-                  (attribute_operator)
-                  (value)))
+                  operator: (attribute_operator)
+                  value: (value)))
               (node_pattern
                 (attribute
-                  (key
+                  key: (key
                     (attribute_key
                       (portable_attribute_key)))
-                  (attribute_operator)
-                  (value)))))
+                  operator: (attribute_operator)
+                  value: (value)))))
           (quantifier)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))))
+          operator: (attribute_operator)
+          value: (value)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (followed_by
-        (pattern_sequence
+        body: (pattern_sequence
           (quantified_pattern
             (parenthesized_pattern
               (alternation
                 (node_pattern
                   (attribute
-                    (key
+                    key: (key
                       (attribute_key
                         (provider_attribute_key
-                          (provider_segment)
-                          (provider_segment))))
-                    (attribute_operator)
-                    (value)))
+                          segment: (provider_segment)
+                          segment: (provider_segment))))
+                    operator: (attribute_operator)
+                    value: (value)))
                 (pattern_reference
                   (identifier))))
             (quantifier))
           (not_followed_by
-            (sentence_end))))
+            body: (sentence_end))))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))))
+          operator: (attribute_operator)
+          value: (value)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))
+          operator: (attribute_operator)
+          value: (value)))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))))
+          operator: (attribute_operator)
+          value: (value))))))
 
 ================================================================================
 reserved bare construct words
@@ -198,42 +198,63 @@ pattern first := not_preceded_by([], within=paragraph) [upos=PRON].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value)))
+          operator: (attribute_operator)
+          value: (value)))
       (followed_by
-        (pattern_sequence
+        body: (pattern_sequence
           (quantified_pattern
             (node_pattern)
             (quantifier))
           (node_pattern
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (provider_attribute_key
-                    (provider_segment)
-                    (provider_segment))))
-              (attribute_operator)
-              (value))))
-        (identifier))))
+                    segment: (provider_segment)
+                    segment: (provider_segment))))
+              operator: (attribute_operator)
+              value: (value))))
+        scope: (identifier))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (not_preceded_by
-        (node_pattern)
-        (identifier))
+        body: (node_pattern)
+        scope: (identifier))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))))
+          operator: (attribute_operator)
+          value: (value))))))
+
+================================================================================
+preceded_by and not_followed_by take a scope
+:language(lingrep)
+================================================================================
+pattern p := preceded_by([], within=document) [] not_followed_by([], within=paragraph).
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
+      (preceded_by
+        body: (node_pattern)
+        scope: (identifier))
+      (node_pattern)
+      (not_followed_by
+        body: (node_pattern)
+        scope: (identifier)))))

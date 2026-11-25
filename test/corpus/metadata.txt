@@ -10,15 +10,15 @@ examples: ["確かなようである"]
 
 (source_file
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_list
+    key: (identifier)
+    value: (metadata_list
       (metadata_string)))
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier))))
 
 ================================================================================
@@ -42,27 +42,27 @@ p := a.
 (source_file
   (defaults_block
     (metadata_entry
-      (identifier)
-      (metadata_string)))
+      key: (identifier)
+      value: (metadata_string)))
   (schema_block
     (schema_entry
-      (definition_kind)
-      (identifier)
-      (metadata_type)
-      (metadata_value_set
+      visibility: (definition_kind)
+      key: (identifier)
+      type: (metadata_type)
+      members: (metadata_value_set
         (metadata_string)
         (metadata_string)))
     (schema_entry
-      (identifier)
-      (metadata_type)
-      (metadata_value_set
+      key: (identifier)
+      type: (metadata_type)
+      members: (metadata_value_set
         (metadata_string)))
     (schema_entry
-      (identifier)
-      (metadata_type)))
+      key: (identifier)
+      type: (metadata_type)))
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier))))
 
 ================================================================================
@@ -78,31 +78,31 @@ fragment TRAILING_APPARATUS := a.
 
 (source_file
   (metadata_entry
-    (identifier)
-    (metadata_map
+    key: (identifier)
+    value: (metadata_map
       (metadata_map_entry
-        (identifier)
-        (metadata_string))
+        key: (identifier)
+        value: (metadata_string))
       (metadata_map_entry
-        (identifier)
-        (metadata_string))))
+        key: (identifier)
+        value: (metadata_string))))
   (metadata_entry
-    (identifier)
-    (metadata_map
+    key: (identifier)
+    value: (metadata_map
       (metadata_map_entry
-        (identifier)
-        (metadata_number))
+        key: (identifier)
+        value: (metadata_number))
       (metadata_map_entry
-        (identifier)
-        (metadata_list
+        key: (identifier)
+        value: (metadata_list
           (metadata_string)))))
   (metadata_entry
-    (identifier)
-    (metadata_boolean))
+    key: (identifier)
+    value: (metadata_boolean))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (bare_element
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (bare_element
       (identifier))))
 
 ================================================================================
@@ -119,8 +119,8 @@ p := a.
 (source_file
   (schema_block)
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier))))
 
 ================================================================================
@@ -138,28 +138,28 @@ end := f.
 
 (source_file
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier)))
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier)))
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier)))
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier)))
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier)))
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier))))
 
 ================================================================================
@@ -173,22 +173,22 @@ p := a.
 
 (source_file
   (metadata_entry
-    (identifier)
-    (metadata_map
+    key: (identifier)
+    value: (metadata_map
       (metadata_map_entry
-        (capture_reference
-          (identifier))
-        (metadata_map
+        key: (capture_reference
+          name: (identifier))
+        value: (metadata_map
           (metadata_map_entry
-            (identifier)
-            (metadata_string))))
+            key: (identifier)
+            value: (metadata_string))))
       (metadata_map_entry
-        (capture_reference
-          (identifier))
-        (metadata_string))))
+        key: (capture_reference
+          name: (identifier))
+        value: (metadata_string))))
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier))))
 
 ================================================================================
@@ -207,14 +207,14 @@ p := a.
 (source_file
   (schema_block
     (schema_entry
-      (identifier)
-      (metadata_type))
+      key: (identifier)
+      type: (metadata_type))
     (schema_entry
-      (identifier)
-      (metadata_type)))
+      key: (identifier)
+      type: (metadata_type)))
   (pattern_definition
-    (identifier)
-    (bare_element
+    name: (identifier)
+    pattern: (bare_element
       (identifier))))
 
 ================================================================================
@@ -239,48 +239,48 @@ pattern p := [text=well].
 (source_file
   (defaults_block
     (skip_entry
-      (identifier)
-      (test_reference
+      key: (identifier)
+      value: (test_reference
         (identifier))))
   (test_definition
-    (identifier)
-    (attribute
-      (key
+    name: (identifier)
+    body: (attribute
+      key: (key
         (attribute_key
           (portable_attribute_key)))
-      (attribute_operator)
-      (value
+      operator: (attribute_operator)
+      value: (value
         (regex))))
   (skip_entry
-    (identifier)
-    (metadata_none))
+    key: (identifier)
+    value: (metadata_none))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value))))
+        operator: (attribute_operator)
+        value: (value))))
   (skip_entry
-    (identifier)
-    (test_reference
+    key: (identifier)
+    value: (test_reference
       (identifier)))
   (key_entry
-    (identifier)
-    (metadata_none))
+    key: (identifier)
+    value: (metadata_none))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value)))))
+        operator: (attribute_operator)
+        value: (value)))))
 
 ================================================================================
 named annotation bundle with a local override and an unset
@@ -300,15 +300,31 @@ q := [].
 
 (source_file
   (bundle_block
-    (identifier)
-    (metadata_entry (identifier) (metadata_string))
-    (metadata_entry (identifier) (metadata_string)))
-  (bundle_use (identifier))
-  (override_entry (metadata_entry (identifier) (metadata_string)))
-  (pattern_definition (identifier) (node_pattern))
-  (bundle_use (identifier))
-  (override_entry (metadata_entry (identifier) (metadata_none)))
-  (pattern_definition (identifier) (node_pattern)))
+    name: (identifier)
+    (metadata_entry
+      key: (identifier)
+      value: (metadata_string))
+    (metadata_entry
+      key: (identifier)
+      value: (metadata_string)))
+  (bundle_use
+    name: (identifier))
+  (override_entry
+    entry: (metadata_entry
+      key: (identifier)
+      value: (metadata_string)))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (bundle_use
+    name: (identifier))
+  (override_entry
+    entry: (metadata_entry
+      key: (identifier)
+      value: (metadata_none)))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern)))
 
 ================================================================================
 bundle keywords remain valid definition and annotation names
@@ -323,12 +339,26 @@ override := @use.
 --------------------------------------------------------------------------------
 
 (source_file
-  (metadata_entry (identifier) (metadata_string))
-  (metadata_entry (identifier) (metadata_string))
-  (metadata_entry (identifier) (metadata_string))
-  (pattern_definition (identifier) (node_pattern))
-  (pattern_definition (identifier) (pattern_reference (identifier)))
-  (pattern_definition (identifier) (pattern_reference (identifier))))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (pattern_reference
+      (identifier)))
+  (pattern_definition
+    name: (identifier)
+    pattern: (pattern_reference
+      (identifier))))
 
 ================================================================================
 role interpretations and whole-match classification
@@ -342,36 +372,36 @@ inflected := ((?<past> []) | (?<nonpast> [])).
 
 (source_file
   (interpret_entry
-    (capture_reference
-      (identifier))
-    (identifier)
-    (metadata_map
+    capture: (capture_reference
+      name: (identifier))
+    role: (identifier)
+    labels: (metadata_map
       (metadata_map_entry
-        (identifier)
-        (metadata_string))
+        key: (identifier)
+        value: (metadata_string))
       (metadata_map_entry
-        (identifier)
-        (metadata_boolean))))
+        key: (identifier)
+        value: (metadata_boolean))))
   (interpret_entry
-    (capture_reference
-      (identifier))
-    (identifier)
-    (metadata_map
+    capture: (capture_reference
+      name: (identifier))
+    role: (identifier)
+    labels: (metadata_map
       (metadata_map_entry
-        (identifier)
-        (metadata_string))))
+        key: (identifier)
+        value: (metadata_string))))
   (classify_entry
-    (identifier))
+    role: (identifier))
   (pattern_definition
-    (identifier)
-    (parenthesized_pattern
+    name: (identifier)
+    pattern: (parenthesized_pattern
       (alternation
         (named_group
-          (identifier)
-          (node_pattern))
+          name: (identifier)
+          pattern: (node_pattern))
         (named_group
-          (identifier)
-          (node_pattern))))))
+          name: (identifier)
+          pattern: (node_pattern))))))
 
 ================================================================================
 analytical keywords remain valid definition and annotation names
@@ -386,21 +416,21 @@ classify := @interpret.
 
 (source_file
   (metadata_entry
-    (identifier)
-    (metadata_map
+    key: (identifier)
+    value: (metadata_map
       (metadata_map_entry
-        (identifier)
-        (metadata_string))))
+        key: (identifier)
+        value: (metadata_string))))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
-    (identifier)
-    (metadata_string))
+    key: (identifier)
+    value: (metadata_string))
   (pattern_definition
-    (identifier)
-    (node_pattern))
+    name: (identifier)
+    pattern: (node_pattern))
   (pattern_definition
-    (identifier)
-    (pattern_reference
+    name: (identifier)
+    pattern: (pattern_reference
       (identifier))))

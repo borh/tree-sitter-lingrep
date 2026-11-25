@@ -12,60 +12,60 @@ pattern not_any_reference := [feat.Number not has any @numbers].
 
 (source_file
   (set_definition
-    (identifier)
-    (value_set
+    name: (identifier)
+    members: (value_set
       (value)
       (value)))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (feature_attribute_key
-              (ud_feature_name
-                (ud_feature_base)))))
-        (set_has_operator)
-        (value))))
+              name: (ud_feature_name
+                base: (ud_feature_base)))))
+        operator: (set_has_operator)
+        value: (value))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (feature_attribute_key
-              (ud_feature_name
-                (ud_feature_base)))))
-        (set_has_any_operator)
-        (value_set
+              name: (ud_feature_name
+                base: (ud_feature_base)))))
+        operator: (set_has_any_operator)
+        values: (value_set
           (value)
           (value)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (feature_attribute_key
-              (ud_feature_name
-                (ud_feature_base)))))
-        (set_not_has_operator)
-        (value))))
+              name: (ud_feature_name
+                base: (ud_feature_base)))))
+        operator: (set_not_has_operator)
+        value: (value))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (feature_attribute_key
-              (ud_feature_name
-                (ud_feature_base)))))
-        (set_not_has_any_operator)
-        (set_reference
+              name: (ud_feature_name
+                base: (ud_feature_base)))))
+        operator: (set_not_has_any_operator)
+        set: (set_reference
           (identifier))))))
 
 ================================================================================
@@ -82,116 +82,116 @@ pattern layered := (?<capture> [feat.Gender[psor] has Fem & feat.Number has Sing
 
 (source_file
   (analyzer_entry
-    (analyzer_map
+    value: (analyzer_map
       (analyzer_field
         (analyzer_family_field
-          (identifier)
-          (analyzer_identifier)))
+          key: (identifier)
+          value: (analyzer_identifier)))
       (analyzer_field
         (analyzer_resource_field
-          (identifier)
-          (analyzer_identifier)))
+          key: (identifier)
+          value: (analyzer_identifier)))
       (analyzer_field
         (analyzer_split_field
-          (identifier)
-          (sudachi_split)))
+          key: (identifier)
+          value: (sudachi_split)))
       (analyzer_field
         (analyzer_segmentation_field
-          (identifier)
-          (segmentation_mode)
-          (segmentation_mode)))))
+          key: (identifier)
+          value: (segmentation_mode)
+          value: (segmentation_mode)))))
   (analyzer_entry
-    (analyzer_map
+    value: (analyzer_map
       (analyzer_field
         (analyzer_family_field
-          (identifier)
-          (analyzer_identifier)))
+          key: (identifier)
+          value: (analyzer_identifier)))
       (analyzer_field
         (analyzer_segmentation_field
-          (identifier)
-          (segmentation_mode)))))
+          key: (identifier)
+          value: (segmentation_mode)))))
   (analyzer_entry
-    (analyzer_map
+    value: (analyzer_map
       (analyzer_field
         (analyzer_segmentation_field
-          (identifier)
-          (segmentation_mode)))
+          key: (identifier)
+          value: (segmentation_mode)))
       (analyzer_field
         (analyzer_family_field
-          (identifier)
-          (analyzer_identifier)))))
+          key: (identifier)
+          value: (analyzer_identifier)))))
   (key_entry
-    (identifier)
-    (key_projection_list
+    key: (identifier)
+    value: (key_projection_list
       (match_key_projection
-        (attribute_key
+        attribute: (attribute_key
           (portable_attribute_key)))
       (match_key_projection
-        (attribute_key
+        attribute: (attribute_key
           (feature_attribute_key
-            (ud_feature_name
-              (ud_feature_base)))))
+            name: (ud_feature_name
+              base: (ud_feature_base)))))
       (match_key_projection
-        (attribute_key
+        attribute: (attribute_key
           (feature_attribute_key
-            (ud_feature_name
-              (ud_feature_base)
-              (ud_feature_layer)))))
+            name: (ud_feature_name
+              base: (ud_feature_base)
+              layer: (ud_feature_layer)))))
       (match_key_projection
-        (attribute_key
+        attribute: (attribute_key
           (provider_attribute_key
-            (provider_segment)
-            (provider_segment))))
+            segment: (provider_segment)
+            segment: (provider_segment))))
       (capture_key_projection
-        (capture_reference
-          (identifier))
-        (attribute_key
+        capture: (capture_reference
+          name: (identifier))
+        attribute: (attribute_key
           (feature_attribute_key
-            (ud_feature_name
-              (ud_feature_base)
-              (ud_feature_layer)))))
+            name: (ud_feature_name
+              base: (ud_feature_base)
+              layer: (ud_feature_layer)))))
       (capture_key_projection
-        (capture_reference
-          (identifier))
-        (capture_component)
-        (attribute_key
+        capture: (capture_reference
+          name: (identifier))
+        component: (capture_component)
+        attribute: (attribute_key
           (feature_attribute_key
-            (ud_feature_name
-              (ud_feature_base)))))))
+            name: (ud_feature_name
+              base: (ud_feature_base)))))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (node_pattern
+        name: (identifier)
+        pattern: (node_pattern
           (attribute_conjunction
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (feature_attribute_key
-                    (ud_feature_name
-                      (ud_feature_base)
-                      (ud_feature_layer)))))
-              (set_has_operator)
-              (value))
+                    name: (ud_feature_name
+                      base: (ud_feature_base)
+                      layer: (ud_feature_layer)))))
+              operator: (set_has_operator)
+              value: (value))
             (attribute
-              (key
+              key: (key
                 (attribute_key
                   (feature_attribute_key
-                    (ud_feature_name
-                      (ud_feature_base)))))
-              (set_has_operator)
-              (value)))))
+                    name: (ud_feature_name
+                      base: (ud_feature_base)))))
+              operator: (set_has_operator)
+              value: (value)))))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value))))))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value))))))
 
 ================================================================================
 has any requires the has keyword
@@ -342,34 +342,34 @@ pattern verb := [upos=VERB].
 
 (source_file
   (labels_entry
-    (labels_map
+    value: (labels_map
       (labels_field
-        (attribute_key
+        attribute: (attribute_key
           (portable_attribute_key))
-        (metadata_string))
+        value: (metadata_string))
       (labels_field
-        (attribute_key
+        attribute: (attribute_key
           (provider_attribute_key
-            (provider_segment)
-            (provider_segment)))
-        (labels_name_list
+            segment: (provider_segment)
+            segment: (provider_segment)))
+        value: (labels_name_list
           (metadata_string)
           (metadata_string)))
       (labels_field
-        (attribute_key
+        attribute: (attribute_key
           (feature_attribute_key
-            (ud_feature_name
-              (ud_feature_base))))
-        (value_set
+            name: (ud_feature_name
+              base: (ud_feature_base))))
+        value: (value_set
           (value)
           (value)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value)))))
+        operator: (attribute_operator)
+        value: (value)))))

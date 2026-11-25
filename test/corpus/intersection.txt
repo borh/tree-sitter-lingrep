@@ -8,9 +8,9 @@ pattern p := a b & c d.
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (intersection
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (intersection
       (pattern_sequence
         (bare_element
           (identifier))
@@ -32,9 +32,9 @@ pattern p := a & b | c & d.
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (alternation
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (alternation
       (intersection
         (bare_element
           (identifier))
@@ -56,9 +56,9 @@ pattern p := a & b & c.
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (intersection
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (intersection
       (bare_element
         (identifier))
       (bare_element
@@ -76,9 +76,9 @@ pattern p := (a & b) c.
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (pattern_sequence
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (pattern_sequence
       (parenthesized_pattern
         (intersection
           (bare_element
@@ -98,32 +98,32 @@ pattern p := [upos=VERB & unidic.cform=A] & [upos=AUX].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (intersection
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (intersection
       (node_pattern
         (attribute_conjunction
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value))
+            operator: (attribute_operator)
+            value: (value))
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (provider_attribute_key
-                  (provider_segment)
-                  (provider_segment))))
-            (attribute_operator)
-            (value))))
+                  segment: (provider_segment)
+                  segment: (provider_segment))))
+            operator: (attribute_operator)
+            value: (value))))
       (node_pattern
         (attribute
-          (key
+          key: (key
             (attribute_key
               (portable_attribute_key)))
-          (attribute_operator)
-          (value))))))
+          operator: (attribute_operator)
+          value: (value))))))
 
 ================================================================================
 the double-wo shape S4 exists to replace
@@ -135,9 +135,9 @@ pattern p := ( @gap* @edge @gap* ) & []{1,8}.
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (intersection
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (intersection
       (parenthesized_pattern
         (pattern_sequence
           (quantified_pattern

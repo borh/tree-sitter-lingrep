@@ -14,52 +14,52 @@ any_order := [].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (any_order
-      (named_group
-        (identifier)
-        (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (any_order
+      operand: (named_group
+        name: (identifier)
+        pattern: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value))))
-      (named_group
-        (identifier)
-        (node_pattern
+            operator: (attribute_operator)
+            value: (value))))
+      operand: (named_group
+        name: (identifier)
+        pattern: (node_pattern
           (attribute
-            (key
+            key: (key
               (attribute_key
                 (portable_attribute_key)))
-            (attribute_operator)
-            (value)))))
-    (where_clause
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))))
+            operator: (attribute_operator)
+            value: (value)))))
+    where: (where_clause
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (any_order
-      (named_group
-        (identifier)
-        (node_pattern))))
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (any_order
+      operand: (named_group
+        name: (identifier)
+        pattern: (node_pattern))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value))))
+        operator: (attribute_operator)
+        value: (value))))
   (pattern_definition
-    (identifier)
-    (node_pattern)))
+    name: (identifier)
+    pattern: (node_pattern)))

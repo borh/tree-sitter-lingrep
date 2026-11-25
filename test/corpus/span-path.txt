@@ -7,47 +7,47 @@ q := (?<word> []+) where span(sudachi.c, $word.whole).
 
 (source_file
   (pattern_definition
-    (identifier)
-    (pattern_sequence
+    name: (identifier)
+    pattern: (pattern_sequence
       (named_group
-        (identifier)
-        (node_pattern))
+        name: (identifier)
+        pattern: (node_pattern))
       (named_group
-        (identifier)
-        (node_pattern)))
-    (where_clause
-      (span_constraint
-        (span_layer_name
+        name: (identifier)
+        pattern: (node_pattern)))
+    where: (where_clause
+      constraint: (span_constraint
+        layer: (span_layer_name
           (identifier))
-        (span_operand
-          (capture_reference
-            (identifier))
-          (identifier)
-          (metadata_string))
-        (span_operand
-          (capture_reference
-            (identifier))
-          (identifier)))
-      (relation_constraint
-        (capture_reference
-          (identifier))
-        (label_set
-          (relation_label))
-        (capture_reference
-          (identifier)))))
+        operand: (span_operand
+          capture: (capture_reference
+            name: (identifier))
+          position: (identifier)
+          label: (metadata_string))
+        operand: (span_operand
+          capture: (capture_reference
+            name: (identifier))
+          position: (identifier)))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))))
   (pattern_definition
-    (identifier)
-    (named_group
-      (identifier)
-      (quantified_pattern
+    name: (identifier)
+    pattern: (named_group
+      name: (identifier)
+      pattern: (quantified_pattern
         (node_pattern)
         (quantifier)))
-    (where_clause
-      (span_constraint
-        (span_layer_name
+    where: (where_clause
+      constraint: (span_constraint
+        layer: (span_layer_name
           (identifier)
           (identifier))
-        (span_operand
-          (capture_reference
-            (identifier))
-          (identifier))))))
+        operand: (span_operand
+          capture: (capture_reference
+            name: (identifier))
+          position: (identifier))))))

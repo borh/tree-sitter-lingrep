@@ -10,43 +10,43 @@ pattern p := [text in @CONTENT].
 
 (source_file
   (set_definition
-    (identifier)
-    (value_set
+    name: (identifier)
+    members: (value_set
       (value)
       (value)
       (value)))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (value))
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          value: (value))
         (attribute
-          (key
+          key: (key
             (attribute_key
               (provider_attribute_key
-                (provider_segment)
-                (provider_segment))))
-          (attribute_operator)
-          (set_reference
+                segment: (provider_segment)
+                segment: (provider_segment))))
+          operator: (attribute_operator)
+          set: (set_reference
             (identifier))))))
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (set_reference
+        operator: (attribute_operator)
+        set: (set_reference
           (identifier))))))
 
 ================================================================================
@@ -59,15 +59,15 @@ pattern p := [text in {て, で}].
 
 (source_file
   (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
+    kind: (definition_kind)
+    name: (identifier)
+    pattern: (node_pattern
       (attribute
-        (key
+        key: (key
           (attribute_key
             (portable_attribute_key)))
-        (attribute_operator)
-        (value_set
+        operator: (attribute_operator)
+        values: (value_set
           (value)
           (value))))))
 
