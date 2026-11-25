@@ -52,7 +52,10 @@ export default grammar({
 
     _primary: $ => choice(
       $.node_pattern,
-      $.bare_element,
+      // `measure` is reserved only where a clause can start, as `where` is:
+      // `[] measure` is a syntax error, while `measure := measure.` and
+      // `[text=measure]` stay legal.
+      alias($.identifier, $.bare_element),
       $.pattern_reference,
       $.parenthesized_pattern,
       $.named_group,
@@ -141,7 +144,7 @@ export default grammar({
       field('key', $.identifier), ':', field('value', $._policy_value)
     ),
 
-    group_ref: $ => seq('%', $.identifier),
+    group_ref: $ => seq('%', field('name', $.identifier)),
     policy_enum: $ => $.identifier,
 
     schema_entry: $ => seq(
@@ -183,26 +186,18 @@ export default grammar({
 
     vectors_map: $ => seq(
       '{',
-      commaSep1($.vectors_field),
+      commaSep1($._vectors_field),
       '}'
     ),
 
-    vectors_field: $ => choice(
+    _vectors_field: $ => choice(
       $.vectors_resource_field,
       $.vectors_digest_field
     ),
 
-    vectors_resource_field: $ => seq(
-      'resource',
-      ':',
-      field('value', $.analyzer_identifier)
-    ),
+    vectors_resource_field: $ => keyed($, 'resource', field('value', $.analyzer_identifier)),
 
-    vectors_digest_field: $ => seq(
-      'blake3',
-      ':',
-      field('value', $.vectors_digest)
-    ),
+    vectors_digest_field: $ => keyed($, 'blake3', field('value', $.vectors_digest)),
 
     vectors_digest: $ => /"[0-9a-f]{64}"/,
 
@@ -230,11 +225,11 @@ export default grammar({
 
     analyzer_map: $ => seq(
       '{',
-      commaSep1($.analyzer_field),
+      commaSep1($._analyzer_field),
       '}'
     ),
 
-    analyzer_field: $ => choice(
+    _analyzer_field: $ => choice(
       $.analyzer_family_field,
       $.analyzer_resource_field,
       $.analyzer_split_field,
@@ -299,17 +294,17 @@ export default grammar({
       field('capture', $.capture_reference),
       '.',
       optional(seq(field('component', $.capture_component), '.')),
-      // `rel` is contextual: the compiler accepts this identifier projection
-      // only when the `$` name resolves to a named enhanced edge. Admit that
-      // one literal rather than opening this position to arbitrary identifiers,
-      // so misspelled ordinary attributes remain syntax errors.
       field('attribute', choice(
         alias($._projection_attribute_key, $.attribute_key),
-        alias('rel', $.identifier)
+        $.edge_relation
       ))
     ),
 
     capture_component: $ => choice('first', 'last', 'span'),
+
+    // The relation label of a named enhanced edge, `$e.rel`. The compiler
+    // accepts it only when the `$` name resolves to such an edge.
+    edge_relation: _ => 'rel',
 
     // There is no `null` production: a key that carries no information is
     // spelled by omitting the key. `metadata_none` is not that null; the
@@ -369,7 +364,7 @@ export default grammar({
       field('name', $.identifier),
       'by',
       '[',
-      commaSep1(field('projection', $.attribute_key)),
+      commaSep1(field('attribute', $.attribute_key)),
       ']',
       ':=',
       '{',
@@ -397,7 +392,7 @@ export default grammar({
     // `in`/`not in` inside `[…]` is a value set and can be nothing else, so
     // the position decides the kind. This also keeps `pattern_reference`
     // meaning "reference to a definition".
-    set_reference: $ => seq('@', $.identifier),
+    set_reference: $ => seq('@', field('name', $.identifier)),
 
     // A test names a *predicate*, not an expression and not literals, so it is
     // its own declaration rather than a third `definition_kind` — the same
@@ -415,7 +410,7 @@ export default grammar({
     // the same reason: position decides the kind. Inside `[…]` a reference can
     // only be a test, so this is a distinction the parser makes rather than a
     // guess it encodes.
-    test_reference: $ => seq('@', $.identifier),
+    test_reference: $ => seq('@', field('name', $.identifier)),
 
     // A group derives `%group` membership from a metadata predicate instead
     // of a per-definition `groups:` list. It names a selection over the
@@ -432,9 +427,7 @@ export default grammar({
 
     // The four forms mirror the attribute modes written inside `[…]`: `=`/`!=`
     // take one literal, `in`/`not in` take a braced set. Operands are
-    // `metadata_string`s because metadata values are always quoted. The
-    // operator is a named node so the lowerer can classify the form from one
-    // node's text instead of scanning anonymous children.
+    // `metadata_string`s because metadata values are always quoted.
     group_predicate: $ => seq(
       field('key', $.identifier),
       choice(
@@ -528,19 +521,20 @@ export default grammar({
     parenthesized_test: $ => seq('(', $._test, ')'),
 
     attribute: $ => {
-      const form = (operator, ...operand) =>
-        seq(field('key', $.key), field('operator', operator), ...operand);
+      const form = (operator, ...operand) => seq(
+        field('attribute', $.attribute_key),
+        field('operator', alias(operator, $.attribute_operator)),
+        ...operand
+      );
       return choice(
-        form(alias($._scalar_attribute_operator, $.attribute_operator), field('value', $.value)),
-        form(alias($._set_attribute_operator, $.attribute_operator), setOperand($)),
+        form($._scalar_attribute_operator, field('value', $.value)),
+        form($._set_attribute_operator, setOperand($)),
         form(
-          alias($._near_attribute_operator, $.attribute_operator),
+          $._near_attribute_operator,
           field('value', $.value), '>=', field('threshold', $.similarity_threshold)
         ),
-        form($.set_has_operator, field('value', $.value)),
-        form($.set_has_any_operator, setOperand($)),
-        form($.set_not_has_operator, field('value', $.value)),
-        form($.set_not_has_any_operator, setOperand($))
+        form($._has_operator, field('value', $.value)),
+        form($._has_any_operator, setOperand($))
       );
     },
 
@@ -559,21 +553,11 @@ export default grammar({
     // range, so an out-of-range threshold gets a diagnostic that says so.
     similarity_threshold: $ => /\d+(\.\d+)?/,
 
-    set_has_operator: $ => 'has',
+    _has_operator: $ => choice('has', seq('not', 'has')),
 
-    set_has_any_operator: $ => seq('has', 'any'),
-
-    set_not_has_operator: $ => seq('not', 'has'),
-
-    set_not_has_any_operator: $ => seq('not', 'has', 'any'),
+    _has_any_operator: $ => choice(seq('has', 'any'), seq('not', 'has', 'any')),
 
     value_set: $ => seq('{', commaSep1($.value), '}'),
-
-    // Flat, left-associative list of test primaries joined by `&`. The shape
-    // must stay flat: lingrep-core collects direct children, so nesting
-    // `a & b & c` would drop constraints 2..N.
-
-    key: $ => $.attribute_key,
 
     // One token, so no white space or comment can sit inside a key. Three
     // disjoint namespaces: the six portable keys, `feat.Name` or
@@ -616,10 +600,6 @@ export default grammar({
       )));
     },
 
-    // `measure` is reserved only where a clause can start, as `where` is:
-    // `[] measure` is a syntax error, while `measure := measure.` and
-    // `[text=measure]` stay legal.
-    bare_element: $ => $.identifier,
 
     named_group: $ => seq(
       '(?<',
@@ -629,10 +609,7 @@ export default grammar({
       ')'
     ),
 
-    pattern_reference: $ => seq(
-      '@',
-      $.identifier
-    ),
+    pattern_reference: $ => seq('@', field('name', $.identifier)),
 
     sentence_start: $ => '^',
 
@@ -664,13 +641,11 @@ export default grammar({
       'same_as',
       '(',
       field('capture', $.capture_reference),
-      optional(seq(',', 'by', '=', field('projection', $.capture_projection))),
+      optional(seq(',', 'by', '=', field('attribute', $.attribute_key))),
       ')'
     ),
 
     capture_reference: $ => seq('$', field('name', $.identifier)),
-
-    capture_projection: $ => $.attribute_key,
 
     quantifier: $ => choice(
       '+',
@@ -691,8 +666,7 @@ export default grammar({
     reduction_operator: _ => choice('count', 'mean', 'max'),
     tree_items: _ => choice('links', 'nodes', 'boundaries'),
     tree_property: _ => choice('length', 'depth', 'open_links'),
-    tree_layer: $ => choice($.span_layer_name, $.metadata_string),
-    tree_source: $ => seq('tree', '(', field('layer', $.tree_layer), ')'),
+    tree_source: $ => seq('tree', '(', field('layer', choice($.span_layer_name, $.metadata_string)), ')'),
     tree_collection: $ => seq($.tree_source, '.', field('items', $.tree_items),
       optional(seq('.', field('property', $.tree_property)))),
     capture_depth: $ => seq($.tree_source, '.', 'depth', '(', field('capture', $.capture_reference), ')'),
@@ -707,9 +681,15 @@ export default grammar({
     ),
 
     attribute_comparison: $ => seq(
-      field('operand', $.capture_reference), '.', field('attribute', $.attribute_key),
-      field('operator', choice('=', '!=')),
-      field('operand', $.capture_reference), '.', field('attribute', $.attribute_key)
+      field('left', $.capture_attribute),
+      field('operator', alias($._comparison_operator, $.attribute_operator)),
+      field('right', $.capture_attribute)
+    ),
+
+    _comparison_operator: _ => choice('=', '!='),
+
+    capture_attribute: $ => seq(
+      field('capture', $.capture_reference), '.', field('attribute', $.attribute_key)
     ),
 
     dependent_count: _ => RANGE_QUANTIFIER,

@@ -18,8 +18,7 @@ pattern semantic_error := (?<unit> a) same_as($unit, by=unidic.surface).
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (same_as
         capture: (capture_reference
           name: (identifier)))))
@@ -30,33 +29,27 @@ pattern semantic_error := (?<unit> a) same_as($unit, by=unidic.surface).
       (named_group
         name: (identifier)
         pattern: (pattern_sequence
-          (bare_element
-            (identifier))
-          (bare_element
-            (identifier))))
+          (bare_element)
+          (bare_element)))
       (same_as
         capture: (capture_reference
           name: (identifier))
-        projection: (capture_projection
-          (attribute_key)))))
+        attribute: (attribute_key))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (same_as
         capture: (capture_reference
           name: (identifier))
-        projection: (capture_projection
-          (attribute_key)))
+        attribute: (attribute_key))
       (same_as
         capture: (capture_reference
           name: (identifier))
-        projection: (capture_projection
-          (attribute_key)))))
+        attribute: (attribute_key))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
@@ -65,10 +58,8 @@ pattern semantic_error := (?<unit> a) same_as($unit, by=unidic.surface).
         (named_group
           name: (identifier)
           pattern: (alternation
-            (bare_element
-              (identifier))
-            (bare_element
-              (identifier)))))
+            (bare_element)
+            (bare_element))))
       (quantified_pattern
         (same_as
           capture: (capture_reference
@@ -79,8 +70,7 @@ pattern semantic_error := (?<unit> a) same_as($unit, by=unidic.surface).
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
@@ -89,10 +79,8 @@ pattern semantic_error := (?<unit> a) same_as($unit, by=unidic.surface).
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (same_as
         capture: (capture_reference
           name: (identifier))
-        projection: (capture_projection
-          (attribute_key))))))
+        attribute: (attribute_key)))))

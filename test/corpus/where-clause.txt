@@ -18,8 +18,7 @@ chain := (?<a> x) (?<b> y) (?<c> z) where $a -[acl]-> $b, $b -[nmod]-> $c.
         name: (identifier)
         pattern: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))))
       (quantified_pattern
@@ -29,8 +28,7 @@ chain := (?<a> x) (?<b> y) (?<c> z) where $a -[acl]-> $b, $b -[nmod]-> $c.
         name: (identifier)
         pattern: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value)))))
     where: (where_clause
@@ -47,16 +45,13 @@ chain := (?<a> x) (?<b> y) (?<c> z) where $a -[acl]-> $b, $b -[nmod]-> $c.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         head: (capture_reference
@@ -78,12 +73,10 @@ chain := (?<a> x) (?<b> y) (?<c> z) where $a -[acl]-> $b, $b -[nmod]-> $c.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         head: (capture_reference
@@ -97,16 +90,13 @@ chain := (?<a> x) (?<b> y) (?<c> z) where $a -[acl]-> $b, $b -[nmod]-> $c.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         head: (capture_reference
@@ -140,8 +130,7 @@ pattern absent := (?<v> [upos=VERB]) where not $v -[@OBJECT]-> _.
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -159,8 +148,7 @@ pattern absent := (?<v> [upos=VERB]) where not $v -[@OBJECT]-> _.
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -170,7 +158,7 @@ pattern absent := (?<v> [upos=VERB]) where not $v -[@OBJECT]-> _.
           name: (identifier))
         label: (label_set
           term: (set_reference
-            (identifier)))
+            name: (identifier)))
         dependent: (anonymous_dependency_node)))))
 
 ================================================================================
@@ -191,8 +179,7 @@ pattern no_pron := (?<v> [upos=VERB]) where not $v -[obj|obj:*]-> [upos=PRON].
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -204,8 +191,7 @@ pattern no_pron := (?<v> [upos=VERB]) where not $v -[obj|obj:*]-> [upos=PRON].
           term: (relation_label))
         dependent: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))))))
   (pattern_definition
@@ -215,8 +201,7 @@ pattern no_pron := (?<v> [upos=VERB]) where not $v -[obj|obj:*]-> [upos=PRON].
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -225,17 +210,15 @@ pattern no_pron := (?<v> [upos=VERB]) where not $v -[obj|obj:*]-> [upos=PRON].
           name: (identifier))
         label: (label_set
           term: (set_reference
-            (identifier)))
+            name: (identifier)))
         dependent: (node_pattern
           (test_disjunction
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value))
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value)))))))
   (pattern_definition
@@ -245,8 +228,7 @@ pattern no_pron := (?<v> [upos=VERB]) where not $v -[obj|obj:*]-> [upos=PRON].
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -259,8 +241,7 @@ pattern no_pron := (?<v> [upos=VERB]) where not $v -[obj|obj:*]-> [upos=PRON].
           term: (relation_label))
         dependent: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value)))))))
 
@@ -287,14 +268,12 @@ pattern literal := [text=not] [text=_].
     pattern: (pattern_sequence
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))))
 
@@ -316,8 +295,7 @@ pattern literal := [text=where].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value)))))
 
@@ -344,12 +322,10 @@ pattern mixed := (?<v> a) (?<s> b) where $v -[@SUBJ|expl|obl:*]-> $s.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         head: (capture_reference
@@ -365,19 +341,17 @@ pattern mixed := (?<v> a) (?<s> b) where $v -[@SUBJ|expl|obl:*]-> $s.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         head: (capture_reference
           name: (identifier))
         label: (label_set
           term: (set_reference
-            (identifier)))
+            name: (identifier)))
         dependent: (capture_reference
           name: (identifier)))))
   (pattern_definition
@@ -386,19 +360,17 @@ pattern mixed := (?<v> a) (?<s> b) where $v -[@SUBJ|expl|obl:*]-> $s.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         head: (capture_reference
           name: (identifier))
         label: (label_set
           term: (set_reference
-            (identifier))
+            name: (identifier))
           term: (relation_label)
           term: (relation_label))
         dependent: (capture_reference
@@ -419,12 +391,10 @@ pattern any := (?<h> a) (?<d> b) where $h -[*]-> $d.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         head: (capture_reference
@@ -451,12 +421,10 @@ pattern both := (?<v> a) (?<n> b) where $v -[obl|obl:*]-> $n.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         head: (capture_reference
@@ -471,12 +439,10 @@ pattern both := (?<v> a) (?<n> b) where $v -[obl|obl:*]-> $n.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         head: (capture_reference
@@ -491,12 +457,10 @@ pattern both := (?<v> a) (?<n> b) where $v -[obl|obl:*]-> $n.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         head: (capture_reference
@@ -529,8 +493,7 @@ pattern chain := (?<surface> [upos=NOUN])
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -539,8 +502,7 @@ pattern chain := (?<surface> [upos=NOUN])
           name: (identifier)
           predicate: (node_pattern
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value))))
         kind: (relation_kind)
@@ -558,8 +520,7 @@ pattern chain := (?<surface> [upos=NOUN])
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -568,8 +529,7 @@ pattern chain := (?<surface> [upos=NOUN])
           name: (identifier)
           predicate: (node_pattern
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value))))
         kind: (relation_kind)
@@ -589,8 +549,7 @@ pattern chain := (?<surface> [upos=NOUN])
           name: (identifier)
           predicate: (node_pattern
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value)))))
       constraint: (relation_constraint
@@ -627,16 +586,14 @@ pattern private_argument := (?<first> [upos=VERB]) (?<second> [upos=VERB])
         name: (identifier)
         pattern: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))))
       (named_group
         name: (identifier)
         pattern: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value)))))
     where: (where_clause
@@ -647,7 +604,7 @@ pattern private_argument := (?<first> [upos=VERB]) (?<second> [upos=VERB])
         kind: (relation_kind)
         label: (label_set
           term: (set_reference
-            (identifier))
+            name: (identifier))
           term: (relation_label))
         dependent: (capture_reference
           name: (identifier))))))
@@ -675,8 +632,7 @@ pattern negative_endpoints := (?<left> []) (?<right> [])
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -698,8 +654,7 @@ pattern negative_endpoints := (?<left> []) (?<right> [])
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -754,8 +709,7 @@ pattern literal := [text=basic_head].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value)))))
 
@@ -774,12 +728,10 @@ pattern absent := (?<h> a) (?<d> b) where not $h -[obj]-> $d.
     pattern: (pattern_sequence
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier)))
+        pattern: (bare_element))
       (named_group
         name: (identifier)
-        pattern: (bare_element
-          (identifier))))
+        pattern: (bare_element)))
     where: (where_clause
       constraint: (relation_constraint
         polarity: (relation_negation)
@@ -808,8 +760,7 @@ pattern dependent_node := (?<h> [upos=VERB]) where $h -[obj|iobj]-> (?<d> []).
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -818,8 +769,7 @@ pattern dependent_node := (?<h> [upos=VERB]) where $h -[obj|iobj]-> (?<d> []).
           name: (identifier)
           predicate: (node_pattern
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value))))
         label: (label_set
@@ -833,8 +783,7 @@ pattern dependent_node := (?<h> [upos=VERB]) where $h -[obj|iobj]-> (?<d> []).
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -864,8 +813,7 @@ pattern ordered := (?<n0> [upos=NOUN]) where $n0 < $n1 < $n2, $n0 -[obj]-> (?<n1
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     where: (where_clause
@@ -885,8 +833,7 @@ pattern ordered := (?<n0> [upos=NOUN]) where $n0 < $n1 < $n2, $n0 -[obj]-> (?<n1
           name: (identifier)
           predicate: (node_pattern
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value)))))
       constraint: (relation_constraint
@@ -929,8 +876,7 @@ pattern p := (?<v> []) where $v -[*]-> [upos=NOUN]{2,3} as $n,
           (any_relation))
         dependent: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value)))
         count: (dependent_count)
@@ -945,12 +891,15 @@ pattern p := (?<v> []) where $v -[*]-> [upos=NOUN]{2,3} as $n,
           name: (identifier)
           predicate: (node_pattern)))
       constraint: (attribute_comparison
-        operand: (capture_reference
-          name: (identifier))
-        attribute: (attribute_key)
-        operand: (capture_reference
-          name: (identifier))
-        attribute: (attribute_key)))))
+        left: (capture_attribute
+          capture: (capture_reference
+            name: (identifier))
+          attribute: (attribute_key))
+        operator: (attribute_operator)
+        right: (capture_attribute
+          capture: (capture_reference
+            name: (identifier))
+          attribute: (attribute_key))))))
 
 ==================
 SUD deep relation features and key projections
@@ -979,7 +928,7 @@ p := (?<d> []) (?<h> []) where $h -[comp:aux@pass]-> $d, $h -[enhanced @PASS|*@!
         relation: (capture_key_projection
           capture: (capture_reference
             name: (identifier))
-          attribute: (identifier)))))
+          attribute: (edge_relation)))))
   (pattern_definition
     name: (identifier)
     pattern: (pattern_sequence
@@ -1003,7 +952,7 @@ p := (?<d> []) (?<h> []) where $h -[comp:aux@pass]-> $d, $h -[enhanced @PASS|*@!
         kind: (relation_kind)
         label: (label_set
           term: (set_reference
-            (identifier))
+            name: (identifier))
           term: (deep_relation_label))
         edge: (capture_reference
           name: (identifier))

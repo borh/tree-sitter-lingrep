@@ -18,8 +18,7 @@ examples: ["確かなようである"]
       (metadata_string)))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier))))
+    pattern: (bare_element)))
 
 ================================================================================
 defaults and schema blocks
@@ -62,8 +61,7 @@ p := a.
       type: (metadata_type)))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier))))
+    pattern: (bare_element)))
 
 ================================================================================
 nested map and boolean values
@@ -102,8 +100,7 @@ fragment TRAILING_APPARATUS := a.
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
-    pattern: (bare_element
-      (identifier))))
+    pattern: (bare_element)))
 
 ================================================================================
 an empty schema block closes the catalog
@@ -120,8 +117,7 @@ p := a.
   (schema_block)
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier))))
+    pattern: (bare_element)))
 
 ================================================================================
 a schema keyword is only a keyword inside its block
@@ -139,28 +135,22 @@ end := f.
 (source_file
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier))))
+    pattern: (bare_element)))
 
 ================================================================================
 a generic map key may be a capture reference
@@ -188,8 +178,7 @@ p := a.
         value: (metadata_string))))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier))))
+    pattern: (bare_element)))
 
 ================================================================================
 a schema type is any identifier, so the compiler can name an unknown one
@@ -214,8 +203,7 @@ p := a.
       type: (metadata_type)))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier))))
+    pattern: (bare_element)))
 
 ================================================================================
 skip entries name a test, in an annotation run or in defaults
@@ -241,12 +229,11 @@ pattern p := [text=well].
     (skip_entry
       key: (identifier)
       value: (test_reference
-        (identifier))))
+        name: (identifier))))
   (test_definition
     name: (identifier)
     body: (attribute
-      key: (key
-        (attribute_key))
+      attribute: (attribute_key)
       operator: (attribute_operator)
       value: (value
         (regex))))
@@ -258,14 +245,13 @@ pattern p := [text=well].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value))))
   (skip_entry
     key: (identifier)
     value: (test_reference
-      (identifier)))
+      name: (identifier)))
   (key_entry
     key: (identifier)
     value: (metadata_none))
@@ -274,8 +260,7 @@ pattern p := [text=well].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value)))))
 
@@ -462,7 +447,7 @@ labels := @key.
   (pattern_definition
     name: (identifier)
     pattern: (pattern_reference
-      (identifier))))
+      name: (identifier))))
 
 ================================================================================
 role interpretations and whole-match classification
@@ -537,7 +522,7 @@ classify := @interpret.
   (pattern_definition
     name: (identifier)
     pattern: (pattern_reference
-      (identifier))))
+      name: (identifier))))
 
 ================================================================================
 schema declares top-level keywords as keys

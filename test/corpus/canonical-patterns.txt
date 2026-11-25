@@ -21,18 +21,16 @@ pattern not_any_reference := [feat.Number not has any @numbers].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
-        operator: (set_has_operator)
+        attribute: (attribute_key)
+        operator: (attribute_operator)
         value: (value))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
-        operator: (set_has_any_operator)
+        attribute: (attribute_key)
+        operator: (attribute_operator)
         values: (value_set
           (value)
           (value)))))
@@ -41,20 +39,18 @@ pattern not_any_reference := [feat.Number not has any @numbers].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
-        operator: (set_not_has_operator)
+        attribute: (attribute_key)
+        operator: (attribute_operator)
         value: (value))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
-        operator: (set_not_has_any_operator)
+        attribute: (attribute_key)
+        operator: (attribute_operator)
         set: (set_reference
-          (identifier))))))
+          name: (identifier))))))
 
 ================================================================================
 structured analyzer alternatives and canonical projections
@@ -71,43 +67,35 @@ pattern layered := (?<capture> [feat.Gender[psor] has Fem & feat.Number has Sing
 (source_file
   (analyzer_entry
     value: (analyzer_map
-      (analyzer_field
-        (analyzer_family_field
-          key: (identifier)
-          value: (analyzer_identifier)))
-      (analyzer_field
-        (analyzer_resource_field
-          key: (identifier)
-          value: (analyzer_identifier)))
-      (analyzer_field
-        (analyzer_split_field
-          key: (identifier)
-          value: (sudachi_split)))
-      (analyzer_field
-        (analyzer_segmentation_field
-          key: (identifier)
-          value: (segmentation_mode)
-          value: (segmentation_mode)))))
+      (analyzer_family_field
+        key: (identifier)
+        value: (analyzer_identifier))
+      (analyzer_resource_field
+        key: (identifier)
+        value: (analyzer_identifier))
+      (analyzer_split_field
+        key: (identifier)
+        value: (sudachi_split))
+      (analyzer_segmentation_field
+        key: (identifier)
+        value: (segmentation_mode)
+        value: (segmentation_mode))))
   (analyzer_entry
     value: (analyzer_map
-      (analyzer_field
-        (analyzer_family_field
-          key: (identifier)
-          value: (analyzer_identifier)))
-      (analyzer_field
-        (analyzer_segmentation_field
-          key: (identifier)
-          value: (segmentation_mode)))))
+      (analyzer_family_field
+        key: (identifier)
+        value: (analyzer_identifier))
+      (analyzer_segmentation_field
+        key: (identifier)
+        value: (segmentation_mode))))
   (analyzer_entry
     value: (analyzer_map
-      (analyzer_field
-        (analyzer_segmentation_field
-          key: (identifier)
-          value: (segmentation_mode)))
-      (analyzer_field
-        (analyzer_family_field
-          key: (identifier)
-          value: (analyzer_identifier)))))
+      (analyzer_segmentation_field
+        key: (identifier)
+        value: (segmentation_mode))
+      (analyzer_family_field
+        key: (identifier)
+        value: (analyzer_identifier))))
   (key_entry
     key: (identifier)
     value: (key_projection_list
@@ -137,19 +125,16 @@ pattern layered := (?<capture> [feat.Gender[psor] has Fem & feat.Number has Sing
         pattern: (node_pattern
           (attribute_conjunction
             (attribute
-              key: (key
-                (attribute_key))
-              operator: (set_has_operator)
+              attribute: (attribute_key)
+              operator: (attribute_operator)
               value: (value))
             (attribute
-              key: (key
-                (attribute_key))
-              operator: (set_has_operator)
+              attribute: (attribute_key)
+              operator: (attribute_operator)
               value: (value)))))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))))
 
@@ -166,27 +151,18 @@ pattern missing_has := [feat.Number any {Sing, Plur}].
 
 ================================================================================
 not precedes has
+:error
 :language(lingrep)
 ================================================================================
 pattern reversed := [feat.Number has not Sing].
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
-      (attribute
-        (key
-          (attribute_key))
-        (set_has_operator)
-        (value))
-      (ERROR
-        (identifier)))))
+(source_file)
 
 ================================================================================
 unknown analyzer fields stay rejected
+:error
 :language(lingrep)
 ================================================================================
 analyzer: {family: "sudachi", unknown: "value"}
@@ -194,23 +170,11 @@ pattern bad := [].
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (analyzer_entry
-    (analyzer_map
-      (analyzer_field
-        (analyzer_family_field
-          (identifier)
-          (analyzer_identifier)))
-      (ERROR
-        (UNEXPECTED 'n')
-        (analyzer_identifier))))
-  (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern)))
+(source_file)
 
 ================================================================================
 invalid analyzer split values stay rejected
+:error
 :language(lingrep)
 ================================================================================
 analyzer: {family: "sudachi", split: "c"}
@@ -218,41 +182,18 @@ pattern bad := [].
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (analyzer_entry
-    (analyzer_map
-      (analyzer_field
-        (analyzer_family_field
-          (identifier)
-          (analyzer_identifier)))
-      (ERROR
-        (identifier)
-        (analyzer_identifier))))
-  (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern)))
+(source_file)
 
 ================================================================================
 has any rejects an empty inline set
+:error
 :language(lingrep)
 ================================================================================
 pattern empty_any := [feat.Number has any {}].
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
-      (attribute
-        (key
-          (attribute_key))
-        (set_has_any_operator)
-        (value_set
-          (value
-            (MISSING "value_token1")))))))
+(source_file)
 
 ================================================================================
 has any requires a set operand
@@ -295,7 +236,6 @@ pattern verb := [upos=VERB].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value)))))

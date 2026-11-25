@@ -11,8 +11,7 @@ pattern p := [@t].
   (test_definition
     name: (identifier)
     body: (attribute
-      key: (key
-        (attribute_key))
+      attribute: (attribute_key)
       operator: (attribute_operator)
       value: (value)))
   (pattern_definition
@@ -20,7 +19,7 @@ pattern p := [@t].
     name: (identifier)
     pattern: (node_pattern
       (test_reference
-        (identifier)))))
+        name: (identifier)))))
 
 ================================================================================
 negated test reference
@@ -37,7 +36,7 @@ pattern p := [!@t].
     pattern: (node_pattern
       (test_negation
         (test_reference
-          (identifier))))))
+          name: (identifier))))))
 
 ================================================================================
 negated parenthesized attribute
@@ -55,8 +54,7 @@ pattern p := [!(text=a)].
       (test_negation
         (parenthesized_test
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value)))))))
 
@@ -75,13 +73,11 @@ pattern p := [custom.a=1 | custom.b=2].
     pattern: (node_pattern
       (test_disjunction
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))))
 
@@ -100,20 +96,17 @@ pattern p := [custom.a=1 & (custom.b=2 | custom.c=3)].
     pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))
         (parenthesized_test
           (test_disjunction
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value))
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value))))))))
 
@@ -132,10 +125,9 @@ pattern p := [text!=x & !@t].
     pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))
         (test_negation
           (test_reference
-            (identifier)))))))
+            name: (identifier)))))))

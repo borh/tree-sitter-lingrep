@@ -64,7 +64,7 @@ pattern p := (?<surface> []) where $surface -[enhanced obj as $edge]-> (?<node> 
       (capture_key_projection
         capture: (capture_reference
           name: (identifier))
-        attribute: (identifier))))
+        attribute: (edge_relation))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
@@ -126,21 +126,16 @@ span := span.
 (source_file
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier))))
+    pattern: (bare_element)))

@@ -20,8 +20,8 @@ lexicon target_words by [text, norm] := {"大学院", "行う", "Web.config", "i
         attribute: (attribute_key))))
   (lexicon_definition
     name: (identifier)
-    projection: (attribute_key)
-    projection: (attribute_key)
+    attribute: (attribute_key)
+    attribute: (attribute_key)
     member: (metadata_string)
     member: (metadata_string)
     member: (metadata_string)
@@ -40,16 +40,11 @@ pattern lexicon := lexicon by term segments patterns.
     kind: (definition_kind)
     name: (identifier)
     pattern: (pattern_sequence
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier)))))
+      (bare_element)
+      (bare_element)
+      (bare_element)
+      (bare_element)
+      (bare_element))))
 
 ================================================================================
 patterns is structural only as a policy subject
@@ -82,11 +77,11 @@ end
       verb: (policy_verb)
       subject: (policy_subject
         (pattern_reference
-          (identifier)))
+          name: (identifier)))
       argument: (policy_argument
         key: (identifier)
         value: (pattern_reference
-          (identifier)))
+          name: (identifier)))
       argument: (policy_argument
         key: (identifier)
         value: (policy_enum

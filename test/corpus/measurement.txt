@@ -23,9 +23,8 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
           operator: (reduction_operator)
           collection: (tree_collection
             (tree_source
-              layer: (tree_layer
-                (span_layer_name
-                  (identifier))))
+              layer: (span_layer_name
+                (identifier)))
             items: (tree_items)
             property: (tree_property)))
         name: (capture_reference
@@ -35,9 +34,8 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
           operator: (reduction_operator)
           collection: (tree_collection
             (tree_source
-              layer: (tree_layer
-                (span_layer_name
-                  (identifier))))
+              layer: (span_layer_name
+                (identifier)))
             items: (tree_items)
             property: (tree_property)))
         name: (capture_reference
@@ -48,8 +46,7 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
       name: (identifier)
       pattern: (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     measure: (measure_clause
@@ -63,7 +60,7 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
               (any_relation))
             test: (node_pattern
               (test_reference
-                (identifier)))))
+                name: (identifier)))))
         name: (capture_reference
           name: (identifier)))
       (named_measure
@@ -77,15 +74,14 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
                 (any_relation))
               test: (node_pattern
                 (test_reference
-                  (identifier))))))
+                  name: (identifier))))))
         name: (capture_reference
           name: (identifier)))
       (named_measure
         value: (capture_depth
           (tree_source
-            layer: (tree_layer
-              (span_layer_name
-                (identifier))))
+            layer: (span_layer_name
+              (identifier)))
           capture: (capture_reference
             name: (identifier)))
         name: (capture_reference
@@ -102,7 +98,7 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
           collection: (match_words
             test: (node_pattern
               (test_reference
-                (identifier)))))
+                name: (identifier)))))
         name: (capture_reference
           name: (identifier))))))
 
@@ -119,27 +115,21 @@ q := [] [text=measure].
 (source_file
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
     pattern: (pattern_sequence
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier))))
+      (bare_element)
+      (bare_element)
+      (bare_element)
+      (bare_element)))
   (pattern_definition
     name: (identifier)
     pattern: (pattern_sequence
       (node_pattern)
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))))
 
@@ -174,18 +164,16 @@ profile := (?<v> []) measure count(tree(custom.layer).nodes) as $n, tree("custom
           operator: (reduction_operator)
           collection: (tree_collection
             (tree_source
-              layer: (tree_layer
-                (span_layer_name
-                  (identifier)
-                  (identifier))))
+              layer: (span_layer_name
+                (identifier)
+                (identifier)))
             items: (tree_items)))
         name: (capture_reference
           name: (identifier)))
       (named_measure
         value: (capture_depth
           (tree_source
-            layer: (tree_layer
-              (metadata_string)))
+            layer: (metadata_string))
           capture: (capture_reference
             name: (identifier)))
         name: (capture_reference
@@ -209,14 +197,12 @@ related := (?<v> []) | (?<o> []) where $v -[obj]-> $o measure count(match.words[
     pattern: (alternation
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))
     measure: (measure_clause
@@ -253,9 +239,8 @@ related := (?<v> []) | (?<o> []) where $v -[obj]-> $o measure count(match.words[
           operator: (reduction_operator)
           collection: (tree_collection
             (tree_source
-              layer: (tree_layer
-                (span_layer_name
-                  (identifier))))
+              layer: (span_layer_name
+                (identifier)))
             items: (tree_items)
             property: (tree_property)))
         name: (capture_reference
@@ -269,9 +254,8 @@ related := (?<v> []) | (?<o> []) where $v -[obj]-> $o measure count(match.words[
       (named_measure
         value: (capture_depth
           (tree_source
-            layer: (tree_layer
-              (span_layer_name
-                (identifier))))
+            layer: (span_layer_name
+              (identifier)))
           capture: (capture_reference
             name: (identifier)))
         name: (capture_reference

@@ -21,26 +21,23 @@ pattern p := [text in @CONTENT].
     pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           set: (set_reference
-            (identifier))))))
+            name: (identifier))))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         set: (set_reference
-          (identifier))))))
+          name: (identifier))))))
 
 ================================================================================
 an inline set still parses as a value_set
@@ -56,8 +53,7 @@ pattern p := [text in {て, で}].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         values: (value_set
           (value)

@@ -12,7 +12,7 @@
 (deep_relation_label) @string.special
 (capture_key_projection
   component: (capture_component)? @constant.builtin
-  attribute: [(attribute_key) (identifier)] @property)
+  attribute: [(attribute_key) (edge_relation)] @property)
 (lexical_term_projection) @constant.builtin
 (lexical_segments_projection
   "segments" @function.builtin
@@ -78,7 +78,7 @@
   name: (identifier) @entity.name.function
   "by" @keyword
   ":=" @keyword.operator.definition)
-(lexicon_definition projection: (attribute_key) @property)
+(lexicon_definition attribute: (attribute_key) @property)
 
 
 ; Set declarations. The keyword takes the same face as `pattern`/`fragment`,
@@ -131,7 +131,7 @@
   "[" @punctuation.bracket
   "]" @punctuation.bracket)
 
-(attribute key: (key) @property)
+(attribute attribute: (attribute_key) @property)
 (attribute operator: _ @operator)
 ; A regex value is a `value` node with a `regex` child of the same span; the
 ; predicate leaves that span to the `regex` rule alone.
@@ -142,8 +142,8 @@
 (attribute ">=" @operator)
 (similarity_threshold) @number
 (vectors_entry "vectors" @keyword)
-(vectors_resource_field "resource" @property)
-(vectors_digest_field "blake3" @property (vectors_digest) @string)
+(vectors_resource_field key: (identifier) @property)
+(vectors_digest_field key: (identifier) @property (vectors_digest) @string)
 
 (sentence_start) @punctuation.special
 (sentence_end) @punctuation.special
@@ -155,7 +155,7 @@
 (not_followed_by scope: (identifier) @constant.builtin)
 (any_order "any_order" @keyword)
 (same_as "same_as" @keyword "by" @keyword)
-(same_as projection: (capture_projection) @property)
+(same_as attribute: (attribute_key) @property)
 
 ; Regex patterns
 (regex) @string.regex
@@ -209,9 +209,9 @@
 
 (span_constraint "span" @keyword)
 (span_constraint "->" @operator)
-((tree_layer (span_layer_name) @constant.builtin)
+((tree_source layer: (span_layer_name) @constant.builtin)
  (#any-of? @constant.builtin "word" "bunsetsu"))
-((tree_layer (span_layer_name) @property)
+((tree_source layer: (span_layer_name) @property)
  (#not-any-of? @property "word" "bunsetsu"))
 (span_constraint layer: (span_layer_name) @property)
 (span_operand position: (identifier) @property)

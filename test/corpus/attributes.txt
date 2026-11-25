@@ -17,16 +17,14 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value
           (regex)))))
@@ -34,16 +32,14 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value
           (regex)))))
@@ -51,16 +47,14 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
@@ -68,13 +62,11 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
     pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))))
 
@@ -92,8 +84,7 @@ source := [unidic.surface=x] [text=surface].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
@@ -101,14 +92,12 @@ source := [unidic.surface=x] [text=surface].
     pattern: (pattern_sequence
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))))
 
@@ -126,8 +115,7 @@ spaced := [text ~ /a b/].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value
           (regex)))))
@@ -135,8 +123,7 @@ spaced := [text ~ /a b/].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value
           (regex))))))
@@ -153,33 +140,30 @@ pattern p := [unidic.orthbase near 研究 >= 0.6] [text not near near >= 1 & upo
 (source_file
   (vectors_entry
     value: (vectors_map
-      (vectors_field
-        (vectors_resource_field
-          value: (analyzer_identifier)))
-      (vectors_field
-        (vectors_digest_field
-          value: (vectors_digest)))))
+      (vectors_resource_field
+        key: (identifier)
+        value: (analyzer_identifier))
+      (vectors_digest_field
+        key: (identifier)
+        value: (vectors_digest))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
     pattern: (pattern_sequence
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)
           threshold: (similarity_threshold)))
       (node_pattern
         (attribute_conjunction
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value)
             threshold: (similarity_threshold))
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value)))))))

@@ -12,15 +12,11 @@ pattern p := a b & c d.
     name: (identifier)
     pattern: (intersection
       (pattern_sequence
-        (bare_element
-          (identifier))
-        (bare_element
-          (identifier)))
+        (bare_element)
+        (bare_element))
       (pattern_sequence
-        (bare_element
-          (identifier))
-        (bare_element
-          (identifier))))))
+        (bare_element)
+        (bare_element)))))
 
 ================================================================================
 intersection binds tighter than alternation
@@ -36,15 +32,11 @@ pattern p := a & b | c & d.
     name: (identifier)
     pattern: (alternation
       (intersection
-        (bare_element
-          (identifier))
-        (bare_element
-          (identifier)))
+        (bare_element)
+        (bare_element))
       (intersection
-        (bare_element
-          (identifier))
-        (bare_element
-          (identifier))))))
+        (bare_element)
+        (bare_element)))))
 
 ================================================================================
 a chain of intersections is one n-ary node
@@ -59,12 +51,9 @@ pattern p := a & b & c.
     kind: (definition_kind)
     name: (identifier)
     pattern: (intersection
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier)))))
+      (bare_element)
+      (bare_element)
+      (bare_element))))
 
 ================================================================================
 parentheses put an intersection inside a sequence
@@ -81,12 +70,9 @@ pattern p := (a & b) c.
     pattern: (pattern_sequence
       (parenthesized_pattern
         (intersection
-          (bare_element
-            (identifier))
-          (bare_element
-            (identifier))))
-      (bare_element
-        (identifier)))))
+          (bare_element)
+          (bare_element)))
+      (bare_element))))
 
 ================================================================================
 attribute conjunction is not intersection
@@ -104,19 +90,16 @@ pattern p := [upos=VERB & unidic.cform=A] & [upos=AUX].
       (node_pattern
         (attribute_conjunction
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))))
 
@@ -137,13 +120,13 @@ pattern p := ( @gap* @edge @gap* ) & []{1,8}.
         (pattern_sequence
           (quantified_pattern
             (pattern_reference
-              (identifier))
+              name: (identifier))
             (quantifier))
           (pattern_reference
-            (identifier))
+            name: (identifier))
           (quantified_pattern
             (pattern_reference
-              (identifier))
+              name: (identifier))
             (quantifier))))
       (quantified_pattern
         (node_pattern)

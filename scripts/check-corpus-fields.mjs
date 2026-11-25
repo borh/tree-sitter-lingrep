@@ -7,7 +7,6 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const tokenFields = new Set([
-  'attribute_comparison.operator',
   'relation_constraint.boundary',
   'relation_constraint.path',
   'schema_entry.required',

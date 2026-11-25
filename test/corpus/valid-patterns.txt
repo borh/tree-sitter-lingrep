@@ -15,85 +15,66 @@ attributes := [upos=VERB & unidic.cform=終止形 & lemma=為る].
 (source_file
   (pattern_definition
     name: (identifier)
-    pattern: (bare_element
-      (identifier)))
+    pattern: (bare_element))
   (pattern_definition
     name: (identifier)
     pattern: (pattern_sequence
       (quantified_pattern
-        (bare_element
-          (identifier))
+        (bare_element)
         (quantifier))
       (quantified_pattern
-        (bare_element
-          (identifier))
+        (bare_element)
         (quantifier))
       (quantified_pattern
         (parenthesized_pattern
           (pattern_sequence
-            (bare_element
-              (identifier))
-            (bare_element
-              (identifier))))
+            (bare_element)
+            (bare_element)))
         (quantifier))))
   (pattern_definition
     name: (identifier)
     pattern: (alternation
       (pattern_sequence
-        (bare_element
-          (identifier))
-        (bare_element
-          (identifier)))
-      (bare_element
-        (identifier))))
+        (bare_element)
+        (bare_element))
+      (bare_element)))
   (pattern_definition
     name: (identifier)
     pattern: (alternation
-      (bare_element
-        (identifier))
+      (bare_element)
       (pattern_sequence
-        (bare_element
-          (identifier))
-        (bare_element
-          (identifier)))))
+        (bare_element)
+        (bare_element))))
   (pattern_definition
     name: (identifier)
     pattern: (pattern_sequence
       (parenthesized_pattern
         (alternation
-          (bare_element
-            (identifier))
-          (bare_element
-            (identifier))))
-      (bare_element
-        (identifier))))
+          (bare_element)
+          (bare_element)))
+      (bare_element)))
   (pattern_definition
     name: (identifier)
     pattern: (quantified_pattern
       (parenthesized_pattern
         (pattern_sequence
-          (bare_element
-            (identifier))
-          (bare_element
-            (identifier))))
+          (bare_element)
+          (bare_element)))
       (quantifier)))
   (pattern_definition
     name: (identifier)
     pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))))
 
@@ -116,8 +97,7 @@ pattern2 := @pattern1 [custom.other=val].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value))))
   (metadata_entry
@@ -127,11 +107,10 @@ pattern2 := @pattern1 [custom.other=val].
     name: (identifier)
     pattern: (pattern_sequence
       (pattern_reference
-        (identifier))
+        name: (identifier))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))))
 
@@ -149,13 +128,11 @@ sample := [custom.key1=val1 & custom.key2=/regex/].
     pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value
             (regex)))))))
@@ -176,8 +153,7 @@ sample := (?<group> [custom.attr=val])+.
         name: (identifier)
         pattern: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))))
       (quantifier))))
@@ -196,14 +172,12 @@ sample := [lemma=/^abc/ & text=/xyz$/].
     pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value
             (regex)))
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value
             (regex)))))))
@@ -224,19 +198,16 @@ example := (?<name> [upos=/VERB|NOUN/]) foo (?<focus>[lemma=test]).
         name: (identifier)
         pattern: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value
               (regex)))))
-      (bare_element
-        (identifier))
+      (bare_element)
       (named_group
         name: (identifier)
         pattern: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value)))))))
 
@@ -258,8 +229,7 @@ test_pattern :=
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         value: (value)))))
 
@@ -278,16 +248,14 @@ sample := [custom.attr=val]{2,5} [custom.other=foo]*.
       (quantified_pattern
         (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value)))
         (quantifier))
       (quantified_pattern
         (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value)))
         (quantifier)))))
@@ -372,8 +340,7 @@ meidai: "動詞終止形, 名詞, 用言終止形"
         (quantified_pattern
           (node_pattern
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value
                 (regex))))
@@ -381,26 +348,22 @@ meidai: "動詞終止形, 名詞, 用言終止形"
         (node_pattern
           (attribute_conjunction
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value
                 (regex)))
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value)))))
       (node_pattern
         (attribute_conjunction
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))))))
   (pattern_definition
@@ -408,13 +371,11 @@ meidai: "動詞終止形, 名詞, 用言終止形"
     pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))))
   (pattern_definition
@@ -422,24 +383,22 @@ meidai: "動詞終止形, 名詞, 用言終止形"
     pattern: (node_pattern
       (attribute_conjunction
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))))
   (pattern_definition
     name: (identifier)
     pattern: (alternation
       (pattern_reference
-        (identifier))
+        name: (identifier))
       (pattern_reference
-        (identifier))
+        name: (identifier))
       (pattern_reference
-        (identifier))))
+        name: (identifier))))
   (pattern_definition
     name: (identifier)
     pattern: (alternation
@@ -447,8 +406,7 @@ meidai: "動詞終止形, 名詞, 用言終止形"
         (quantified_pattern
           (node_pattern
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value
                 (regex))))
@@ -456,48 +414,42 @@ meidai: "動詞終止形, 名詞, 用言終止形"
         (node_pattern
           (attribute_conjunction
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value
                 (regex)))
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value)))))
       (node_pattern
         (attribute_conjunction
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))))))
   (pattern_definition
     name: (identifier)
     pattern: (alternation
       (pattern_reference
-        (identifier))
+        name: (identifier))
       (pattern_reference
-        (identifier))))
+        name: (identifier))))
   (pattern_definition
     name: (identifier)
     pattern: (alternation
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))))
   (comment)
@@ -508,24 +460,20 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (node_pattern
         (attribute_conjunction
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value
               (regex)))
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value
               (regex)))))
       (quantified_pattern
-        (bare_element
-          (identifier))
+        (bare_element)
         (quantifier))
       (quantified_pattern
-        (bare_element
-          (identifier))
+        (bare_element)
         (quantifier))))
   (comment)
   (comment)
@@ -545,17 +493,15 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (named_group
         name: (identifier)
         pattern: (pattern_reference
-          (identifier)))
+          name: (identifier)))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))
-      (bare_element
-        (identifier))
+      (bare_element)
       (pattern_reference
-        (identifier))))
+        name: (identifier))))
   (metadata_entry
     key: (identifier)
     value: (metadata_string))
@@ -571,17 +517,15 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (named_group
         name: (identifier)
         pattern: (pattern_reference
-          (identifier)))
+          name: (identifier)))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))
-      (bare_element
-        (identifier))
+      (bare_element)
       (pattern_reference
-        (identifier))))
+        name: (identifier))))
   (metadata_entry
     key: (identifier)
     value: (metadata_string))
@@ -600,9 +544,8 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (named_group
         name: (identifier)
         pattern: (pattern_reference
-          (identifier)))
-      (bare_element
-        (identifier))))
+          name: (identifier)))
+      (bare_element)))
   (metadata_entry
     key: (identifier)
     value: (metadata_string))
@@ -621,11 +564,9 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (named_group
         name: (identifier)
         pattern: (pattern_reference
-          (identifier)))
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier))))
+          name: (identifier)))
+      (bare_element)
+      (bare_element)))
   (metadata_entry
     key: (identifier)
     value: (metadata_string))
@@ -644,11 +585,10 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (named_group
         name: (identifier)
         pattern: (pattern_reference
-          (identifier)))
+          name: (identifier)))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))))
   (metadata_entry
@@ -669,11 +609,10 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (named_group
         name: (identifier)
         pattern: (pattern_reference
-          (identifier)))
+          name: (identifier)))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))))
   (metadata_entry
@@ -692,27 +631,23 @@ meidai: "動詞終止形, 名詞, 用言終止形"
         name: (identifier)
         pattern: (alternation
           (pattern_reference
-            (identifier))
+            name: (identifier))
           (node_pattern
             (attribute
-              key: (key
-                (attribute_key))
+              attribute: (attribute_key)
               operator: (attribute_operator)
               value: (value)))
           (pattern_reference
-            (identifier))))
-      (bare_element
-        (identifier))
-      (bare_element
-        (identifier))
+            name: (identifier))))
+      (bare_element)
+      (bare_element)
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))
       (pattern_reference
-        (identifier)))))
+        name: (identifier)))))
 
 ================================================================================
 regular-foundations.lx
@@ -730,8 +665,7 @@ legacy := ^ [text not in {必ず, 決して}].
     name: (identifier)
     pattern: (node_pattern
       (attribute
-        key: (key
-          (attribute_key))
+        attribute: (attribute_key)
         operator: (attribute_operator)
         values: (value_set
           (value)
@@ -743,18 +677,16 @@ legacy := ^ [text not in {必ず, 決して}].
       (preceded_by
         body: (node_pattern
           (attribute
-            key: (key
-              (attribute_key))
+            attribute: (attribute_key)
             operator: (attribute_operator)
             value: (value))))
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))
       (pattern_reference
-        (identifier))
+        name: (identifier))
       (sentence_end)))
   (pattern_definition
     name: (identifier)
@@ -762,8 +694,7 @@ legacy := ^ [text not in {必ず, 決して}].
       (sentence_start)
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           values: (value_set
             (value)
@@ -793,14 +724,12 @@ any_between := [upos=NOUN] [] [upos=VERB].
     pattern: (pattern_sequence
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value)))
       (node_pattern)
       (node_pattern
         (attribute
-          key: (key
-            (attribute_key))
+          attribute: (attribute_key)
           operator: (attribute_operator)
           value: (value))))))
