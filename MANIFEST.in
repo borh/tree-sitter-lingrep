@@ -1,2 +1,0 @@
-include src/tree_sitter/parser.h
-recursive-include queries *.scm

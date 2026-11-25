@@ -35,7 +35,6 @@
             pkgs.bashInteractive
             pkgs.nodejs
             pkgs.git
-            pkgs.gnumake
             pkgs.tree-sitter
           ];
         in
@@ -73,10 +72,9 @@
             name = "build-ts";
             runtimeInputs = development-packages;
             text = ''
-              make clean
               tree-sitter generate --abi=15 --report-states-for-rule '-' grammar.js
               tree-sitter generate --abi=15 grammar.js
-              make test
+              tree-sitter test
               tree-sitter build --wasm
               tree-sitter playground -q
             '';
