@@ -1,3 +1,7 @@
+const RANGE_QUANTIFIER = /\{\d+(?:,\d*)?\}/;
+
+const RELATION_LABEL = String.raw`[a-z][a-z0-9_]*(?::(?:[a-z0-9_]+|\*))?`;
+
 export default grammar({
   name: 'lingrep',
   start: $ => $.source_file,
@@ -226,30 +230,14 @@ export default grammar({
       $.analyzer_segmentation_field
     ),
 
-    analyzer_family_field: $ => seq(
-      field('key', alias('family', $.identifier)),
-      ':',
-      field('value', $.analyzer_identifier)
-    ),
+    analyzer_family_field: $ => keyed($, 'family', field('value', $.analyzer_identifier)),
 
-    analyzer_resource_field: $ => seq(
-      field('key', alias('resource', $.identifier)),
-      ':',
-      field('value', $.analyzer_identifier)
-    ),
+    analyzer_resource_field: $ => keyed($, 'resource', field('value', $.analyzer_identifier)),
 
-    analyzer_split_field: $ => seq(
-      field('key', alias('split', $.identifier)),
-      ':',
-      field('value', $.sudachi_split)
-    ),
+    analyzer_split_field: $ => keyed($, 'split', field('value', $.sudachi_split)),
 
-    analyzer_segmentation_field: $ => seq(
-      field('key', alias('segmentation', $.identifier)),
-      ':',
-      '[',
-      commaSep1(field('value', $.segmentation_mode)),
-      ']'
+    analyzer_segmentation_field: $ => keyed($, 'segmentation',
+      '[', commaSep1(field('value', $.segmentation_mode)), ']'
     ),
 
     analyzer_identifier: $ => /"[a-z][a-z0-9_-]*"/,
@@ -261,20 +249,12 @@ export default grammar({
     // `key` is compiler-owned syntax rather than an open metadata value. A
     // dedicated node preserves projection order and gives the lowerer named
     // fields instead of asking it to reinterpret a JSON-shaped map.
-    key_entry: $ => seq(
-      field('key', alias('key', $.identifier)),
-      ':',
-      field('value', choice($.metadata_none, $.key_projection_list))
-    ),
+    key_entry: $ => keyed($, 'key', field('value', choice($.metadata_none, $.key_projection_list))),
 
     // `skip: @T` names the test whose tokens a pattern steps over. Like
     // `key`, it is compiler-owned syntax: its value is a test reference, which
     // an open metadata value cannot spell.
-    skip_entry: $ => seq(
-      field('key', alias('skip', $.identifier)),
-      ':',
-      field('value', choice($.metadata_none, $.test_reference))
-    ),
+    skip_entry: $ => keyed($, 'skip', field('value', choice($.metadata_none, $.test_reference))),
 
     key_projection_list: $ => seq(
       '[',
@@ -369,23 +349,8 @@ export default grammar({
     // `[text=where]` a legal bracketed value, exactly like the four
     // lookaround names.
     pattern_definition: $ => choice(
-      seq(
-        field('kind', $.definition_kind),
-        field('name', $.identifier),
-        ':=',
-        field('pattern', $._pattern),
-        optional(field('where', $.where_clause)),
-        optional(field('measure', $.measure_clause)),
-        '.'
-      ),
-      seq(
-        field('name', $._annotation_identifier),
-        ':=',
-        field('pattern', $._pattern),
-        optional(field('where', $.where_clause)),
-        optional(field('measure', $.measure_clause)),
-        '.'
-      )
+      seq(field('kind', $.definition_kind), field('name', $.identifier), ...definitionBody($)),
+      seq(field('name', $._annotation_identifier), ...definitionBody($))
     ),
 
     lexicon_definition: $ => seq(
@@ -559,54 +524,22 @@ export default grammar({
 
     parenthesized_test: $ => seq('(', $._test, ')'),
 
-    attribute: $ => choice(
-      seq(
-        field('key', $.key),
-        field('operator', alias($._scalar_attribute_operator, $.attribute_operator)),
-        field('value', $.value)
-      ),
-      seq(
-        field('key', $.key),
-        field('operator', alias($._set_attribute_operator, $.attribute_operator)),
-        choice(
-          field('values', $.value_set),
-          field('set', $.set_reference)
-        )
-      ),
-      seq(
-        field('key', $.key),
-        field('operator', alias($._near_attribute_operator, $.attribute_operator)),
-        field('value', $.value),
-        '>=',
-        field('threshold', $.similarity_threshold)
-      ),
-      seq(
-        field('key', $.key),
-        field('operator', $.set_has_operator),
-        field('value', $.value)
-      ),
-      seq(
-        field('key', $.key),
-        field('operator', $.set_has_any_operator),
-        choice(
-          field('values', $.value_set),
-          field('set', $.set_reference)
-        )
-      ),
-      seq(
-        field('key', $.key),
-        field('operator', $.set_not_has_operator),
-        field('value', $.value)
-      ),
-      seq(
-        field('key', $.key),
-        field('operator', $.set_not_has_any_operator),
-        choice(
-          field('values', $.value_set),
-          field('set', $.set_reference)
-        )
-      )
-    ),
+    attribute: $ => {
+      const form = (operator, ...operand) =>
+        seq(field('key', $.key), field('operator', operator), ...operand);
+      return choice(
+        form(alias($._scalar_attribute_operator, $.attribute_operator), field('value', $.value)),
+        form(alias($._set_attribute_operator, $.attribute_operator), setOperand($)),
+        form(
+          alias($._near_attribute_operator, $.attribute_operator),
+          field('value', $.value), '>=', field('threshold', $.similarity_threshold)
+        ),
+        form($.set_has_operator, field('value', $.value)),
+        form($.set_has_any_operator, setOperand($)),
+        form($.set_not_has_operator, field('value', $.value)),
+        form($.set_not_has_any_operator, setOperand($))
+      );
+    },
 
     // `=`/`!=` are exact (literal operands only, enforced downstream);
     // `~`/`!~` are search (literal substring containment, or regex search).
@@ -723,37 +656,13 @@ export default grammar({
 
     sentence_end: $ => '$',
 
-    preceded_by: $ => seq(
-      'preceded_by',
-      '(',
-      field('body', $._pattern),
-      optional($._lookaround_scope),
-      ')'
-    ),
+    preceded_by: $ => lookaround($, 'preceded_by'),
 
-    not_preceded_by: $ => seq(
-      'not_preceded_by',
-      '(',
-      field('body', $._pattern),
-      optional($._lookaround_scope),
-      ')'
-    ),
+    not_preceded_by: $ => lookaround($, 'not_preceded_by'),
 
-    followed_by: $ => seq(
-      'followed_by',
-      '(',
-      field('body', $._pattern),
-      optional($._lookaround_scope),
-      ')'
-    ),
+    followed_by: $ => lookaround($, 'followed_by'),
 
-    not_followed_by: $ => seq(
-      'not_followed_by',
-      '(',
-      field('body', $._pattern),
-      optional($._lookaround_scope),
-      ')'
-    ),
+    not_followed_by: $ => lookaround($, 'not_followed_by'),
 
     // With `within=document` or `within=<division kind>`, the body may match
     // tokens of the neighbouring sentences in that unit.
@@ -785,7 +694,7 @@ export default grammar({
       '+',
       '*',
       '?',
-      /\{\d+(?:,\d*)?\}/
+      RANGE_QUANTIFIER
     ),
 
     measure_clause: $ => seq('measure', commaSep1($.named_measure)),
@@ -821,7 +730,7 @@ export default grammar({
       field('operand', $.capture_reference), '.', field('attribute', $.attribute_key)
     ),
 
-    dependent_count: _ => /\{\d+(?:,\d*)?\}/,
+    dependent_count: _ => RANGE_QUANTIFIER,
 
     span_constraint: $ => seq(
       'span', '(', field('layer', choice($.span_layer_name, $.metadata_string)), ',',
@@ -990,9 +899,9 @@ export default grammar({
     // unsubtyped form would make `obl|obl:*` mean `obl:*`. Write
     // `-[obl|obl:*]->` for "obl, subtyped or not". A bare `*` is the distinct
     // `any_relation` form above rather than a relation label.
-    relation_label: $ => /[a-z][a-z0-9_]*(?::(?:[a-z0-9_]+|\*))?/,
+    relation_label: $ => new RegExp(RELATION_LABEL),
 
-    deep_relation_label: $ => /(?:[a-z][a-z0-9_]*(?::(?:[a-z0-9_]+|\*))?|\*)@!?[a-z][a-z0-9_]*/,
+    deep_relation_label: $ => new RegExp(`(?:${RELATION_LABEL}|\\*)@!?[a-z][a-z0-9_]*`),
 
     identifier: $ => /[a-zA-Z_\u4E00-\u9FFF\u3040-\u309F\u30A0-\u30FF][\w\u4E00-\u9FFF\u3040-\u309F\u30A0-\u30FF]*/,
     
@@ -1002,4 +911,26 @@ export default grammar({
 
 function commaSep1(rule) {
   return seq(rule, repeat(seq(',', rule)));
+}
+
+function keyed($, key, ...value) {
+  return seq(field('key', alias(key, $.identifier)), ':', ...value);
+}
+
+function setOperand($) {
+  return choice(field('values', $.value_set), field('set', $.set_reference));
+}
+
+function lookaround($, keyword) {
+  return seq(keyword, '(', field('body', $._pattern), optional($._lookaround_scope), ')');
+}
+
+function definitionBody($) {
+  return [
+    ':=',
+    field('pattern', $._pattern),
+    optional(field('where', $.where_clause)),
+    optional(field('measure', $.measure_clause)),
+    '.',
+  ];
 }
