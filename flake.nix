@@ -81,6 +81,47 @@
               tree-sitter playground -q
             '';
           };
+          checks =
+            let
+              grammarCheck =
+                name: script:
+                pkgs.runCommand "tree-sitter-lingrep-${name}"
+                  {
+                    nativeBuildInputs = [
+                      pkgs.tree-sitter
+                      pkgs.nodejs
+                      pkgs.stdenv.cc
+                    ];
+                  }
+                  ''
+                    export HOME=$TMPDIR XDG_CACHE_HOME=$TMPDIR/cache TREE_SITTER_LIBDIR=$TMPDIR/lib
+                    cp -r ${./.} grammar
+                    chmod -R u+w grammar
+                    cd grammar
+                    ${script}
+                    touch $out
+                  '';
+            in
+            {
+              generated = grammarCheck "generated" ''
+                cp -r src $TMPDIR/committed-src
+                tree-sitter generate --abi=15
+                diff -r $TMPDIR/committed-src src
+              '';
+              corpus = grammarCheck "corpus" ''
+                tree-sitter test
+                node scripts/check-corpus-fields.mjs
+              '';
+              queries = grammarCheck "queries" ''
+                for query in queries/lingrep/*.scm; do
+                  tree-sitter query "$query" test/highlight/keywords.lx > /dev/null
+                done
+              '';
+              highlights = grammarCheck "highlights" ''
+                node scripts/check-highlights.mjs
+              '';
+            };
+
           packages.tree-sitter-lingrep = pkgs.tree-sitter.buildGrammar {
             language = "lingrep";
             version = "0.1.0";
