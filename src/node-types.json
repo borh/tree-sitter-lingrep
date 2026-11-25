@@ -2727,6 +2727,10 @@
         "required": true,
         "types": [
           {
+            "type": "anonymous_dependency_node",
+            "named": true
+          },
+          {
             "type": "basic_head_endpoint",
             "named": true
           },
@@ -2736,6 +2740,10 @@
           },
           {
             "type": "graph_node_binding",
+            "named": true
+          },
+          {
+            "type": "node_pattern",
             "named": true
           }
         ]

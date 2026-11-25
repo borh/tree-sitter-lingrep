@@ -714,90 +714,31 @@ export default grammar({
       repeat1(seq('<', field('operand', $.capture_reference)))
     ),
 
-    // `$head -[labels]-> $dependent` points head \u2192 dependent, as UD draws a
-    // basic edge. A dependent capture binds identity; a node pattern tests an
-    // edge-compatible dependent without binding it; `_` asks only whether one
-    // exists. `not` is the complement under a complete observation of the
-    // relevant edge set. A positive basic edge may instead bind one endpoint
-    // as a graph node. Enhanced negation accepts capture references or a
-    // derived `basic_head($capture)` at either endpoint and no edge binder;
-    // graph-node binders, anonymous and predicate targets, and named edges are
-    // positive-only. A derived basic head is valid only as an enhanced endpoint;
-    // it is not a pattern primary or a basic-relation operand.
-    relation_constraint: $ => choice(
-      seq(
-        optional(field('polarity', $.relation_negation)),
-        field('head', choice($.capture_reference, $.graph_node_binding)),
-        '-[', field('path', '+'), field('label', $.label_set),
-        optional(seq(field('boundary', choice('first', 'last')), field('boundary_label', $.label_set))),
-        ']->', field('dependent', choice($.capture_reference, $.graph_node_binding))
-      ),
-      seq(
-        optional(field('polarity', $.relation_negation)),
-        field('head', $.capture_reference),
-        '-[',
-        field('label', $.label_set),
-        ']->',
-        field('dependent', $.capture_reference)
-      ),
-      seq(
-        optional(field('polarity', $.relation_negation)),
-        field('head', $.capture_reference),
-        '-[',
-        field('label', $.label_set),
-        ']->',
-        field('dependent', $.anonymous_dependency_node)
-      ),
-      seq(
-        optional(field('polarity', $.relation_negation)),
-        field('head', $.capture_reference),
-        '-[',
-        field('label', $.label_set),
-        ']->',
-        field('dependent', $.node_pattern),
-        optional(field('count', $.dependent_count)),
-        optional(seq('as', field('count_binding', $.capture_reference)))
-      ),
-      seq(
-        field('head', $.graph_node_binding),
-        '-[',
-        field('label', $.label_set),
-        ']->',
-        field('dependent', $.capture_reference)
-      ),
-      seq(
-        field('head', $.capture_reference),
-        '-[',
-        field('label', $.label_set),
-        ']->',
-        field('dependent', $.graph_node_binding)
-      ),
-      seq(
-        field('polarity', $.relation_negation),
-        field('head', choice($.capture_reference, $.basic_head_endpoint)),
-        '-[',
-        field('kind', $.relation_kind),
-        field('label', $.label_set),
-        ']->',
-        field('dependent', choice($.capture_reference, $.basic_head_endpoint))
-      ),
-      seq(
-        field('head', choice(
-          $.capture_reference,
-          $.graph_node_binding,
-          $.basic_head_endpoint
-        )),
-        '-[',
-        field('kind', $.relation_kind),
-        field('label', $.label_set),
-        optional(seq('as', field('edge', $.capture_reference))),
-        ']->',
-        field('dependent', choice(
-          $.capture_reference,
-          $.graph_node_binding,
-          $.basic_head_endpoint
-        ))
-      )
+    // `$head -[labels]-> $dependent` points head → dependent, as UD draws a
+    // basic edge. One production admits every combination of endpoint and
+    // modifier; the compiler diagnoses the combinations it does not support,
+    // because a diagnostic naming the restriction beats an `ERROR` node.
+    relation_constraint: $ => seq(
+      optional(field('polarity', $.relation_negation)),
+      field('head', $._relation_endpoint),
+      '-[',
+      optional(field('kind', $.relation_kind)),
+      optional(field('path', '+')),
+      field('label', $.label_set),
+      optional(seq(field('boundary', choice('first', 'last')), field('boundary_label', $.label_set))),
+      optional(seq('as', field('edge', $.capture_reference))),
+      ']->',
+      field('dependent', $._relation_endpoint),
+      optional(field('count', $.dependent_count)),
+      optional(seq('as', field('count_binding', $.capture_reference)))
+    ),
+
+    _relation_endpoint: $ => choice(
+      $.capture_reference,
+      $.graph_node_binding,
+      $.basic_head_endpoint,
+      $.anonymous_dependency_node,
+      $.node_pattern
     ),
 
     relation_negation: $ => 'not',

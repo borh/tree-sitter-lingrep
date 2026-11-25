@@ -4625,401 +4625,10 @@
       ]
     },
     "relation_constraint": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "polarity",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "relation_negation"
-                  }
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "FIELD",
-              "name": "head",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "capture_reference"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "graph_node_binding"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "-["
-            },
-            {
-              "type": "FIELD",
-              "name": "path",
-              "content": {
-                "type": "STRING",
-                "value": "+"
-              }
-            },
-            {
-              "type": "FIELD",
-              "name": "label",
-              "content": {
-                "type": "SYMBOL",
-                "name": "label_set"
-              }
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "FIELD",
-                      "name": "boundary",
-                      "content": {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "STRING",
-                            "value": "first"
-                          },
-                          {
-                            "type": "STRING",
-                            "value": "last"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "type": "FIELD",
-                      "name": "boundary_label",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "label_set"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "STRING",
-              "value": "]->"
-            },
-            {
-              "type": "FIELD",
-              "name": "dependent",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "capture_reference"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "graph_node_binding"
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "polarity",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "relation_negation"
-                  }
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "FIELD",
-              "name": "head",
-              "content": {
-                "type": "SYMBOL",
-                "name": "capture_reference"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "-["
-            },
-            {
-              "type": "FIELD",
-              "name": "label",
-              "content": {
-                "type": "SYMBOL",
-                "name": "label_set"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "]->"
-            },
-            {
-              "type": "FIELD",
-              "name": "dependent",
-              "content": {
-                "type": "SYMBOL",
-                "name": "capture_reference"
-              }
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "polarity",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "relation_negation"
-                  }
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "FIELD",
-              "name": "head",
-              "content": {
-                "type": "SYMBOL",
-                "name": "capture_reference"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "-["
-            },
-            {
-              "type": "FIELD",
-              "name": "label",
-              "content": {
-                "type": "SYMBOL",
-                "name": "label_set"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "]->"
-            },
-            {
-              "type": "FIELD",
-              "name": "dependent",
-              "content": {
-                "type": "SYMBOL",
-                "name": "anonymous_dependency_node"
-              }
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "polarity",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "relation_negation"
-                  }
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "FIELD",
-              "name": "head",
-              "content": {
-                "type": "SYMBOL",
-                "name": "capture_reference"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "-["
-            },
-            {
-              "type": "FIELD",
-              "name": "label",
-              "content": {
-                "type": "SYMBOL",
-                "name": "label_set"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "]->"
-            },
-            {
-              "type": "FIELD",
-              "name": "dependent",
-              "content": {
-                "type": "SYMBOL",
-                "name": "node_pattern"
-              }
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "count",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "dependent_count"
-                  }
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "as"
-                    },
-                    {
-                      "type": "FIELD",
-                      "name": "count_binding",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "capture_reference"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "head",
-              "content": {
-                "type": "SYMBOL",
-                "name": "graph_node_binding"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "-["
-            },
-            {
-              "type": "FIELD",
-              "name": "label",
-              "content": {
-                "type": "SYMBOL",
-                "name": "label_set"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "]->"
-            },
-            {
-              "type": "FIELD",
-              "name": "dependent",
-              "content": {
-                "type": "SYMBOL",
-                "name": "capture_reference"
-              }
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "head",
-              "content": {
-                "type": "SYMBOL",
-                "name": "capture_reference"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "-["
-            },
-            {
-              "type": "FIELD",
-              "name": "label",
-              "content": {
-                "type": "SYMBOL",
-                "name": "label_set"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "]->"
-            },
-            {
-              "type": "FIELD",
-              "name": "dependent",
-              "content": {
-                "type": "SYMBOL",
-                "name": "graph_node_binding"
-              }
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
               "type": "FIELD",
@@ -5030,93 +4639,25 @@
               }
             },
             {
-              "type": "FIELD",
-              "name": "head",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "capture_reference"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "basic_head_endpoint"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "-["
-            },
-            {
-              "type": "FIELD",
-              "name": "kind",
-              "content": {
-                "type": "SYMBOL",
-                "name": "relation_kind"
-              }
-            },
-            {
-              "type": "FIELD",
-              "name": "label",
-              "content": {
-                "type": "SYMBOL",
-                "name": "label_set"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "]->"
-            },
-            {
-              "type": "FIELD",
-              "name": "dependent",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "capture_reference"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "basic_head_endpoint"
-                  }
-                ]
-              }
+              "type": "BLANK"
             }
           ]
         },
         {
-          "type": "SEQ",
+          "type": "FIELD",
+          "name": "head",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_relation_endpoint"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "-["
+        },
+        {
+          "type": "CHOICE",
           "members": [
-            {
-              "type": "FIELD",
-              "name": "head",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "capture_reference"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "graph_node_binding"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "basic_head_endpoint"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "-["
-            },
             {
               "type": "FIELD",
               "name": "kind",
@@ -5126,64 +4667,174 @@
               }
             },
             {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
               "type": "FIELD",
-              "name": "label",
+              "name": "path",
               "content": {
-                "type": "SYMBOL",
-                "name": "label_set"
+                "type": "STRING",
+                "value": "+"
               }
             },
             {
-              "type": "CHOICE",
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "label",
+          "content": {
+            "type": "SYMBOL",
+            "name": "label_set"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
               "members": [
                 {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "as"
-                    },
-                    {
-                      "type": "FIELD",
-                      "name": "edge",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "capture_reference"
+                  "type": "FIELD",
+                  "name": "boundary",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "first"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "last"
                       }
-                    }
-                  ]
+                    ]
+                  }
                 },
                 {
-                  "type": "BLANK"
+                  "type": "FIELD",
+                  "name": "boundary_label",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "label_set"
+                  }
                 }
               ]
             },
             {
-              "type": "STRING",
-              "value": "]->"
-            },
-            {
-              "type": "FIELD",
-              "name": "dependent",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "capture_reference"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "graph_node_binding"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "basic_head_endpoint"
-                  }
-                ]
-              }
+              "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "as"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "edge",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "capture_reference"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "]->"
+        },
+        {
+          "type": "FIELD",
+          "name": "dependent",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_relation_endpoint"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "count",
+              "content": {
+                "type": "SYMBOL",
+                "name": "dependent_count"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "as"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "count_binding",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "capture_reference"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "_relation_endpoint": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "capture_reference"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "graph_node_binding"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "basic_head_endpoint"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "anonymous_dependency_node"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "node_pattern"
         }
       ]
     },

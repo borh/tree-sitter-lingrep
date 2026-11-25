@@ -1002,3 +1002,71 @@ p := (?<w> []) where (?<v> []) -[+ comp first comp:obj]-> $w, $w -[+ comp last c
           (any_relation))
         dependent: (capture_reference
           name: (identifier))))))
+
+================================================================================
+Every endpoint and modifier combination parses as one relation shape
+================================================================================
+p := (?<v> []) (?<o> []) where not (?<e> []) -[enhanced obj]-> $o,
+  not $v -[enhanced obj as $edge]-> _,
+  $v -[+ obj first nsubj as $e]-> [upos=PRON]{2} as $n,
+  basic_head($o) -[*]-> basic_head($v).
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pattern_definition
+    name: (identifier)
+    pattern: (pattern_sequence
+      (named_group
+        name: (identifier)
+        pattern: (node_pattern))
+      (named_group
+        name: (identifier)
+        pattern: (node_pattern)))
+    where: (where_clause
+      constraint: (relation_constraint
+        polarity: (relation_negation)
+        head: (graph_node_binding
+          name: (identifier)
+          predicate: (node_pattern))
+        kind: (relation_kind)
+        label: (label_set
+          term: (relation_label))
+        dependent: (capture_reference
+          name: (identifier)))
+      constraint: (relation_constraint
+        polarity: (relation_negation)
+        head: (capture_reference
+          name: (identifier))
+        kind: (relation_kind)
+        label: (label_set
+          term: (relation_label))
+        edge: (capture_reference
+          name: (identifier))
+        dependent: (anonymous_dependency_node))
+      constraint: (relation_constraint
+        head: (capture_reference
+          name: (identifier))
+        label: (label_set
+          term: (relation_label))
+        boundary_label: (label_set
+          term: (relation_label))
+        edge: (capture_reference
+          name: (identifier))
+        dependent: (node_pattern
+          (attribute
+            attribute: (attribute_key)
+            operator: (attribute_operator)
+            value: (value)))
+        count: (dependent_count)
+        count_binding: (capture_reference
+          name: (identifier)))
+      constraint: (relation_constraint
+        head: (basic_head_endpoint
+          dependent: (capture_reference
+            name: (identifier)))
+        label: (label_set
+          (any_relation))
+        dependent: (basic_head_endpoint
+          dependent: (capture_reference
+            name: (identifier)))))))
