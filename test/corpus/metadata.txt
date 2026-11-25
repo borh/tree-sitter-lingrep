@@ -327,18 +327,78 @@ q := [].
     pattern: (node_pattern)))
 
 ================================================================================
-bundle keywords remain valid definition and annotation names
+top-level keywords are definition names and metadata keys
 ================================================================================
-bundle: "bundle"
-use: "use"
-override: "override"
+defaults: "x"
+bundle: "x"
+use: "x"
+override: "x"
+interpret: "x"
+classify: "x"
+schema: "x"
+policy: "x"
+set: "x"
+test: "x"
+group: "x"
+lexicon: "x"
+pattern: "x"
+fragment: "x"
+defaults := [].
 bundle := [].
-use := @bundle.
-override := @use.
+use := [].
+override := [].
+interpret := [].
+classify := [].
+schema := [].
+policy := [].
+set := [].
+test := [].
+group := [].
+lexicon := [].
+pattern := [].
+fragment := [].
+key := [].
+skip := [].
+analyzer := [].
+vectors := [].
+labels := @key.
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
+  (metadata_entry
+    key: (identifier)
+    value: (metadata_string))
   (metadata_entry
     key: (identifier)
     value: (metadata_string))
@@ -353,8 +413,55 @@ override := @use.
     pattern: (node_pattern))
   (pattern_definition
     name: (identifier)
-    pattern: (pattern_reference
-      (identifier)))
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
+  (pattern_definition
+    name: (identifier)
+    pattern: (node_pattern))
   (pattern_definition
     name: (identifier)
     pattern: (pattern_reference
@@ -434,3 +541,23 @@ classify := @interpret.
     name: (identifier)
     pattern: (pattern_reference
       (identifier))))
+
+================================================================================
+schema declares top-level keywords as keys
+================================================================================
+schema
+  pattern: string
+  fragment set: string
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (schema_block
+    (schema_entry
+      key: (identifier)
+      type: (metadata_type))
+    (schema_entry
+      visibility: (definition_kind)
+      key: (identifier)
+      type: (metadata_type))))

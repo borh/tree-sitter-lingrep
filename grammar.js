@@ -1,5 +1,14 @@
 const RANGE_QUANTIFIER = /\{\d+(?:,\d*)?\}/;
 
+// Words that begin a top-level `KEY: value` entry.
+const ENTRY_KEYWORDS = ['key', 'skip', 'analyzer', 'vectors', 'labels'];
+
+// Words that begin any other top-level item.
+const BLOCK_KEYWORDS = [
+  'defaults', 'bundle', 'use', 'override', 'interpret', 'classify', 'schema',
+  'policy', 'set', 'test', 'group', 'lexicon', 'pattern', 'fragment',
+];
+
 const RELATION_LABEL = String.raw`[a-z][a-z0-9_]*(?::(?:[a-z0-9_]+|\*))?`;
 
 export default grammar({
@@ -83,14 +92,14 @@ export default grammar({
 
     classify_entry: $ => seq('classify', 'by', field('role', $.identifier)),
 
-    _annotation_identifier: $ => choice(
-      $.identifier,
-      alias('bundle', $.identifier),
-      alias('use', $.identifier),
-      alias('override', $.identifier),
-      alias('interpret', $.identifier),
-      alias('classify', $.identifier)
-    ),
+    // Keywords are contextual: a word is reserved only where it begins a
+    // construct. A definition name or metadata key may be any top-level
+    // keyword, because the token after it (`:=` or `:`) decides the reading.
+    // The entry keys of `KEY: value` entries are excluded from metadata keys,
+    // where the two readings share that token.
+    _definition_name: $ => keywordOrIdentifier($, [...ENTRY_KEYWORDS, ...BLOCK_KEYWORDS]),
+
+    _metadata_key: $ => keywordOrIdentifier($, BLOCK_KEYWORDS),
 
     schema_block: $ => seq('schema', repeat($.schema_entry), 'end'),
 
@@ -135,7 +144,7 @@ export default grammar({
 
     schema_entry: $ => seq(
       optional(field('visibility', $.definition_kind)),
-      field('key', $.identifier),
+      field('key', $._metadata_key),
       ':',
       field('type', alias($.identifier, $.metadata_type)),
       optional(field('required', 'required')),
@@ -145,7 +154,7 @@ export default grammar({
     metadata_value_set: $ => seq('in', '{', commaSep1($.metadata_string), '}'),
 
     metadata_entry: $ => seq(
-      field('key', $._annotation_identifier),
+      field('key', $._metadata_key),
       ':',
       field('value', $._metadata_value)
     ),
@@ -350,7 +359,7 @@ export default grammar({
     // lookaround names.
     pattern_definition: $ => choice(
       seq(field('kind', $.definition_kind), field('name', $.identifier), ...definitionBody($)),
-      seq(field('name', $._annotation_identifier), ...definitionBody($))
+      seq(field('name', $._definition_name), ...definitionBody($))
     ),
 
     lexicon_definition: $ => seq(
@@ -410,9 +419,7 @@ export default grammar({
     // of a per-definition `groups:` list. It names a selection over the
     // catalog, not an expression and not literals, so it is its own
     // declaration rather than a third `definition_kind` — the same reason
-    // `set_definition` and `test_definition` are, and the keyword reserves
-    // the bare name the same lexical way: `group := …` fails while
-    // `pattern group := …` stays legal.
+    // `set_definition` and `test_definition` are.
     group_definition: $ => seq(
       'group',
       field('name', $.identifier),
@@ -902,6 +909,10 @@ export default grammar({
     comment: $ => /#.*/
   }
 });
+
+function keywordOrIdentifier($, keywords) {
+  return choice($.identifier, ...keywords.map((word) => alias(word, $.identifier)));
+}
 
 function commaSep1(rule) {
   return seq(rule, repeat(seq(',', rule)));

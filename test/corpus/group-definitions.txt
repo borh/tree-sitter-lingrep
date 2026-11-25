@@ -38,41 +38,6 @@ group upper := layer not in {"S0", "S1"}.
       value: (metadata_string))))
 
 ================================================================================
-group is a reserved name
-:language(lingrep)
-================================================================================
-group := x.
-
---------------------------------------------------------------------------------
-
-(source_file
-  (ERROR
-    (UNEXPECTED '.')))
-
-================================================================================
-group is reserved as a metadata key too
-:language(lingrep)
-================================================================================
-group: "x"
-pattern p := [text=あ].
-
---------------------------------------------------------------------------------
-
-(source_file
-  (ERROR
-    (analyzer_identifier))
-  (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
-      (attribute
-        (key
-          (attribute_key
-            (portable_attribute_key)))
-        (attribute_operator)
-        (value)))))
-
-================================================================================
 group is only a keyword at the top level
 :language(lingrep)
 ================================================================================

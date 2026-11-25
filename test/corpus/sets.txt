@@ -70,38 +70,3 @@ pattern p := [text in {て, で}].
         values: (value_set
           (value)
           (value))))))
-
-================================================================================
-set is a reserved name
-:language(lingrep)
-================================================================================
-set := [text=x].
-
---------------------------------------------------------------------------------
-
-(source_file
-  (ERROR
-    (UNEXPECTED ']')))
-
-================================================================================
-set is reserved as a metadata key too
-:language(lingrep)
-================================================================================
-set: "x"
-pattern p := [text=あ].
-
---------------------------------------------------------------------------------
-
-(source_file
-  (ERROR
-    (analyzer_identifier))
-  (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
-      (attribute
-        (key
-          (attribute_key
-            (portable_attribute_key)))
-        (attribute_operator)
-        (value)))))
