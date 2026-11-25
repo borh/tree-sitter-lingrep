@@ -22,10 +22,7 @@ pattern not_any_reference := [feat.Number not has any @numbers].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (feature_attribute_key
-              name: (ud_feature_name
-                base: (ud_feature_base)))))
+          (attribute_key))
         operator: (set_has_operator)
         value: (value))))
   (pattern_definition
@@ -34,10 +31,7 @@ pattern not_any_reference := [feat.Number not has any @numbers].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (feature_attribute_key
-              name: (ud_feature_name
-                base: (ud_feature_base)))))
+          (attribute_key))
         operator: (set_has_any_operator)
         values: (value_set
           (value)
@@ -48,10 +42,7 @@ pattern not_any_reference := [feat.Number not has any @numbers].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (feature_attribute_key
-              name: (ud_feature_name
-                base: (ud_feature_base)))))
+          (attribute_key))
         operator: (set_not_has_operator)
         value: (value))))
   (pattern_definition
@@ -60,10 +51,7 @@ pattern not_any_reference := [feat.Number not has any @numbers].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (feature_attribute_key
-              name: (ud_feature_name
-                base: (ud_feature_base)))))
+          (attribute_key))
         operator: (set_not_has_any_operator)
         set: (set_reference
           (identifier))))))
@@ -124,40 +112,22 @@ pattern layered := (?<capture> [feat.Gender[psor] has Fem & feat.Number has Sing
     key: (identifier)
     value: (key_projection_list
       (match_key_projection
-        attribute: (attribute_key
-          (portable_attribute_key)))
+        attribute: (attribute_key))
       (match_key_projection
-        attribute: (attribute_key
-          (feature_attribute_key
-            name: (ud_feature_name
-              base: (ud_feature_base)))))
+        attribute: (attribute_key))
       (match_key_projection
-        attribute: (attribute_key
-          (feature_attribute_key
-            name: (ud_feature_name
-              base: (ud_feature_base)
-              layer: (ud_feature_layer)))))
+        attribute: (attribute_key))
       (match_key_projection
-        attribute: (attribute_key
-          (provider_attribute_key
-            segment: (provider_segment)
-            segment: (provider_segment))))
+        attribute: (attribute_key))
       (capture_key_projection
         capture: (capture_reference
           name: (identifier))
-        attribute: (attribute_key
-          (feature_attribute_key
-            name: (ud_feature_name
-              base: (ud_feature_base)
-              layer: (ud_feature_layer)))))
+        attribute: (attribute_key))
       (capture_key_projection
         capture: (capture_reference
           name: (identifier))
         component: (capture_component)
-        attribute: (attribute_key
-          (feature_attribute_key
-            name: (ud_feature_name
-              base: (ud_feature_base)))))))
+        attribute: (attribute_key))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
@@ -168,50 +138,31 @@ pattern layered := (?<capture> [feat.Gender[psor] has Fem & feat.Number has Sing
           (attribute_conjunction
             (attribute
               key: (key
-                (attribute_key
-                  (feature_attribute_key
-                    name: (ud_feature_name
-                      base: (ud_feature_base)
-                      layer: (ud_feature_layer)))))
+                (attribute_key))
               operator: (set_has_operator)
               value: (value))
             (attribute
               key: (key
-                (attribute_key
-                  (feature_attribute_key
-                    name: (ud_feature_name
-                      base: (ud_feature_base)))))
+                (attribute_key))
               operator: (set_has_operator)
               value: (value)))))
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))
 
 ================================================================================
 has any requires the has keyword
+:error
 :language(lingrep)
 ================================================================================
 pattern missing_has := [feat.Number any {Sing, Plur}].
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (ERROR
-    (definition_kind)
-    (identifier)
-    (key
-      (attribute_key
-        (feature_attribute_key
-          (ud_feature_name
-            (ud_feature_base)))))
-    (ud_feature_base)
-    (ud_feature_base)))
+(source_file)
 
 ================================================================================
 not precedes has
@@ -228,10 +179,7 @@ pattern reversed := [feat.Number has not Sing].
     (node_pattern
       (attribute
         (key
-          (attribute_key
-            (feature_attribute_key
-              (ud_feature_name
-                (ud_feature_base)))))
+          (attribute_key))
         (set_has_operator)
         (value))
       (ERROR
@@ -300,10 +248,7 @@ pattern empty_any := [feat.Number has any {}].
     (node_pattern
       (attribute
         (key
-          (attribute_key
-            (feature_attribute_key
-              (ud_feature_name
-                (ud_feature_base)))))
+          (attribute_key))
         (set_has_any_operator)
         (value_set
           (value
@@ -311,25 +256,14 @@ pattern empty_any := [feat.Number has any {}].
 
 ================================================================================
 has any requires a set operand
+:error
 :language(lingrep)
 ================================================================================
 pattern scalar_any := [feat.Number has any Sing].
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (pattern_definition
-    (definition_kind)
-    (identifier)
-    (node_pattern
-      (ERROR
-        (key
-          (attribute_key
-            (feature_attribute_key
-              (ud_feature_name
-                (ud_feature_base)))))
-        (set_has_any_operator)
-        (ud_feature_base)))))
+(source_file)
 
 ================================================================================
 label sets by name and by explicit value set
@@ -344,22 +278,15 @@ pattern verb := [upos=VERB].
   (labels_entry
     value: (labels_map
       (labels_field
-        attribute: (attribute_key
-          (portable_attribute_key))
+        attribute: (attribute_key)
         value: (metadata_string))
       (labels_field
-        attribute: (attribute_key
-          (provider_attribute_key
-            segment: (provider_segment)
-            segment: (provider_segment)))
+        attribute: (attribute_key)
         value: (labels_name_list
           (metadata_string)
           (metadata_string)))
       (labels_field
-        attribute: (attribute_key
-          (feature_attribute_key
-            name: (ud_feature_name
-              base: (ud_feature_base))))
+        attribute: (attribute_key)
         value: (value_set
           (value)
           (value)))))
@@ -369,7 +296,6 @@ pattern verb := [upos=VERB].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value)))))

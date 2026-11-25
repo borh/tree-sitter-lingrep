@@ -18,8 +18,7 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
@@ -27,10 +26,7 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (provider_attribute_key
-              segment: (provider_segment)
-              segment: (provider_segment))))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value
           (regex)))))
@@ -39,8 +35,7 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
@@ -48,10 +43,7 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (provider_attribute_key
-              segment: (provider_segment)
-              segment: (provider_segment))))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value
           (regex)))))
@@ -60,8 +52,7 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
@@ -69,8 +60,7 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
@@ -79,16 +69,12 @@ tilde_in_conjunction := [upos=VERB & unidic.cform ~ 終止形].
       (attribute_conjunction
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))
 
@@ -107,8 +93,7 @@ source := [unidic.surface=x] [text=surface].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
@@ -117,17 +102,13 @@ source := [unidic.surface=x] [text=surface].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))
 
@@ -146,10 +127,7 @@ spaced := [text ~ /a b/].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (provider_attribute_key
-              segment: (provider_segment)
-              segment: (provider_segment))))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value
           (regex)))))
@@ -158,8 +136,7 @@ spaced := [text ~ /a b/].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value
           (regex))))))
@@ -189,10 +166,7 @@ pattern p := [unidic.orthbase near 研究 >= 0.6] [text not near near >= 1 & upo
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)
           threshold: (similarity_threshold)))
@@ -200,14 +174,12 @@ pattern p := [unidic.orthbase near 研究 >= 0.6] [text not near near >= 1 & upo
         (attribute_conjunction
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value)
             threshold: (similarity_threshold))
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value)))))))

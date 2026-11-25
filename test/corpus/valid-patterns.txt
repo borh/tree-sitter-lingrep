@@ -83,22 +83,17 @@ attributes := [upos=VERB & unidic.cform=終止形 & lemma=為る].
       (attribute_conjunction
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))
 
@@ -122,10 +117,7 @@ pattern2 := @pattern1 [custom.other=val].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (provider_attribute_key
-              segment: (provider_segment)
-              segment: (provider_segment))))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value))))
   (metadata_entry
@@ -139,10 +131,7 @@ pattern2 := @pattern1 [custom.other=val].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))
 
@@ -161,18 +150,12 @@ sample := [custom.key1=val1 & custom.key2=/regex/].
       (attribute_conjunction
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value
             (regex)))))))
@@ -194,10 +177,7 @@ sample := (?<group> [custom.attr=val])+.
         pattern: (node_pattern
           (attribute
             key: (key
-              (attribute_key
-                (provider_attribute_key
-                  segment: (provider_segment)
-                  segment: (provider_segment))))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value))))
       (quantifier))))
@@ -217,15 +197,13 @@ sample := [lemma=/^abc/ & text=/xyz$/].
       (attribute_conjunction
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value
             (regex)))
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value
             (regex)))))))
@@ -247,8 +225,7 @@ example := (?<name> [upos=/VERB|NOUN/]) foo (?<focus>[lemma=test]).
         pattern: (node_pattern
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value
               (regex)))))
@@ -259,8 +236,7 @@ example := (?<name> [upos=/VERB|NOUN/]) foo (?<focus>[lemma=test]).
         pattern: (node_pattern
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value)))))))
 
@@ -283,10 +259,7 @@ test_pattern :=
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (provider_attribute_key
-              segment: (provider_segment)
-              segment: (provider_segment))))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value)))))
 
@@ -306,10 +279,7 @@ sample := [custom.attr=val]{2,5} [custom.other=foo]*.
         (node_pattern
           (attribute
             key: (key
-              (attribute_key
-                (provider_attribute_key
-                  segment: (provider_segment)
-                  segment: (provider_segment))))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value)))
         (quantifier))
@@ -317,10 +287,7 @@ sample := [custom.attr=val]{2,5} [custom.other=foo]*.
         (node_pattern
           (attribute
             key: (key
-              (attribute_key
-                (provider_attribute_key
-                  segment: (provider_segment)
-                  segment: (provider_segment))))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value)))
         (quantifier)))))
@@ -406,8 +373,7 @@ meidai: "動詞終止形, 名詞, 用言終止形"
           (node_pattern
             (attribute
               key: (key
-                (attribute_key
-                  (portable_attribute_key)))
+                (attribute_key))
               operator: (attribute_operator)
               value: (value
                 (regex))))
@@ -416,33 +382,25 @@ meidai: "動詞終止形, 名詞, 用言終止形"
           (attribute_conjunction
             (attribute
               key: (key
-                (attribute_key
-                  (portable_attribute_key)))
+                (attribute_key))
               operator: (attribute_operator)
               value: (value
                 (regex)))
             (attribute
               key: (key
-                (attribute_key
-                  (provider_attribute_key
-                    segment: (provider_segment)
-                    segment: (provider_segment))))
+                (attribute_key))
               operator: (attribute_operator)
               value: (value)))))
       (node_pattern
         (attribute_conjunction
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value))
           (attribute
             key: (key
-              (attribute_key
-                (provider_attribute_key
-                  segment: (provider_segment)
-                  segment: (provider_segment))))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value))))))
   (pattern_definition
@@ -451,16 +409,12 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (attribute_conjunction
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))))
   (pattern_definition
@@ -469,16 +423,12 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (attribute_conjunction
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))))
   (pattern_definition
@@ -498,8 +448,7 @@ meidai: "動詞終止形, 名詞, 用言終止形"
           (node_pattern
             (attribute
               key: (key
-                (attribute_key
-                  (portable_attribute_key)))
+                (attribute_key))
               operator: (attribute_operator)
               value: (value
                 (regex))))
@@ -508,33 +457,25 @@ meidai: "動詞終止形, 名詞, 用言終止形"
           (attribute_conjunction
             (attribute
               key: (key
-                (attribute_key
-                  (portable_attribute_key)))
+                (attribute_key))
               operator: (attribute_operator)
               value: (value
                 (regex)))
             (attribute
               key: (key
-                (attribute_key
-                  (provider_attribute_key
-                    segment: (provider_segment)
-                    segment: (provider_segment))))
+                (attribute_key))
               operator: (attribute_operator)
               value: (value)))))
       (node_pattern
         (attribute_conjunction
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value))
           (attribute
             key: (key
-              (attribute_key
-                (provider_attribute_key
-                  segment: (provider_segment)
-                  segment: (provider_segment))))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value))))))
   (pattern_definition
@@ -550,19 +491,13 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))))
   (comment)
@@ -574,15 +509,13 @@ meidai: "動詞終止形, 名詞, 用言終止形"
         (attribute_conjunction
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value
               (regex)))
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value
               (regex)))))
@@ -616,8 +549,7 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (bare_element
@@ -643,8 +575,7 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (bare_element
@@ -717,10 +648,7 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))))
   (metadata_entry
@@ -745,10 +673,7 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))))
   (metadata_entry
@@ -771,8 +696,7 @@ meidai: "動詞終止形, 名詞, 用言終止形"
           (node_pattern
             (attribute
               key: (key
-                (attribute_key
-                  (portable_attribute_key)))
+                (attribute_key))
               operator: (attribute_operator)
               value: (value)))
           (pattern_reference
@@ -784,8 +708,7 @@ meidai: "動詞終止形, 名詞, 用言終止形"
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (pattern_reference
@@ -808,8 +731,7 @@ legacy := ^ [text not in {必ず, 決して}].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         values: (value_set
           (value)
@@ -822,17 +744,13 @@ legacy := ^ [text not in {必ず, 決して}].
         body: (node_pattern
           (attribute
             key: (key
-              (attribute_key
-                (provider_attribute_key
-                  segment: (provider_segment)
-                  segment: (provider_segment))))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value))))
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (pattern_reference
@@ -845,8 +763,7 @@ legacy := ^ [text not in {必ず, 決して}].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           values: (value_set
             (value)
@@ -877,15 +794,13 @@ any_between := [upos=NOUN] [] [upos=VERB].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (node_pattern)
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))

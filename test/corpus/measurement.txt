@@ -49,8 +49,7 @@ chunk := []+ measure count(match.words[@kanji]) as $n.
       pattern: (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))
     measure: (measure_clause
@@ -140,8 +139,7 @@ q := [] [text=measure].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))
 
@@ -212,15 +210,13 @@ related := (?<v> []) | (?<o> []) where $v -[obj]-> $o measure count(match.words[
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))
     measure: (measure_clause

@@ -12,8 +12,7 @@ pattern p := [@t].
     name: (identifier)
     body: (attribute
       key: (key
-        (attribute_key
-          (portable_attribute_key)))
+        (attribute_key))
       operator: (attribute_operator)
       value: (value)))
   (pattern_definition
@@ -57,8 +56,7 @@ pattern p := [!(text=a)].
         (parenthesized_test
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value)))))))
 
@@ -78,18 +76,12 @@ pattern p := [custom.a=1 | custom.b=2].
       (test_disjunction
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))
 
@@ -109,28 +101,19 @@ pattern p := [custom.a=1 & (custom.b=2 | custom.c=3)].
       (attribute_conjunction
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))
         (parenthesized_test
           (test_disjunction
             (attribute
               key: (key
-                (attribute_key
-                  (provider_attribute_key
-                    segment: (provider_segment)
-                    segment: (provider_segment))))
+                (attribute_key))
               operator: (attribute_operator)
               value: (value))
             (attribute
               key: (key
-                (attribute_key
-                  (provider_attribute_key
-                    segment: (provider_segment)
-                    segment: (provider_segment))))
+                (attribute_key))
               operator: (attribute_operator)
               value: (value))))))))
 
@@ -150,8 +133,7 @@ pattern p := [text!=x & !@t].
       (attribute_conjunction
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))
         (test_negation

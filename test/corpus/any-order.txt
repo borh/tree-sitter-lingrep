@@ -22,8 +22,7 @@ any_order := [].
         pattern: (node_pattern
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value))))
       operand: (named_group
@@ -31,8 +30,7 @@ any_order := [].
         pattern: (node_pattern
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value)))))
     where: (where_clause
@@ -56,8 +54,7 @@ any_order := [].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition

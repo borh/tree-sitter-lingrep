@@ -38,8 +38,7 @@ pattern semantic_error := (?<unit> a) same_as($unit, by=unidic.surface).
         capture: (capture_reference
           name: (identifier))
         projection: (capture_projection
-          (attribute_key
-            (portable_attribute_key))))))
+          (attribute_key)))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
@@ -52,18 +51,12 @@ pattern semantic_error := (?<unit> a) same_as($unit, by=unidic.surface).
         capture: (capture_reference
           name: (identifier))
         projection: (capture_projection
-          (attribute_key
-            (provider_attribute_key
-              segment: (provider_segment)
-              segment: (provider_segment)))))
+          (attribute_key)))
       (same_as
         capture: (capture_reference
           name: (identifier))
         projection: (capture_projection
-          (attribute_key
-            (provider_attribute_key
-              segment: (provider_segment)
-              segment: (provider_segment)))))))
+          (attribute_key)))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
@@ -87,8 +80,7 @@ pattern semantic_error := (?<unit> a) same_as($unit, by=unidic.surface).
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value))))
   (pattern_definition
@@ -103,7 +95,4 @@ pattern semantic_error := (?<unit> a) same_as($unit, by=unidic.surface).
         capture: (capture_reference
           name: (identifier))
         projection: (capture_projection
-          (attribute_key
-            (provider_attribute_key
-              segment: (provider_segment)
-              segment: (provider_segment))))))))
+          (attribute_key))))))

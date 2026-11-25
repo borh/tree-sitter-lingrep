@@ -17,14 +17,11 @@ lexicon target_words by [text, norm] := {"大学院", "行う", "Web.config", "i
     value: (key_projection_list
       (lexical_term_projection)
       (lexical_segments_projection
-        attribute: (attribute_key
-          (portable_attribute_key)))))
+        attribute: (attribute_key))))
   (lexicon_definition
     name: (identifier)
-    projection: (attribute_key
-      (portable_attribute_key))
-    projection: (attribute_key
-      (portable_attribute_key))
+    projection: (attribute_key)
+    projection: (attribute_key)
     member: (metadata_string)
     member: (metadata_string)
     member: (metadata_string)

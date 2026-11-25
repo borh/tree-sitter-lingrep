@@ -12,33 +12,26 @@ pattern p := (?<head> []) (?<phrase> []+) (?<tail> []).
     key: (identifier)
     value: (key_projection_list
       (match_key_projection
-        attribute: (attribute_key
-          (provider_attribute_key
-            segment: (provider_segment)
-            segment: (provider_segment))))
+        attribute: (attribute_key))
       (capture_key_projection
         capture: (capture_reference
           name: (identifier))
-        attribute: (attribute_key
-          (portable_attribute_key)))
+        attribute: (attribute_key))
       (capture_key_projection
         capture: (capture_reference
           name: (identifier))
         component: (capture_component)
-        attribute: (attribute_key
-          (portable_attribute_key)))
+        attribute: (attribute_key))
       (capture_key_projection
         capture: (capture_reference
           name: (identifier))
         component: (capture_component)
-        attribute: (attribute_key
-          (portable_attribute_key)))
+        attribute: (attribute_key))
       (capture_key_projection
         capture: (capture_reference
           name: (identifier))
         component: (capture_component)
-        attribute: (attribute_key
-          (portable_attribute_key)))))
+        attribute: (attribute_key))))
   (pattern_definition
     kind: (definition_kind)
     name: (identifier)
@@ -109,10 +102,7 @@ pattern p := [].
       key: (identifier)
       value: (key_projection_list
         (match_key_projection
-          attribute: (attribute_key
-            (provider_attribute_key
-              segment: (provider_segment)
-              segment: (provider_segment)))))))
+          attribute: (attribute_key)))))
   (key_entry
     key: (identifier)
     value: (metadata_none))

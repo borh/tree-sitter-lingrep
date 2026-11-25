@@ -164,8 +164,7 @@ resolve := [text=a].
     pattern: (node_pattern
       (attribute
         key: (key
-          (attribute_key
-            (portable_attribute_key)))
+          (attribute_key))
         operator: (attribute_operator)
         value: (value)))))
 

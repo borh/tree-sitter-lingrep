@@ -20,10 +20,7 @@ pattern literals := [text=followed_by] [lemma=not_preceded_by].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (provider_attribute_key
-                segment: (provider_segment)
-                segment: (provider_segment))))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (sentence_end)))
@@ -38,16 +35,14 @@ pattern literals := [text=followed_by] [lemma=not_preceded_by].
               (node_pattern
                 (attribute
                   key: (key
-                    (attribute_key
-                      (portable_attribute_key)))
+                    (attribute_key))
                   operator: (attribute_operator)
                   value: (value)))
               (quantified_pattern
                 (node_pattern
                   (attribute
                     key: (key
-                      (attribute_key
-                        (portable_attribute_key)))
+                      (attribute_key))
                     operator: (attribute_operator)
                     value: (value)))
                 (quantifier))))
@@ -55,8 +50,7 @@ pattern literals := [text=followed_by] [lemma=not_preceded_by].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))))
   (pattern_definition
@@ -67,17 +61,13 @@ pattern literals := [text=followed_by] [lemma=not_preceded_by].
         body: (node_pattern
           (attribute
             key: (key
-              (attribute_key
-                (provider_attribute_key
-                  segment: (provider_segment)
-                  segment: (provider_segment))))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value))))
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))))
   (pattern_definition
@@ -90,8 +80,7 @@ pattern literals := [text=followed_by] [lemma=not_preceded_by].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))))
   (pattern_definition
@@ -105,23 +94,20 @@ pattern literals := [text=followed_by] [lemma=not_preceded_by].
               (node_pattern
                 (attribute
                   key: (key
-                    (attribute_key
-                      (portable_attribute_key)))
+                    (attribute_key))
                   operator: (attribute_operator)
                   value: (value)))
               (node_pattern
                 (attribute
                   key: (key
-                    (attribute_key
-                      (portable_attribute_key)))
+                    (attribute_key))
                   operator: (attribute_operator)
                   value: (value)))))
           (quantifier)))
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))))
   (pattern_definition
@@ -136,10 +122,7 @@ pattern literals := [text=followed_by] [lemma=not_preceded_by].
                 (node_pattern
                   (attribute
                     key: (key
-                      (attribute_key
-                        (provider_attribute_key
-                          segment: (provider_segment)
-                          segment: (provider_segment))))
+                      (attribute_key))
                     operator: (attribute_operator)
                     value: (value)))
                 (pattern_reference
@@ -150,8 +133,7 @@ pattern literals := [text=followed_by] [lemma=not_preceded_by].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))))
   (pattern_definition
@@ -161,15 +143,13 @@ pattern literals := [text=followed_by] [lemma=not_preceded_by].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))
 
@@ -204,8 +184,7 @@ pattern first := not_preceded_by([], within=paragraph) [upos=PRON].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value)))
       (followed_by
@@ -216,10 +195,7 @@ pattern first := not_preceded_by([], within=paragraph) [upos=PRON].
           (node_pattern
             (attribute
               key: (key
-                (attribute_key
-                  (provider_attribute_key
-                    segment: (provider_segment)
-                    segment: (provider_segment))))
+                (attribute_key))
               operator: (attribute_operator)
               value: (value))))
         scope: (identifier))))
@@ -233,8 +209,7 @@ pattern first := not_preceded_by([], within=paragraph) [upos=PRON].
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))
 

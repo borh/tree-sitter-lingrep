@@ -471,29 +471,6 @@
     }
   },
   {
-    "type": "attribute_key",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "feature_attribute_key",
-          "named": true
-        },
-        {
-          "type": "portable_attribute_key",
-          "named": true
-        },
-        {
-          "type": "provider_attribute_key",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "attribute_operator",
     "named": true,
     "fields": {}
@@ -753,22 +730,6 @@
     "type": "dependent_count",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "feature_attribute_key",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "ud_feature_name",
-            "named": true
-          }
-        ]
-      }
-    }
   },
   {
     "type": "followed_by",
@@ -2525,11 +2486,6 @@
     "fields": {}
   },
   {
-    "type": "portable_attribute_key",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "preceded_by",
     "named": true,
     "fields": {
@@ -2618,27 +2574,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "provider_attribute_key",
-    "named": true,
-    "fields": {
-      "segment": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "provider_segment",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "provider_segment",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "quantified_pattern",
@@ -3473,37 +3408,6 @@
     }
   },
   {
-    "type": "ud_feature_layer",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "ud_feature_name",
-    "named": true,
-    "fields": {
-      "base": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "ud_feature_base",
-            "named": true
-          }
-        ]
-      },
-      "layer": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "ud_feature_layer",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "value",
     "named": true,
     "fields": {},
@@ -3800,6 +3704,10 @@
     "named": false
   },
   {
+    "type": "attribute_key",
+    "named": true
+  },
+  {
     "type": "basic_head",
     "named": false
   },
@@ -3865,10 +3773,6 @@
     "named": false
   },
   {
-    "type": "feat",
-    "named": false
-  },
-  {
     "type": "first",
     "named": false
   },
@@ -3906,10 +3810,6 @@
   },
   {
     "type": "last",
-    "named": false
-  },
-  {
-    "type": "lemma",
     "named": false
   },
   {
@@ -3966,10 +3866,6 @@
   },
   {
     "type": "nodes",
-    "named": false
-  },
-  {
-    "type": "norm",
     "named": false
   },
   {
@@ -4065,15 +3961,7 @@
     "named": false
   },
   {
-    "type": "surface",
-    "named": false
-  },
-  {
     "type": "test",
-    "named": false
-  },
-  {
-    "type": "text",
     "named": false
   },
   {
@@ -4082,14 +3970,6 @@
   },
   {
     "type": "true",
-    "named": false
-  },
-  {
-    "type": "ud_feature_base",
-    "named": true
-  },
-  {
-    "type": "upos",
     "named": false
   },
   {
@@ -4114,10 +3994,6 @@
   },
   {
     "type": "words",
-    "named": false
-  },
-  {
-    "type": "xpos",
     "named": false
   },
   {

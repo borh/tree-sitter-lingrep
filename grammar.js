@@ -1,5 +1,8 @@
 const RANGE_QUANTIFIER = /\{\d+(?:,\d*)?\}/;
 
+// The unprefixed attribute keys, matching lingrep's `validate_canonical_key`.
+const PORTABLE_ATTRIBUTE_KEYS = ['text', 'surface', 'lemma', 'norm', 'upos', 'xpos'];
+
 // Words that begin a top-level `KEY: value` entry.
 const ENTRY_KEYWORDS = ['key', 'skip', 'analyzer', 'vectors', 'labels'];
 
@@ -20,7 +23,6 @@ export default grammar({
     $.comment,
   ],
 
-  conflicts: $ => [[$.provider_attribute_key]],
 
 
   rules: {
@@ -302,7 +304,7 @@ export default grammar({
       // one literal rather than opening this position to arbitrary identifiers,
       // so misspelled ordinary attributes remain syntax errors.
       field('attribute', choice(
-        $.attribute_key,
+        alias($._projection_attribute_key, $.attribute_key),
         alias('rel', $.identifier)
       ))
     ),
@@ -573,38 +575,17 @@ export default grammar({
 
     key: $ => $.attribute_key,
 
-    // Canonical V8 attributes have three disjoint namespaces. Keeping these
-    // as structured nodes lets the lowerer validate and intern without
-    // reparsing an unrestricted identifier string.
-    attribute_key: $ => choice(
-      $.portable_attribute_key,
-      $.feature_attribute_key,
-      $.provider_attribute_key
-    ),
+    // One token, so no white space or comment can sit inside a key. Three
+    // disjoint namespaces: the six portable keys, `feat.Name` or
+    // `feat.Name[layer]`, and provider paths of two or more lowercase segments
+    // whose first segment is neither a portable key nor `feat`. A provider
+    // path cannot end in `.`, so the `.` that ends a definition directly after
+    // a key, as in `$a.lemma = $b.unidic.pos1.`, lexes as the terminator.
+    attribute_key: _ => attributeKeyToken([]),
 
-    portable_attribute_key: $ => choice('text', 'surface', 'lemma', 'norm', 'upos', 'xpos'),
-
-    feature_attribute_key: $ => seq(
-      'feat',
-      '.',
-      field('name', $.ud_feature_name)
-    ),
-
-    ud_feature_name: $ => seq(
-      field('base', $.ud_feature_base),
-      optional(seq('[', field('layer', $.ud_feature_layer), ']'))
-    ),
-
-    ud_feature_base: $ => /[A-Z][A-Za-z0-9]*/,
-
-    ud_feature_layer: $ => /[a-z][a-z0-9]*/,
-
-    provider_attribute_key: $ => seq(
-      field('segment', $.provider_segment),
-      repeat1(seq('.', field('segment', $.provider_segment)))
-    ),
-
-    provider_segment: $ => /[a-z][a-z0-9]*/,
+    // In a capture projection, `$c.first.norm` reads `first` as the capture
+    // component, so a provider path there cannot start with a component name.
+    _projection_attribute_key: _ => attributeKeyToken(['first', 'last', 'span']),
 
     // No `$.identifier` branch: the catch-all below matches a superset of
     // identifier characters, so an identifier token never wins here —
@@ -909,6 +890,49 @@ export default grammar({
     comment: $ => /#.*/
   }
 });
+
+// A regex source for `[a-z][a-z0-9]*` minus the listed words, built from
+// their trie: at each prefix, either end (unless the prefix is a listed word),
+// continue with a character that leaves the trie, or descend into it.
+function lowercaseNameExcept(words) {
+  const trie = new Map();
+  for (const word of words) {
+    let node = trie;
+    for (const character of word) {
+      if (!node.has(character)) node.set(character, new Map());
+      node = node.get(character);
+    }
+    node.set('', null);
+  }
+  const range = (first, last) => Array.from(
+    { length: last.charCodeAt(0) - first.charCodeAt(0) + 1 },
+    (_, offset) => String.fromCharCode(first.charCodeAt(0) + offset)
+  );
+  const lower = range('a', 'z');
+  const tail = [...lower, ...range('0', '9')];
+  const walk = (node, alphabet, isRoot) => {
+    const children = [...node.keys()].filter((key) => key !== '');
+    const leaving = alphabet.filter((character) => !children.includes(character));
+    const branches = [
+      ...(leaving.length ? [`[${leaving.join('')}][a-z0-9]*`] : []),
+      ...children.map((character) => character + walk(node.get(character), tail, false)),
+    ];
+    const group = `(?:${branches.join('|')})`;
+    return isRoot || node.has('') ? group : `${group}?`;
+  };
+  return walk(trie, lower, true);
+}
+
+function attributeKeyToken(extraExcludedNamespaces) {
+  const namespace = lowercaseNameExcept(
+    [...PORTABLE_ATTRIBUTE_KEYS, 'feat', ...extraExcludedNamespaces]
+  );
+  return token(choice(
+    ...PORTABLE_ATTRIBUTE_KEYS,
+    /feat\.[A-Z][A-Za-z0-9]*(\[[a-z][a-z0-9]*\])?/,
+    new RegExp(`${namespace}(\\.[a-z][a-z0-9]*)+`)
+  ));
+}
 
 function keywordOrIdentifier($, keywords) {
   return choice($.identifier, ...keywords.map((word) => alias(word, $.identifier)));

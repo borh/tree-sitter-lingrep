@@ -105,23 +105,18 @@ pattern p := [upos=VERB & unidic.cform=A] & [upos=AUX].
         (attribute_conjunction
           (attribute
             key: (key
-              (attribute_key
-                (portable_attribute_key)))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value))
           (attribute
             key: (key
-              (attribute_key
-                (provider_attribute_key
-                  segment: (provider_segment)
-                  segment: (provider_segment))))
+              (attribute_key))
             operator: (attribute_operator)
             value: (value))))
       (node_pattern
         (attribute
           key: (key
-            (attribute_key
-              (portable_attribute_key)))
+            (attribute_key))
           operator: (attribute_operator)
           value: (value))))))
 
