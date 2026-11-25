@@ -11,17 +11,16 @@
 (deep_key_projection "deep" @function.builtin)
 (deep_relation_label) @string.special
 (capture_key_projection
-  capture: (capture_reference
-    "$" @operator
-    (identifier) @variable.member)
   component: (capture_component)? @constant.builtin
-  attribute: (attribute_key) @property)
+  attribute: [(attribute_key) (identifier)] @property)
 (lexical_term_projection) @constant.builtin
 (lexical_segments_projection
   "segments" @function.builtin
   attribute: (attribute_key) @property)
 (metadata_map_entry key: (identifier) @property)
 (schema_entry key: (identifier) @property)
+(schema_entry required: _ @keyword)
+(metadata_value_set "in" @keyword)
 (metadata_string) @string
 (metadata_number) @number
 (metadata_boolean) @boolean
@@ -35,7 +34,6 @@
 (override_entry "override" @keyword)
 (interpret_entry
   "interpret" @keyword
-  capture: (capture_reference "$" @operator name: (identifier) @variable.member)
   "as" @keyword
   role: (identifier) @variable.member)
 (classify_entry "classify" @keyword "by" @keyword role: (identifier) @variable.member)
@@ -45,11 +43,18 @@
 (schema_block "end" @keyword)
 (labels_entry "labels" @keyword)
 (labels_field attribute: (attribute_key) @property)
+(analyzer_entry "analyzer" @keyword)
+(analyzer_family_field key: (identifier) @property)
+(analyzer_resource_field key: (identifier) @property)
+(analyzer_split_field key: (identifier) @property)
+(analyzer_segmentation_field key: (identifier) @property)
+(analyzer_identifier) @string
+(sudachi_split) @string
+(segmentation_mode) @string
 
 ; Policy: a third block keyword, and a verb that is a keyword only inside it.
 ; The argument key highlights as a property for the same reason a metadata key
-; does; an enum is a bare value, so it takes the constant face rather than the
-; @variable one the catch-all `(identifier)` rule would otherwise give it.
+; does; an enum is a bare value, so it takes the constant face.
 (policy_block "policy" @keyword)
 (policy_block "end" @keyword)
 (policy_verb) @keyword
@@ -72,9 +77,8 @@
   "lexicon" @keyword
   name: (identifier) @entity.name.function
   "by" @keyword
-  projection: (attribute_key) @property
-  ":=" @keyword.operator.definition
-  member: (metadata_string) @string)
+  ":=" @keyword.operator.definition)
+(lexicon_definition projection: (attribute_key) @property)
 
 
 ; Set declarations. The keyword takes the same face as `pattern`/`fragment`,
@@ -127,30 +131,31 @@
   "[" @punctuation.bracket
   "]" @punctuation.bracket)
 
-(attribute
-  (key) @property
-  [(attribute_operator)
-   (set_has_operator)
-   (set_has_any_operator)
-   (set_not_has_operator)
-   (set_not_has_any_operator)] @operator
-  [(value) (value_set)] @string)
+(attribute key: (key) @property)
+(attribute operator: _ @operator)
+; A regex value is a `value` node with a `regex` child of the same span; the
+; predicate leaves that span to the `regex` rule alone.
+((value) @string
+ (#not-match? @string "^/.*/$"))
+(attribute values: (value_set) @string)
 
 (attribute ">=" @operator)
 (similarity_threshold) @number
 (vectors_entry "vectors" @keyword)
-(vectors_resource_field "resource" @property (analyzer_identifier) @string)
+(vectors_resource_field "resource" @property)
 (vectors_digest_field "blake3" @property (vectors_digest) @string)
 
 (sentence_start) @punctuation.special
 (sentence_end) @punctuation.special
-(preceded_by "preceded_by" @keyword)
+["preceded_by" "not_preceded_by" "followed_by" "not_followed_by"] @keyword
 "within" @keyword
 (preceded_by scope: (identifier) @constant.builtin)
 (not_preceded_by scope: (identifier) @constant.builtin)
 (followed_by scope: (identifier) @constant.builtin)
 (not_followed_by scope: (identifier) @constant.builtin)
 (any_order "any_order" @keyword)
+(same_as "same_as" @keyword "by" @keyword)
+(same_as projection: (capture_projection) @property)
 
 ; Regex patterns
 (regex) @string.regex
@@ -193,16 +198,30 @@
 (dependent_count) @operator
 (attribute_comparison operator: _ @operator)
 
+(where_clause "where" @keyword)
+(relation_kind) @keyword
+(basic_head_endpoint "basic_head" @function.builtin)
+["-[" "]->"] @operator
+(relation_constraint path: _ @operator)
+(relation_constraint boundary: _ @keyword)
+(relation_label) @string.special
+(any_relation) @constant.builtin
+
 (span_constraint "span" @keyword)
 (span_constraint "->" @operator)
 ((tree_layer (span_layer_name) @constant.builtin)
  (#any-of? @constant.builtin "word" "bunsetsu"))
-(span_layer_name) @property
+((tree_layer (span_layer_name) @property)
+ (#not-any-of? @property "word" "bunsetsu"))
+(span_constraint layer: (span_layer_name) @property)
 (span_operand position: (identifier) @property)
 (span_operand label: (identifier) @string)
 
-; Identifiers and literals
-(identifier) @variable
+(capture_reference "$" @operator name: (identifier) @variable.member)
+(graph_node_binding
+  "(?<" @punctuation.special
+  name: (identifier) @variable.parameter
+  ">" @punctuation.special)
 
 (measure_clause "measure" @keyword)
 (named_measure "as" @keyword)

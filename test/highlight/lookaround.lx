@@ -1,0 +1,9 @@
+p := followed_by([]) not_followed_by([]) not_preceded_by([], within=document) same_as($a, by=lemma).
+#    ^ keyword
+#                    ^ keyword
+#                                        ^ keyword
+#                                                            ^ keyword
+#                                                                   ^ constant.builtin
+#                                                                             ^ keyword
+#             ^ keyword
+#                                                                                            ^ property

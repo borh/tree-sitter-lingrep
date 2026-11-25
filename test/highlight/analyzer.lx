@@ -1,0 +1,20 @@
+analyzer: {family: "sudachi", resource: "core", split: "C", segmentation: ["input"]}
+# <- keyword
+#          ^ property
+#                  ^ string
+#                             ^ property
+#                                       ^ string
+#                                               ^ property
+#                                                      ^ string
+#                                                           ^ property
+#                                                                          ^ string
+schema
+# <- keyword
+  pattern layer: string required in {"a"}
+#                       ^ keyword
+#                                ^ keyword
+end
+defaults
+  key: [$e.rel]
+#          ^ property
+end

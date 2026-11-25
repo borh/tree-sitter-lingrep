@@ -1,0 +1,23 @@
+p := (?<v> []) (?<o> []) where $v -[obj|obl:*]-> $o, not $v -[*]-> _, $v -[+ obj first nsubj]-> (?<n> [upos=NOUN]).
+#                        ^ keyword
+#                              ^ operator
+#                               ^ variable.member
+#                                 ^ operator
+#                                   ^ string.special
+#                                       ^ string.special
+#                                            ^ operator
+#                                                    ^ operator
+#                                                             ^ constant.builtin
+#                                                                  ^ constant.builtin
+#                                                                          ^ operator
+#                                                                                ^ keyword
+#                                                                                               ^ punctuation.special
+#                                                                                                  ^ variable.parameter
+q := (?<v> []) (?<o> []) where $v -[enhanced obj as $e]-> basic_head($o) measure count(match.words[]) as $n.
+#                                   ^ keyword
+#                                                ^ keyword
+#                                                    ^ variable.member
+#                                                         ^ function.builtin
+#                                                                        ^ keyword
+#                                                                                ^ function.builtin
+#                                                                                                         ^ variable.member

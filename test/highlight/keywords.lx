@@ -1,0 +1,36 @@
+# Input for scripts/check-highlights.mjs; it uses every keyword in the grammar.
+defaults
+  key: [term, segments(lemma), $v.text, $v.first.upos, $v.last.upos, $v.span.upos, deep($e.rel), text]
+  skip: none
+  done: true
+  draft: false
+end
+bundle B
+  source: "x"
+end
+use @B
+override category: "y"
+interpret $v as role {a: "b"}
+classify by role
+schema
+  pattern layer: string required in {"a"}
+end
+policy
+  resolve all by: longest.
+  exclude patterns.
+  require @p.
+  detach %g.
+  admit all.
+end
+analyzer: {family: "vibrato", resource: "unidic-cwj", split: "A", segmentation: ["input"]}
+vectors: {resource: "fasttext", blake3: "0000000000000000000000000000000000000000000000000000000000000000"}
+labels: {upos: "ud-v2", feat.Case: ["a"], unidic.pos1: {名詞}}
+lexicon L by [text, norm] := {"a"}.
+set S := {a, b}.
+test T := upos=NOUN & !(@U).
+group G := category = "x".
+group H := category not in {"x"}.
+pattern p := preceded_by([], within=document) not_preceded_by([]) followed_by([]) not_followed_by([]) any_order((?<a> []), (?<b> [])) same_as($a, by=lemma) [lemma in @S] [surface not in {a}] [xpos near 研究 >= 0.6] [feat.Case has Nom] [norm has any {a}] [unidic.pos1 not has a] [text not has any @S] [lemma not near x >= 0.5]
+  where $a -[obj|@S|obl:*|obj@nsubj]-> $b, not $a -[*]-> _, $a -[nsubj]-> [upos=NOUN]{1,2} as $c, $a -[+ obj first nsubj]-> $b, $a -[+ obj last nsubj]-> $b, $a -[enhanced obj as $e]-> basic_head($b), not basic_head($a) -[enhanced nsubj]-> $b, $a < $b, $a.lemma = $b.lemma, span(word, $a.first@x -> $b)
+  measure count(match.words[]) as $n, mean(($a -[*]-> []).length) as $m, max(tree(word).links.length) as $x, tree(bunsetsu).depth($a) as $d, count(tree(word).nodes.depth) as $q, count(tree(word).boundaries.open_links) as $r.
+fragment f := [].
