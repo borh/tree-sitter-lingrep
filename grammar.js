@@ -7,7 +7,7 @@ export default grammar({
     $.comment,
   ],
 
-  conflicts: $ => [[$.provider_attribute_key], [$._pattern, $._term]],
+  conflicts: $ => [[$.provider_attribute_key]],
 
 
   rules: {
@@ -701,7 +701,10 @@ export default grammar({
       )));
     },
 
-    bare_element: $ => choice($.identifier, alias('measure', $.identifier), alias('mean', $.identifier), alias('max', $.identifier), alias('count', $.identifier), alias('tree', $.identifier)),
+    // `measure` is reserved only where a clause can start, as `where` is:
+    // `[] measure` is a syntax error, while `measure := measure.` and
+    // `[text=measure]` stay legal.
+    bare_element: $ => $.identifier,
 
     named_group: $ => seq(
       '(?<',
